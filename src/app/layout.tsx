@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Capital Sphere Bank',
-  description: 'Capital Sphere Bank is located in Germany',
+  description: 'Capital Sphere Bank is a financial institution that has it\'s headquarters in Germany',
 }
 
 export default function RootLayout({

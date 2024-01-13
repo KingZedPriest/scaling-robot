@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Creating Account Background */
+.createBackground {
+    background-image: url("../../public/Images/signUpBackground.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
