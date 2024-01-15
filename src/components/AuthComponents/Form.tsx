@@ -4,46 +4,60 @@ import Image from "next/image";
 import Link from "next/link";
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
+import CountrySelect from "./CountrySelect";
+import { More } from "../Animate";
+import IdSelect from "./IdSelect";
 
 //Import Needed Images
 import arrow from "../../../public/Images/arrowRight.svg";
 import uploadIcon from "../../../public/Images/uploadIcon.svg";
 
-const Form = () => {
-//Divs state
-    const totalDivs =  2
-  const [activeDiv, setActiveDiv] = useState(0);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const handleNext = () => {
-    setActiveDiv((prev) => (prev + 1) % totalDivs);
-  };
+//Import Needed ICons
+import { BsEye } from "react-icons/bs";
+import { BsEyeSlash } from "react-icons/bs";
 
+
+const Form = () => {
+    const [seen, setSeen] = useState<boolean>(false)
+    //Divs state
+    const totalDivs =  4;
+    const [activeDiv, setActiveDiv] = useState(0);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [idFront, setIdFront] = useState<File | null>(null);
+    const [idBack, setIdBack] = useState<File | null>(null);
+    //Functions
+    const handleNext = () => {
+        setActiveDiv((prev) => (prev + 1) % totalDivs);
+    };
   const handlePrev = () => {
     setActiveDiv((prev) => (prev - 1 + totalDivs) % totalDivs);
   };
+  const handleSeePassword = () => {
+    setSeen ((prev) => (!prev))
+  }
   return (
     <><Progress activeDiv={activeDiv}/>
     <main className="mt-16 text-xs md:text-sm xl:text-base text-[#161618]">
-      <form action="">
+      <form>
         <div className="w-full flex overflow-x-hidden transition-transform duration-300 ease-in-out transform">
-          <div className={`w-full shrink-0 ${activeDiv === 0 ? 'translate-x-0' : '-translate-x-full'} duration-500`}> 
+        <More isVisible={activeDiv <= 0 }>
             <div className="flex justify-between">
               <div className="w-[49%] flex flex-col gap-y-1">
                 <label className="cursor-pointer" htmlFor="firstName">First Name</label>
-                <input type="text" name="firstName" id="firstName" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"placeholder="John"/>
+                <input type="text" name="firstName" id="firstName" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"placeholder="John"/>
               </div>
               <div className="w-[49%] flex flex-col gap-y-1">
                 <label className="cursor-pointer" htmlFor="lastName">Last Name</label>
-                <input type="text" name="lastName" id="lastName" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Doe"/>
+                <input type="text" name="lastName" id="lastName" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Doe"/>
               </div>
             </div>
             <div className="flex flex-col gap-y-1 mt-6">
               <label className="cursor-pointer" htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="example@gmail.com"/>
+              <input type="email" name="email" id="email" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="example@gmail.com"/>
             </div>
             <div className="flex flex-col gap-y-1 mt-6">
               <label className="cursor-pointer" htmlFor="date">Date of Birth</label>
-              <input type="date" name="date" id="date" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"/>
+              <input type="date" name="date" id="date" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"/>
             </div>
             <div className="flex flex-row gap-x-2 items-center mt-4">
               <label htmlFor="profilePicture" className="cursor-pointer flex gap-x-1.5 text-xs md:text-sm text-primary">Upload Picture <Image src={uploadIcon} alt="Upload Icon" /></label>
@@ -63,28 +77,99 @@ const Form = () => {
                 />
               )}
             </div>
-          </div>
-          <div className={`w-full shrink-0 ${activeDiv === 0 ? 'translate-x-0' : '-translate-x-full'} duration-500`}>
-            <div className="flex justify-between">
+        </More> 
+        <More isVisible={activeDiv === 1 }>
+             <div className="flex flex-col gap-y-1">
+                <label className="cursor-pointer" htmlFor="country">Country</label>
+                <CountrySelect />
+            </div>
+            <div className="flex justify-between mt-6">
               <div className="w-[49%] flex flex-col gap-y-1">
                 <label className="cursor-pointer" htmlFor="city">City</label>
-                <input type="text" name="city" id="city" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="City"/>
+                <input type="text" name="city" id="city" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="City"/>
               </div>
               <div className="w-[49%] flex flex-col gap-y-1">
                 <label className="cursor-pointer" htmlFor="state">State</label>
-                <input type="text" name="state" id="state" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="State" />
+                <input type="text" name="state" id="state" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="State" />
               </div>
             </div>
             <div className="flex flex-col gap-y-1 mt-6">
               <label className="cursor-pointer" htmlFor="address">Address</label>
-              <input type="text" name="address" id="address" className="border border-[#E6E7E8] px-2 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Address"/>
+              <input type="text" name="address" id="address" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Address"/>
             </div>
-          </div>
+            <div className="flex flex-col gap-y-1 mt-6">
+              <label className="cursor-pointer" htmlFor="phoneNumber">Mobile Number</label>
+              <input type="tel" name="phoneNumber" id="phoneNumber" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Mobile Number"/>
+            </div>
+        </More>
+          
+        <More isVisible={activeDiv === 2 }>
+            <div className="relative flex flex-col gap-y-1">
+              <label className="cursor-pointer" htmlFor="phoneNumber">Password</label>
+              <input type={seen ? "text" : "password"} name="password" id="password" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="XXXXXXXXXX"/>
+              <div className="absolute top-[55%] right-4 cursor-pointer text-base sm:text-lg md:text-xl xl:text-2xl" onClick={handleSeePassword}>{seen ? <BsEyeSlash /> : <BsEye />}</div>
+            </div>
+            <div className="mt-6 flex flex-col gap-y-1">
+                <label htmlFor="idSelect" className="cursor-pointer">ID Type</label>
+                <IdSelect />
+            </div>
+            <div className="flex flex-col gap-y-1 mt-6">
+              <label className="cursor-pointer" htmlFor="idNumber">ID Number</label>
+              <input type="number" name="idNumber" id="idNumber" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Your ID Number"/>
+            </div>
+            <div className="flex flex-col gap-y-1 mt-6">
+              <label className="cursor-pointer" htmlFor="dateOfExpiry">Date of Expiry</label>
+              <input type="date" name="dateOfExpiry" id="dateOfExpiry" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Your ID Number"/>
+            </div>
+            <div className="flex flex-row gap-x-2 items-center mt-4">
+              <label htmlFor="idFront" className="cursor-pointer flex gap-x-1.5 text-xs md:text-sm text-primary">Upload ID Front <Image src={uploadIcon} alt="Upload Icon" /></label>
+              <input type="file" accept="image/*" name="idFront" id="idFront" className="hidden"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const file = e.target.files?.[0] || null;
+                  setIdFront(file);
+                }}
+              />
+              {idFront && (
+                <Image
+                  src={URL.createObjectURL(idFront)}
+                  alt="Preview"
+                  className="w-10 h-10 rounded-md"
+                  width={80}
+                  height={80}
+                />
+              )}
+            </div>
+            <div className="flex flex-row gap-x-2 items-center mt-4">
+              <label htmlFor="idBack" className="cursor-pointer flex gap-x-1.5 text-xs md:text-sm text-primary">Upload ID Back <Image src={uploadIcon} alt="Upload Icon" /></label>
+              <input type="file" accept="image/*" name="idBack" id="idBack" className="hidden"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const file = e.target.files?.[0] || null;
+                  setIdBack(file);
+                }}
+              />
+              {idBack && (
+                <Image
+                  src={URL.createObjectURL(idBack)}
+                  alt="Preview"
+                  className="w-10 h-10 rounded-md"
+                  width={80}
+                  height={80}
+                />
+              )}
+            </div>
+        </More>
+        <More isVisible={activeDiv === 3 }>
+           <p className="font-bold text-lg sm:text-xl md:text-2xl xl:text-3xl">Verification</p>
+           <p className="font-medium text-xs sm:text-sm xl:text-base mt-4">You will receive an e-mail OTP. Input OTP to open up your account.</p>
+           <div className="flex flex-col gap-y-1 mt-6">
+                <label className="cursor-pointer" htmlFor="otp">OTP</label>
+                <input type="number" name="otp" id="otp" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Enter The OTP" />
+              </div>
+        </More>
         </div>
-
         <div className="my-8 flex justify-between">
-          <p className={`cursor-pointer underline hover:-translate-x-2 duration-500 transition ${activeDiv > 0 ? "" : "text-gray-400 cursor-not-allowed"}`} onClick={activeDiv > 0 ? handlePrev : undefined}>Prev</p>
-          <p className={`cursor-pointer underline hover:translate-x-2 duration-500 transition ${activeDiv == (totalDivs - 1) ? "text-gray-400 cursor-not-allowed" : ""} `} onClick={activeDiv < (totalDivs - 1) ? handleNext : undefined}>Next</p>
+          <p className={`cursor-pointer underline hover:-translate-x-2 duration-500 transition ${activeDiv > 0 ? "" : "hidden"}`} onClick={activeDiv > 0 ? handlePrev : undefined}>Prev</p>
+          <p className={`cursor-pointer underline hover:translate-x-2 duration-500 transition ${activeDiv == (totalDivs - 1) ? "hidden" : ""} `} onClick={activeDiv < (totalDivs - 1) ? handleNext : undefined}>Next</p>
         </div>
         <p className="my-4">Already using Capital sphere bank?<span className="text-primary hover:underline duration-500"><Link href="/login"> Sign in here</Link></span></p>
         <button
