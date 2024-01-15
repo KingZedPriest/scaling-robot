@@ -20,7 +20,7 @@ import { BsEyeSlash } from "react-icons/bs";
 const Form = () => {
     const [seen, setSeen] = useState<boolean>(false)
     //Divs state
-    const totalDivs =  4;
+    const totalDivs =  3;
     const [activeDiv, setActiveDiv] = useState(0);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [idFront, setIdFront] = useState<File | null>(null);
@@ -158,14 +158,7 @@ const Form = () => {
               )}
             </div>
         </More>
-        <More isVisible={activeDiv === 3 }>
-           <p className="font-bold text-lg sm:text-xl md:text-2xl xl:text-3xl">Verification</p>
-           <p className="font-medium text-xs sm:text-sm xl:text-base mt-4">You will receive an e-mail OTP. Input OTP to open up your account.</p>
-           <div className="flex flex-col gap-y-1 mt-6">
-                <label className="cursor-pointer" htmlFor="otp">OTP</label>
-                <input type="number" name="otp" id="otp" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="Enter The OTP" />
-              </div>
-        </More>
+        
         </div>
         <div className="my-8 flex justify-between">
           <p className={`cursor-pointer underline hover:-translate-x-2 duration-500 transition ${activeDiv > 0 ? "" : "hidden"}`} onClick={activeDiv > 0 ? handlePrev : undefined}>Prev</p>
