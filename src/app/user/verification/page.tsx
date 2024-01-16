@@ -35,7 +35,7 @@ const page = () => {
           You will receive an e-mail OTP. Input OTP to open up your account.
         </p>
         <form action="">
-          <div className="flex flex-col gap-y-1 mt-6">
+          <div className="flex flex-col gap-y-1 mt-10">
             <label className="cursor-pointer" htmlFor="otp">
               OTP
             </label>
@@ -49,7 +49,7 @@ const page = () => {
           </div>
           <button
             type="submit"
-            className="group mt-8 flex w-full items-center justify-center gap-x-1.5 rounded-md bg-secondary py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
+            className="group mt-12 flex w-full items-center justify-center gap-x-1.5 rounded-md bg-secondary py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
           >
             Continue
             <Image

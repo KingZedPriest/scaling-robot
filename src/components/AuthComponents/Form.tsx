@@ -105,7 +105,7 @@ const Form = () => {
           
         <More isVisible={activeDiv === 2 }>
             <div className="relative flex flex-col gap-y-1">
-              <label className="cursor-pointer" htmlFor="phoneNumber">Password</label>
+              <label className="cursor-pointer" htmlFor="password">Password</label>
               <input type={seen ? "text" : "password"} name="password" id="password" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="XXXXXXXXXX"/>
               <div className="absolute top-[55%] right-4 cursor-pointer text-base sm:text-lg md:text-xl xl:text-2xl" onClick={handleSeePassword}>{seen ? <BsEyeSlash /> : <BsEye />}</div>
             </div>
