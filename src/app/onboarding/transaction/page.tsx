@@ -1,5 +1,5 @@
 //Import Needed Components
-import TransactionPin from "@/components/AuthComponents/TransactionPin";
+import TransactionPin from "@/components/OnBoardingComponents/TransactionPin";
 
 const Page = () => {
    

@@ -17,7 +17,7 @@ const VerificationForm = () => {
                     <p className="-mt-1">Sphere</p>
                     <p className="-mt-1">Bank</p>
                 </div>
-        </div>
+          </div>
         <div className="text-[#161618] mt-10 mb-4">
             <p className="text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold">
               Set up your account
