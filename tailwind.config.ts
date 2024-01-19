@@ -18,6 +18,10 @@ const config: Config = {
      colors: {
       primary: "#D56F3E",
       secondary: "#1C1F33",
+      sidebarHover: "#D56F3E",
+      sidebar: "#592F1A",
+      sidebarText: "#0A0B12",
+      textWhite: "#F2F2F7",
      }
     },
   },
