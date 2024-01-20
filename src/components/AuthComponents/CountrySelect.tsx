@@ -1,15 +1,18 @@
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import countries from '../../../public/data/countries.json';
 import { MdArrowDropDown } from "react-icons/md";
 import { Country } from '../../lib/types'; 
+import { useCreateUserStore } from "@/store/accountCreation";
 
 const CountrySelect = () => {
+  const {updateCountry} = useCreateUserStore();
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSelect = (country: Country) => {
     setSelectedCountry(country.name);
+    updateCountry(country.name)
     setDropdownOpen(false);
   };
 

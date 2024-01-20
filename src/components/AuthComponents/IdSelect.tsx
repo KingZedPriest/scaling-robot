@@ -2,14 +2,17 @@ import { useState, useRef } from 'react';
 import ids from '../../../public/data/id.json';
 import { MdArrowDropDown } from "react-icons/md";
 import { ID } from '../../lib/types'; 
+import { useCreateUserStore } from "@/store/accountCreation";
 
 const IdSelect = () => {
 
+  const {updateIdType} = useCreateUserStore();
     const [selectedIDs, setSelectedIDs] = useState<string | null>(null);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const handleSelect = (ids: ID) => {
         setSelectedIDs(ids.idType);
+        updateIdType(ids.idType)
         setDropdownOpen(false);
     };
 

@@ -31,7 +31,6 @@ model User {
   idCardBackImgSrc  String
   accountNumber     String        @unique
   balance           Float?
-  iban              String
   transactions      Transaction[]
   atmRequest        Boolean       @default(false)
   transactionPin    String?
