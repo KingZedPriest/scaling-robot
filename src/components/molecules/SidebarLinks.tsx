@@ -7,20 +7,18 @@ type SideBarLinks = {
     route: string,
     label: string,
     icon: React.ReactNode,
-    LogOut?: () => void
 }
 
-const SidebarLinks = ({route, label,icon,LogOut}:SideBarLinks) => {
+const SidebarLinks = ({route, label,icon}:SideBarLinks) => {
     const pathName = usePathname()
 
     return ( 
             <Link
-                onClick={LogOut}
                 href={route}
                 prefetch
-                className={`${pathName === route ? "text-sidebarText bg-sidebarHover" : "text-textWhite"} flex items-center gap-x-2 px-6 py-4 text-sm duration-500 hover:bg-sidebarHover hover:text-sidebarText active:text-sidebarText md:text-base`}
+                className={`${pathName === route ? "text-sidebarText bg-sidebarHover" : pathName === "/user/logout" ? "text-sidebarText bg-[#D70015]" : "text-textWhite"} flex items-center gap-x-2 px-6 py-4 text-sm duration-500 hover:bg-sidebarHover hover:text-sidebarText active:text-sidebarText md:text-base`}
             >{icon}{label}</Link>
      );
 }
  
-export default SidebarLinks;
+export default SidebarLinks; 

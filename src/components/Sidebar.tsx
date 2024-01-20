@@ -46,7 +46,7 @@ const Sidebar = () => {
             <SidebarLinks route="/user/profile" label="My Profile" icon={<ProfileCircle size={20}/>}/>
             <div className="absolute bottom-10 w-full">
                 <SidebarLinks route="/user/support" label="Get Support" icon={<I24Support size={20}/>}/>
-            <SidebarLinks route="" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
+                <SidebarLinks route="/user/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
             </div>
           </div>
           <div className={`${role !== "admin" && "hidden"}`}>
@@ -64,7 +64,7 @@ const Sidebar = () => {
         </div>
         
       </div>
-      <div className={`${role !== "admin" && "hidden"}`}>
+      <div className={`${role === "user" && "hidden"}`}>
         <LuMenuSquare
           className="relative left-4 top-4 mt-2 cursor-pointer text-sidebarHover focus:text-blue lg:hidden"
           size={40}
@@ -89,7 +89,7 @@ const Sidebar = () => {
             <SidebarLinks route="/admin/transfer" label="Send Money"  icon={<ArrowSwapHorizontal size={20}/>}/>
             <SidebarLinks route="/admin/history" label="History" icon={<Chart2 size={20}/>}/>
             <SidebarLinks route="/admin/users" label="Users" icon={<Profile2User size={20}/>}/>
-            <SidebarLinks route="/admin/staff" label="Staff" icon={<Profile size={20}/>}/>
+            {role === "super_admin" && <SidebarLinks route="/admin/staff" label="Staff" icon={<Profile size={20}/>}/>}
             <SidebarLinks route="/admin/suspend" label="Suspend" icon={<CloseCircle size={20}/>}/>
             <div className="absolute bottom-10 w-full">
                 <SidebarLinks route="" label="Log Out" icon={<LogoutCurve size={20}/>}/> 

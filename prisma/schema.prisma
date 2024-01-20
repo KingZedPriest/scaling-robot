@@ -1,11 +1,88 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+//Schemas
+model User {
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  firstName         String
+  lastName          String
+  email             String        @unique
+  isEmailVerified   Boolean       @default(false)
+  isVerified        Boolean       @default(false)
+  isSuspended       Boolean       @default(false)
+  hashedPassword    String
+  dateOfBirth       String
+  profileImgSrc     String
+  country           String
+  city              String
+  state             String
+  address           String
+  mobileNumber      String
+  idType            String
+  idNumber          String
+  dateOfExpiry      String
+  idCardFrontImgSrc String
+  idCardBackImgSrc  String
+  accountNumber     String        @unique
+  balance           Float?
+  iban              String
+  transactions      Transaction[]
+  atmRequest        Boolean       @default(false)
+  transactionPin    String?
+  hasTransactionPin Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model Admin {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  email          String     @unique
+  hashedPassword String
+  role           AdminRole? @default(Admin)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+model Transaction {
+  id            String             @id @default(auto()) @map("_id") @db.ObjectId
+  type          TransactionType
+  amount        Float
+  targetAccount String?
+  isSaveBox     Boolean            @default(false)
+  saveBoxAmount Float?
+  description   String?
+  status        TransactionStatus? @default(pending)
+  userId        String             @db.ObjectId
+  user          User               @relation(fields: [userId], references: [id])
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+//Enums
+enum AdminRole {
+  Admin
+  Super_Admin
+}
+
+enum TransactionType {
+  Deposit
+  Withdrawal
+  Target_Saving
+  Capital_Wealth
+  Fixed_Saving
+  Utility_Bill
+  Domestic_Wire_Transfer
+  International_Wire_Transfer
+}
+
+enum TransactionStatus {
+  pending
+  successfull
+  failed
 }
