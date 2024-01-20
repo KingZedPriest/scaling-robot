@@ -22,6 +22,7 @@ const config: Config = {
       sidebar: "#592F1A",
       sidebarText: "#0A0B12",
       textWhite: "#F2F2F7",
+      textPrimary: "#161618",
      }
     },
   },
