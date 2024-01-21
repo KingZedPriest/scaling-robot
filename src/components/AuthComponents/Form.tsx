@@ -1,26 +1,33 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { makeApiRequest } from "@/lib/apiUtils";
+import { generateAccountNumber } from "@/utils/AccountInfo";
+
+
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
 import CountrySelect from "./CountrySelect";
 import { More } from "../Animate";
 import IdSelect from "./IdSelect";
+import ImageUpload from "../molecules/ImageUpload";
 
 //Import Needed Images
 import arrow from "../../../public/Images/arrowRight.svg";
-import uploadIcon from "../../../public/Images/uploadIcon.svg";
 
 //Import Needed ICons
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
-import ImageUpload from "../molecules/ImageUpload";
+
 
 //Import Needed States
 import { useCreateUserStore } from "@/store/accountCreation";
 
 const Form = () => {
+  const router = useRouter();
   const {
     firstName,
     updateFirstName,
@@ -54,6 +61,7 @@ const Form = () => {
     updateIdCardBackImgSrc,
   } = useCreateUserStore();
 
+  const [loading, setLoading] = useState<boolean>(false)
   const [seen, setSeen] = useState<boolean>(false);
   //Divs state
   const totalDivs = 3;
@@ -90,16 +98,44 @@ const Form = () => {
     ) {
       return true;
     }
-  
+
     return false;
   };
-  
 
+  //On submit function
+  const onSubmit = (event: FormEvent) => {
+      event.preventDefault()
+      setLoading(true)
+      const accountNumber = generateAccountNumber();
+      const formData = {accountNumber, firstName, lastName, email, password, dateOfBirth, profileImgSrc, country, city, state, address, mobileNumber, idType, idNumber, dateOfExpiry, idCardFrontImgSrc, idCardBackImgSrc}
+      
+      makeApiRequest("/create", "post", formData, {
+        onSuccess: () => {
+          // Handle success
+          setLoading(false)
+          toast.success("Account was created successfully.");
+          router.push("/admin/dashboard");
+        },
+        onError: (error: any) => {
+          // Handle error
+          setLoading(false)
+          if (error) {
+            if (error === "Email already exists") {
+              toast.error("Email Already Exists");
+            } else if (error === "Missing Fields") {
+              toast.error("Please Fill In All The Details");
+            } else {
+              toast.error("Account wasn't created. Please try again.");
+            }
+          }
+        },
+      });
+  }
   return (
     <>
       <Progress activeDiv={activeDiv} />
       <main className="mt-10 text-xs md:text-sm xl:text-base text-[#161618]">
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="w-full flex overflow-x-hidden transition-transform duration-300 ease-in-out transform">
             <More isVisible={activeDiv <= 0}>
               <div className="flex justify-between">
@@ -351,11 +387,19 @@ const Form = () => {
             </span>
           </p>
           <button
-            disabled={checkFilledValues()}
-            type="submit"
-            className={`${checkFilledValues() === true ? "cursor-not-allowed bg-[#D70015]" : "bg-secondary"} group mt-8 flex w-full items-center justify-center gap-x-1.5 rounded-md py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg`}
+            onClick={() => {
+              if (checkFilledValues()) {
+                toast.error("Please Fill All The Values");
+              }
+            }}
+            type={checkFilledValues() ? "button" : "submit"}
+            className={`${
+              checkFilledValues()
+                ? "cursor-not-allowed bg-[#D70015]"
+                : "bg-secondary"
+            } group mt-8 mb-4 flex w-full items-center justify-center gap-x-1.5 rounded-md py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg`}
           >
-            Continue
+            {loading ? "Submitting" : "Continue"}
             <Image
               src={arrow}
               alt="Right Arrow"

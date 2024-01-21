@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from 'next/navigation'
 
@@ -13,14 +13,18 @@ import arrow from "../../../public/Images/arrowRight.svg";
 
 const CreateForm = () => {
     
-    const searchParams = useSearchParams()
-    const role = searchParams.get('role')
+const searchParams = useSearchParams()
+const role = searchParams.get('role')
     
-    const [seen, setSeen] = useState<boolean>(false)
-    const handleSeePassword = () => {
-        setSeen ((prev) => (!prev))
-    }
+const [seen, setSeen] = useState<boolean>(false)
+const handleSeePassword = () => {
+    setSeen ((prev) => (!prev))
+}
 
+//On submit function
+const onSubmit = (event: FormEvent) => {
+
+}
     return ( 
         <main className="text-xs md:text-sm xl:text-base text-textPrimary">
             <div>
@@ -30,7 +34,7 @@ const CreateForm = () => {
                 <p className="font-semibold mt-2">Welcome, let&apos;s get started</p>
             </div>
         <div className="mt-14">
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="flex flex-col gap-y-1">
                     <label className="cursor-pointer" htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none" placeholder="example@gmail.com"/>
