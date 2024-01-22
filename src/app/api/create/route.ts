@@ -5,8 +5,52 @@ import { prisma } from '@/lib/prismadb';
 export async function POST(request: Request) {
 
   try {
+
     const body = await request.json();
-    
+
+    if (Object.keys(body).length === 2 || Object.keys(body).length === 3 ) {
+
+      const { email, password, role } = body;
+
+      const lowercasedEmail = email.toLowerCase();
+
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          email: lowercasedEmail,
+        },
+      });
+
+      if (existingUser) {
+        throw new Error('Email already exists');
+      }
+      const hashedPassword = await bcrypt.hash(password, 12);
+
+      if (role) {
+        // Super_Admin creation
+        const admin = await prisma.admin.create({
+          data: {
+            email: lowercasedEmail,
+            hashedPassword,
+            role,
+          },
+        });
+
+        return NextResponse.json(admin);
+        
+      } else {
+        // Regular admin creation
+        const admin = await prisma.admin.create({
+          data: {
+            email: lowercasedEmail,
+            hashedPassword,
+          },
+        });
+
+        return NextResponse.json(admin);
+      }
+
+    } else {
+
     const { accountNumber, 
         firstName, 
         lastName, 
@@ -33,8 +77,19 @@ export async function POST(request: Request) {
       },
     });
 
+    const existingAccountNumber = await prisma.user.findUnique({
+      where: {
+        accountNumber: accountNumber,
+      },
+    });
+
     if (existingUser) {
       throw new Error('Email already exists');
+    }
+
+    if (existingAccountNumber) {
+      console.error("Account Number Already Exists");
+      throw new Error('Something Went Wrong');
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -62,7 +117,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(user);
-    
+    }
   } catch (error) {
     if (error instanceof Error) {
       return new NextResponse(error.message, {

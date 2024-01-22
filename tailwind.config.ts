@@ -23,6 +23,8 @@ const config: Config = {
       sidebarText: "#0A0B12",
       textWhite: "#F2F2F7",
       textPrimary: "#161618",
+      correctGreen: "#20BF55",
+      wrongRed: "#FF5964",
      }
     },
   },

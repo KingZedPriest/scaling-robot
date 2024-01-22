@@ -2,11 +2,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { generateAccountNumber } from "@/utils/AccountInfo";
-
+import { toast } from "sonner";
 
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
@@ -14,6 +13,8 @@ import CountrySelect from "./CountrySelect";
 import { More } from "../Animate";
 import IdSelect from "./IdSelect";
 import ImageUpload from "../molecules/ImageUpload";
+import Toast from "../molecules/Toast";
+import { errorModalProps, successModalProps } from "@/lib/modalPropsMessages";
 
 //Import Needed Images
 import arrow from "../../../public/Images/arrowRight.svg";
@@ -26,7 +27,14 @@ import { BsEyeSlash } from "react-icons/bs";
 //Import Needed States
 import { useCreateUserStore } from "@/store/accountCreation";
 
+
+
+
 const Form = () => {
+  //State for the modals
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [modalProps, setModalProps] = useState<object>({})
+  //For the router
   const router = useRouter();
   const {
     firstName,
@@ -60,8 +68,9 @@ const Form = () => {
     idCardBackImgSrc,
     updateIdCardBackImgSrc,
   } = useCreateUserStore();
-
+//For the loading state
   const [loading, setLoading] = useState<boolean>(false)
+  //For the password
   const [seen, setSeen] = useState<boolean>(false);
   //Divs state
   const totalDivs = 3;
@@ -102,6 +111,17 @@ const Form = () => {
     return false;
   };
 
+//Display the correct function
+const handleSuccess = () => {
+  setShowModal(true);
+  setModalProps(successModalProps);
+};
+
+const handleError = () => {
+  setShowModal(true);
+  setModalProps(errorModalProps);
+};
+
   //On submit function
   const onSubmit = (event: FormEvent) => {
       event.preventDefault()
@@ -113,26 +133,20 @@ const Form = () => {
         onSuccess: () => {
           // Handle success
           setLoading(false)
-          toast.success("Account was created successfully.");
-          router.push("/admin/dashboard");
+          handleSuccess()
+          router.push("/onboarding/verification");
         },
         onError: (error: any) => {
           // Handle error
           setLoading(false)
-          if (error) {
-            if (error === "Email already exists") {
-              toast.error("Email Already Exists");
-            } else if (error === "Missing Fields") {
-              toast.error("Please Fill In All The Details");
-            } else {
-              toast.error("Account wasn't created. Please try again.");
-            }
-          }
+          handleError()
+          router.refresh()
         },
       });
   }
   return (
     <>
+      {showModal && <Toast {...modalProps} />}
       <Progress activeDiv={activeDiv} />
       <main className="mt-10 text-xs md:text-sm xl:text-base text-[#161618]">
         <form onSubmit={onSubmit}>
