@@ -65,7 +65,9 @@ const handleError = () => {
     setShowModal(true);
     setModalProps(errorModalProps);
 };
-
+const handleFinal = () => {
+    setShowModal(false)
+}
 //On submit function
 const onSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -76,7 +78,7 @@ const onSubmit = (event: FormEvent) => {
     if (chosenRole) {
         formData = { ...state, role: chosenRole };
     }
-    makeApiRequest("/create", "post", formData, {
+    makeApiRequest("/createAdmin", "post", formData, {
         onSuccess: () => {
           // Handle success
           setLoading(false)
@@ -95,7 +97,7 @@ const onSubmit = (event: FormEvent) => {
 }
     return ( 
         <>
-        {showModal && <Toast {...modalProps} />}
+        {showModal && <Toast {...modalProps} hideModal={handleFinal}/>}
         <main className="text-xs md:text-sm xl:text-base text-textPrimary">
             <div>
                  <p className="font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">

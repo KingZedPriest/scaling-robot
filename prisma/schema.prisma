@@ -30,7 +30,6 @@ model User {
   idCardFrontImgSrc String
   idCardBackImgSrc  String
   accountNumber     String        @unique
-  balance           Float?
   transactions      Transaction[]
   atmRequest        Boolean       @default(false)
   transactionPin    String?
@@ -43,7 +42,7 @@ model Admin {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   email          String    @unique
   hashedPassword String
-  role           AdminRole @default(Admin)
+  role           AdminRole @default(admin)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 }
@@ -65,8 +64,8 @@ model Transaction {
 
 //Enums
 enum AdminRole {
-  Admin
-  Super_Admin
+  admin
+  super_admin
 }
 
 enum TransactionType {

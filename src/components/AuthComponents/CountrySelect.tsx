@@ -23,7 +23,7 @@ const CountrySelect = () => {
   return (
     <div className="relative">
       <div
-        className={`relative w-full rounded-md focus:outline-none bg-white border border-[#E6E7E8] px-4 py-2 cursor-pointer ${
+        className={`relative w-full rounded-md focus:outline-none bg-white border border-[#E6E7E8] px-4 py-2 md:py-3 cursor-pointer ${
           isDropdownOpen ? 'rounded-b-none border-b-0' : ''
         }`}
         onClick={toggleDropdown}

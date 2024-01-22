@@ -4,54 +4,12 @@ import { prisma } from '@/lib/prismadb';
 
 export async function POST(request: Request) {
 
+  const body = await request.json();
+
   try {
 
-    const body = await request.json();
-
-    if (Object.keys(body).length === 2 || Object.keys(body).length === 3 ) {
-
-      const { email, password, role } = body;
-
-      const lowercasedEmail = email.toLowerCase();
-
-      const existingUser = await prisma.user.findUnique({
-        where: {
-          email: lowercasedEmail,
-        },
-      });
-
-      if (existingUser) {
-        throw new Error('Email already exists');
-      }
-      const hashedPassword = await bcrypt.hash(password, 12);
-
-      if (role) {
-        // Super_Admin creation
-        const admin = await prisma.admin.create({
-          data: {
-            email: lowercasedEmail,
-            hashedPassword,
-            role,
-          },
-        });
-
-        return NextResponse.json(admin);
-        
-      } else {
-        // Regular admin creation
-        const admin = await prisma.admin.create({
-          data: {
-            email: lowercasedEmail,
-            hashedPassword,
-          },
-        });
-
-        return NextResponse.json(admin);
-      }
-
-    } else {
-
-    const { accountNumber, 
+    const { 
+        accountNumber, 
         firstName, 
         lastName, 
         email, 
@@ -65,9 +23,11 @@ export async function POST(request: Request) {
         mobileNumber, 
         idType, 
         idNumber, 
+        transactions,
         dateOfExpiry, 
         idCardFrontImgSrc, 
-        idCardBackImgSrc } = body;
+        idCardBackImgSrc,
+      } = body;
 
     const lowercasedEmail = email.toLowerCase();
 
@@ -88,13 +48,14 @@ export async function POST(request: Request) {
     }
 
     if (existingAccountNumber) {
-      console.error("Account Number Already Exists");
+      console.log("Account Number Already Exists")
       throw new Error('Something Went Wrong');
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const user = await prisma.user.create({
+
       data: {
         email: lowercasedEmail,
         hashedPassword,
@@ -109,7 +70,8 @@ export async function POST(request: Request) {
         address, 
         mobileNumber, 
         idType, 
-        idNumber, 
+        idNumber,
+        transactions,
         dateOfExpiry, 
         idCardFrontImgSrc, 
         idCardBackImgSrc
@@ -117,8 +79,10 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(user);
-    }
-  } catch (error) {
+    } catch (error) {
+      
+      console.log({error})
+
     if (error instanceof Error) {
       return new NextResponse(error.message, {
         status: determineStatusCode(error.message),
@@ -127,13 +91,15 @@ export async function POST(request: Request) {
       return new NextResponse('Internal Server Error', { status: 500 });
     }
   }
-}
 
 function determineStatusCode(errorMessage: string): number {
   switch (errorMessage) {
     case 'Email already exists':
       return 409;
+    case "Something Went Wrong":
+      return 409;
     default:
       return 500;
   }
+}
 }

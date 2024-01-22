@@ -121,14 +121,17 @@ const handleError = () => {
   setShowModal(true);
   setModalProps(errorModalProps);
 };
-
+const handleFinal = () => {
+  setShowModal(false)
+}
   //On submit function
   const onSubmit = (event: FormEvent) => {
       event.preventDefault()
       setLoading(true)
-      const accountNumber = generateAccountNumber();
-      const formData = {accountNumber, firstName, lastName, email, password, dateOfBirth, profileImgSrc, country, city, state, address, mobileNumber, idType, idNumber, dateOfExpiry, idCardFrontImgSrc, idCardBackImgSrc}
-      
+      const accountNumber = generateAccountNumber().toString();
+      const transactions = {}
+      const formData = {accountNumber, firstName, lastName, email, password, dateOfBirth, profileImgSrc, country, city, state, address, mobileNumber, idType, transactions, idNumber, dateOfExpiry, idCardFrontImgSrc, idCardBackImgSrc}
+
       makeApiRequest("/create", "post", formData, {
         onSuccess: () => {
           // Handle success
@@ -146,7 +149,7 @@ const handleError = () => {
   }
   return (
     <>
-      {showModal && <Toast {...modalProps} />}
+      {showModal && <Toast {...modalProps} hideModal={handleFinal}/>}
       <Progress activeDiv={activeDiv} />
       <main className="mt-10 text-xs md:text-sm xl:text-base text-[#161618]">
         <form onSubmit={onSubmit}>
