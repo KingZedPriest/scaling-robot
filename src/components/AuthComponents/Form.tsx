@@ -68,7 +68,8 @@ const Form = () => {
     idCardBackImgSrc,
     updateIdCardBackImgSrc,
   } = useCreateUserStore();
-//For the loading state
+
+  //For the loading state
   const [loading, setLoading] = useState<boolean>(false)
   //For the password
   const [seen, setSeen] = useState<boolean>(false);

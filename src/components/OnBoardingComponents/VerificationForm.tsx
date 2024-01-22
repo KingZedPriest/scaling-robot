@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image";
+
 
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
@@ -7,7 +9,11 @@ import Progress from "@/components/AuthComponents/Progress";
 import logo from "../../../public/Images/logo.svg";
 import arrow from "../../../public/Images/arrowRight.svg";
 
+
+
+
 const VerificationForm = () => {
+  
     return ( 
         <main>
             <div className="flex gap-x-1">
@@ -33,7 +39,7 @@ const VerificationForm = () => {
             <p className="font-medium text-xs sm:text-sm xl:text-base mt-4">
               You will receive an e-mail OTP. Input OTP to open up your account.
             </p>
-        <form action="">
+        <form >
           <div className="flex flex-col gap-y-1 mt-10">
             <label className="cursor-pointer" htmlFor="otp">
               OTP
@@ -46,6 +52,7 @@ const VerificationForm = () => {
               placeholder="Enter The OTP"
             />
           </div>
+          
           <button
             type="submit"
             className="group mt-12 flex w-full items-center justify-center gap-x-1.5 rounded-md bg-secondary py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
