@@ -79,14 +79,13 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(user);
+    
     } catch (error) {
       
       console.log({error})
 
     if (error instanceof Error) {
-      return new NextResponse(error.message, {
-        status: determineStatusCode(error.message),
-      });
+      return new NextResponse(error.message, { status: determineStatusCode(error.message),});
     } else {
       return new NextResponse('Internal Server Error', { status: 500 });
     }
@@ -97,7 +96,7 @@ function determineStatusCode(errorMessage: string): number {
     case 'Email already exists':
       return 409;
     case "Something Went Wrong":
-      return 409;
+      return 400;
     default:
       return 500;
   }

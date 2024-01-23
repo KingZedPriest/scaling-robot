@@ -34,6 +34,7 @@ const Form = () => {
   //State for the modals
   const [showModal, setShowModal] = useState<boolean>(false)
   const [modalProps, setModalProps] = useState<object>({})
+  const [message, setMessage] = useState<string>("")
   //For the router
   const router = useRouter();
   const {
@@ -137,20 +138,26 @@ const handleFinal = () => {
         onSuccess: () => {
           // Handle success
           setLoading(false)
+          setMessage("Your account was created successfully")
           handleSuccess()
           router.push(`/onboarding/verification?email=${email}&name=${firstName} ${lastName}`);
         },
         onError: (error: any) => {
           // Handle error
           setLoading(false)
+          if (error.message === "Request failed with status code 409") {
+            setMessage("Email already exists, kindly log in.")
+            router.push("/login")
+          }
+          setMessage("Unable to create account currently. Please try again.")
           handleError()
-          router.refresh()
+          router.refresh() 
         },
       });
   }
   return (
     <>
-      {showModal && <Toast {...modalProps} hideModal={handleFinal}/>}
+      {showModal && <Toast {...modalProps} message= {message} hideModal={handleFinal}/>}
       <Progress activeDiv={activeDiv} />
       <main className="mt-10 text-xs md:text-sm xl:text-base text-[#161618]">
         <form onSubmit={onSubmit}>
