@@ -1,9 +1,17 @@
 "use client"
+import { useEffect } from "react";
 import Image from "next/image";
-
+import { makeApiRequest } from "@/lib/apiUtils";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useOtpStore } from "@/store/verification";
+import { generateOTPNumber } from "@/utils/AccountInfo";
+import { useSearchParams } from 'next/navigation'
 
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
+import SendVerificationEmail from "../molecules/SendVerificationEmail";
 
 //Import Needed Images
 import logo from "../../../public/Images/logo.svg";
@@ -11,8 +19,58 @@ import arrow from "../../../public/Images/arrowRight.svg";
 
 
 
-
 const VerificationForm = () => {
+
+const searchParams = useSearchParams()
+const userEmail = searchParams.get('email')
+
+//Zustand OTP Management
+const { otpNumber, updateOtpNumber } = useOtpStore()
+
+//Generate the otp save it in a state
+useEffect(() => {
+  const otp = generateOTPNumber();
+  updateOtpNumber(otp);
+}, [updateOtpNumber]);
+
+const router = useRouter();
+//For the loading state
+const [loading, setLoading] = useState<boolean>(false)
+const [enteredOtp, setEnteredOtp] = useState<string>()
+
+//OnSubmit Function
+const onSubmit = (event: FormEvent) => {
+  
+  event.preventDefault()
+  setLoading(true)
+
+  //Check if the otp entered is the same with what was sent
+  if (otpNumber.toString() === enteredOtp) {
+
+  const formData = {email: userEmail}
+
+  makeApiRequest("/verifyUser", "post", formData, {
+    onSuccess: () => {
+      // Handle success
+      setLoading(false)
+      toast.success("Verification was successful")
+      router.push(`/onboarding/transaction?email=${userEmail}`);
+    },
+    onError: (error: any) => {
+      // Handle error
+      setLoading(false)
+      toast.error("Verification failed, try again later.")
+      router.refresh()
+    },
+  });
+
+  } else {
+    toast.error("Verification failed, try again later.")
+  }
+
+
+  
+}
   
     return ( 
         <main>
@@ -39,25 +97,29 @@ const VerificationForm = () => {
             <p className="font-medium text-xs sm:text-sm xl:text-base mt-4">
               You will receive an e-mail OTP. Input OTP to open up your account.
             </p>
-        <form >
+        <form onSubmit={onSubmit}>
           <div className="flex flex-col gap-y-1 mt-10">
             <label className="cursor-pointer" htmlFor="otp">
               OTP
             </label>
             <input
-              type="number"
+              type="text"
               name="otp"
               id="otp"
               className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"
               placeholder="Enter The OTP"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEnteredOtp(e.target.value)
+              }
             />
           </div>
-          
+          <SendVerificationEmail/>
+
           <button
             type="submit"
             className="group mt-12 flex w-full items-center justify-center gap-x-1.5 rounded-md bg-secondary py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
           >
-            Continue
+            {loading ? "Verifying..." : "Continue"}
             <Image
               src={arrow}
               alt="Right Arrow"

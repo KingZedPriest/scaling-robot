@@ -138,7 +138,7 @@ const handleFinal = () => {
           // Handle success
           setLoading(false)
           handleSuccess()
-          router.push("/onboarding/verification");
+          router.push(`/onboarding/verification?email=${email}&name=${firstName} ${lastName}`);
         },
         onError: (error: any) => {
           // Handle error

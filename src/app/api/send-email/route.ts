@@ -8,14 +8,14 @@ import { sendEmail } from "@/lib/email";
 export async function POST(request: Request) {
     const body = await request.json();
     try {
-        const { to, subject } = body;
+        const { to, subject, name, otp } = body;
 
-        if (!to || !subject) {
+        if (!to || !subject || !name || !otp) {
 
             throw new Error('Fill in the fields')
         }
 
-    const emailHtml = render(WelcomeTemplate({userName: "Charles"}));
+    const emailHtml = render(WelcomeTemplate({userName: name, verificationCode: otp}));
 
       await sendEmail({
         to,
