@@ -1,10 +1,12 @@
+import Image from "next/image"
+
+//Import Needed Images
+import logo from "../../public/Images/logo.svg";
+
 const loading = () => {
   return (
     <main className="h-screen flex items-center justify-center">
-      <div className="loaders">
-        <span>Capital Sphere</span>
-        <span>Capital Sphere</span>
-      </div>
+          <Image src={logo} alt="Logo" className="animate-spin"/>
     </main>
   );
 };

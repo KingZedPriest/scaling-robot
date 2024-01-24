@@ -48,15 +48,16 @@ const Sidebar = ({role} : {role : string}) => {
                 <SidebarLinks route="/user/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
             </div>
           </div>
-          <div className={`${role !== "admin" && "hidden"}`}>
+          <div className={`${role === "user" && "hidden"}`}>
             <SidebarLinks route="/admin/dashboard" label="Dashboard" icon={<Element3 size={20}/>}/>
-            <SidebarLinks route="/admin/transfer" label="Send Money"  icon={<ArrowSwapHorizontal size={20}/>}/>
+            <SidebarLinks route="/admin/transfer" label="Transactions"  icon={<ArrowSwapHorizontal size={20}/>}/>
             <SidebarLinks route="/admin/history" label="History" icon={<Chart2 size={20}/>}/>
             <SidebarLinks route="/admin/users" label="Users" icon={<Profile2User size={20}/>}/>
-            <SidebarLinks route="/admin/staff" label="Staff" icon={<Profile size={20}/>}/>
-            <SidebarLinks route="/admin/suspend" label="Suspend" icon={<CloseCircle size={20}/>}/>
+            {role === "super_admin" && <SidebarLinks route="/admin/staff" label="Staff" icon={<Profile size={20}/>}/>}
+            {role === "super_admin" && <SidebarLinks route="/admin/suspend" label="Suspend" icon={<CloseCircle size={20}/>}/>}
+            <SidebarLinks route="/admin/support" label="Support" icon={<I24Support size={20}/>}/> 
             <div className="absolute bottom-10 w-full">
-                <SidebarLinks route="" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
+                <SidebarLinks route="/admin/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
             </div>
           </div>
           
@@ -85,13 +86,14 @@ const Sidebar = ({role} : {role : string}) => {
             />
           <div className={` my-10 flex flex-col gap-y-5`}>
             <SidebarLinks route="/admin/dashboard" label="Dashboard" icon={<Element3 size={20}/>}/>
-            <SidebarLinks route="/admin/transfer" label="Send Money"  icon={<ArrowSwapHorizontal size={20}/>}/>
+            <SidebarLinks route="/admin/transfer" label="Transactions"  icon={<ArrowSwapHorizontal size={20}/>}/>
             <SidebarLinks route="/admin/history" label="History" icon={<Chart2 size={20}/>}/>
             <SidebarLinks route="/admin/users" label="Users" icon={<Profile2User size={20}/>}/>
             {role === "super_admin" && <SidebarLinks route="/admin/staff" label="Staff" icon={<Profile size={20}/>}/>}
-            <SidebarLinks route="/admin/suspend" label="Suspend" icon={<CloseCircle size={20}/>}/>
+            {role === "super_admin" && <SidebarLinks route="/admin/suspend" label="Suspend" icon={<CloseCircle size={20}/>}/>}
+            <SidebarLinks route="/admin/support" label="Support" icon={<I24Support size={20}/>}/>
             <div className="absolute bottom-10 w-full">
-                <SidebarLinks route="" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
+                <SidebarLinks route="/admin/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
             </div>
           </div>
             </motion.div>

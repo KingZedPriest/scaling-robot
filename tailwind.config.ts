@@ -25,7 +25,7 @@ const config: Config = {
       textPrimary: "#161618",
       correctGreen: "#20BF55",
       wrongRed: "#FF5964",
-     }
+     },
     },
   },
   plugins: [],
