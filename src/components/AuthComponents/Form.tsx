@@ -222,7 +222,7 @@ const handleFinal = () => {
                   name="date"
                   id="date"
                   value={dateOfBirth}
-                  className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"
+                  className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none w-full"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     updateDateOfBirth(e.target.value)
                   }
@@ -363,7 +363,7 @@ const handleFinal = () => {
                   name="dateOfExpiry"
                   id="dateOfExpiry"
                   value={dateOfExpiry}
-                  className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"
+                  className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none w-full"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     updateDateOfExpiry(e.target.value)
                   }

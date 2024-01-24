@@ -98,6 +98,7 @@ const VerificationForm = () => {
             type="text"
             name="otp"
             id="otp"
+            pattern="\d{4}"
             className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"
             placeholder="Enter The OTP"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
