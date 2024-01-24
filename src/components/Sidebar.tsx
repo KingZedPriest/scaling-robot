@@ -18,7 +18,7 @@ import { ArrowSwapHorizontal, Chart2, CloseCircle, Element3, I24Support, LogoutC
 //Import Needed Images
 import logo from "../../public/Images/logoWhite.svg";
 
-const Sidebar = ({role} : {role : string}) => {
+const Sidebar = ({role} : {role : string | any}) => {
   //For the sidebar
   const [isOpen, setIsOpen] = useState<boolean>(false);
   //Function to toggle the sidebar
