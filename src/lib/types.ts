@@ -9,8 +9,9 @@ export type ID = {
 }
 
 //General Types
-export type Page = {
-  page: string
+export type heading = {
+  page: string,
+  profilePicSrc: string | any
 }
 
 //User Dashboard Types

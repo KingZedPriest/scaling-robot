@@ -21,19 +21,19 @@ export default async function UserLayout({
     //console.log({currentUser})
     
     //Redirect accordingly
-    if (currentUser?.isEmailVerified === false) {
+    // if (currentUser?.isEmailVerified === false) {
 
-      permanentRedirect('/onboarding/verification')
+    //   permanentRedirect('/onboarding/verification')
 
-    } else if (currentUser?.hasTransactionPin === false){
+    // } else if (currentUser?.hasTransactionPin === false){
 
-      permanentRedirect('/onboarding/transaction')
+    //   permanentRedirect('/onboarding/transaction')
 
-    } else if (currentUser?.isVerified === false) {
+    // } else if (currentUser?.isVerified === false) {
 
-      permanentRedirect('/onboarding/review')
+    //   permanentRedirect('/onboarding/review')
 
-    }
+    // }
   return (
 
       <section>

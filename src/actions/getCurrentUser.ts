@@ -10,7 +10,9 @@ export default async function getCurrentLoggedInUser(email: string | any ) {
       where: { 
         email: email 
       },
-
+      include: {
+        transactions: true
+      },
     });
 
 
