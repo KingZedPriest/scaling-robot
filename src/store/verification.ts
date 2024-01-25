@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { generateOTPNumber } from "@/utils/AccountInfo";
 
 type otpStore = {
 

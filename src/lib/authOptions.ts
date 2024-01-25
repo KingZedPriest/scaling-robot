@@ -41,8 +41,31 @@ export const authOptions: AuthOptions = {
             throw new Error("Invalid Credentials");
           }
           //If every checks was successfully passed
-          return user;
-          
+          return {
+            id: user.id,
+            email: user.email,
+            name: `${user.firstName} ${user.lastName}`,
+            image: user.profileImgSrc,
+            isEmailVerified: user.isEmailVerified,
+            isVerified: user.isVerified,
+            isSuspended: user.isSuspended,
+            dateOfBirth: user.dateOfBirth,
+            country: user.country,
+            city: user.city,
+            state: user.state,
+            address: user.address,
+            mobileNumber: user.mobileNumber,
+            idType: user.idType,
+            idNumber: user.idNumber,
+            dateOfExpiry: user.dateOfExpiry,
+            idFront: user.idCardFrontImgSrc,
+            idBack: user.idCardBackImgSrc,
+            accountNumber: user.accountNumber,
+            atmRequest: user.atmRequest,
+            transactionPin: user.transactionPin,
+            hasTransactionPin: user.hasTransactionPin,
+            createdAt: user.createdAt,
+          };
         } else {
           const admin = await prisma.admin.findUnique({
             where: {
@@ -64,7 +87,12 @@ export const authOptions: AuthOptions = {
             throw new Error("Invalid Credentials");
           }
           //If every checks was successfully passed
-          return admin;
+          return {
+            id: admin.id,
+            email: admin.email,
+            role: admin.role,
+            createdAt: admin.createdAt,
+          };
         }
       },
     }),
@@ -75,7 +103,7 @@ export const authOptions: AuthOptions = {
 
   session: {
     strategy: "jwt",
-    maxAge: 2 * 60 * 60
+    maxAge: 2 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

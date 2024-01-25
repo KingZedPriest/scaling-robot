@@ -68,4 +68,5 @@ export const useCreateUserStore = create<UserStore>((set) => ({
     updateDateOfExpiry: (newDateOfExpiry: string) => set({dateOfExpiry : newDateOfExpiry}),
     updateIdCardFrontImgSrc: (newIdCardFrontImgSrc: string) => set({idCardFrontImgSrc : newIdCardFrontImgSrc}),
     updateIdCardBackImgSrc: (newIdCardBackImgSrc: string) => set({idCardBackImgSrc : newIdCardBackImgSrc}),
+    
   })); 

@@ -1,24 +1,49 @@
 "use client"
+import { useEffect } from "react";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { toast } from "sonner";
 import { useSearchParams } from 'next/navigation'
 import { useOtpStore } from "@/store/verification";
-
-
+import { useOnboardingStore } from "@/store/onboardingDetails";
 
 
 const SendVerificationEmail = () => {
+const {updateName, updateEmail, name, email} = useOnboardingStore()
+
 //Zustand OTP Management
 const { otpNumber } = useOtpStore()
 const searchParams = useSearchParams()
-const email = searchParams.get('email')
-const fullName = searchParams.get('name')
+
+//Use useEffect for the function to run immediately the component mounts
+useEffect(() => {
+
+  if (searchParams.has("email") && searchParams.has("name")){
+
+    const userEmail = searchParams.get('email')
+    const fullName = searchParams.get('name')
+    updateEmail(userEmail)
+    updateName(fullName)
+  
+  } else {
+
+  const storedUserName = localStorage.getItem('userName');
+  const storedEmail = localStorage.getItem('userEmail')
+  updateEmail(storedEmail)
+  updateName(storedUserName)
+
+  }
+
+
+}, [searchParams, updateEmail, updateName]);
+
+
+
 
 const sendVerificationNumber = () => {
     const formData = {
       to: email,
       subject: "Your Verification Code",
-      name: fullName,
+      name: name,
       otp: otpNumber
     };
   

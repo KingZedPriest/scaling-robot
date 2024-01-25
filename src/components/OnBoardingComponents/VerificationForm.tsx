@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useOtpStore } from "@/store/verification";
 import { generateOTPNumber } from "@/utils/AccountInfo";
-import { useSearchParams } from "next/navigation";
+import { useOnboardingStore } from "@/store/onboardingDetails";
+import { useSession } from "next-auth/react";
 
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
@@ -18,9 +19,15 @@ import logo from "../../../public/Images/logo.svg";
 import arrow from "../../../public/Images/arrowRight.svg";
 
 const VerificationForm = () => {
-  const searchParams = useSearchParams();
-  const userEmail = searchParams.get("email");
 
+  const { data: session, status, update } = useSession()
+  const {email} = useOnboardingStore()
+
+  if (status === "authenticated") {
+    console.log(`The Session ${session.user?.name}`)
+  }
+  
+  
   //Zustand OTP Management
   const { otpNumber, updateOtpNumber } = useOtpStore();
 
@@ -42,14 +49,14 @@ const VerificationForm = () => {
 
     //Check if the otp entered is the same with what was sent
     if (otpNumber.toString() === enteredOtp) {
-      const formData = { email: userEmail };
+      const formData = { email: email };
 
       makeApiRequest("/verifyUser", "post", formData, {
         onSuccess: () => {
           // Handle success
           setLoading(false);
           toast.success("Verification was successful");
-          router.push(`/onboarding/transaction?email=${userEmail}`);
+          router.push(`/onboarding/transaction?email=${email}`);
         },
         onError: (error: any) => {
           // Handle error

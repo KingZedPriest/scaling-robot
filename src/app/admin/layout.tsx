@@ -1,4 +1,3 @@
-import { permanentRedirect } from 'next/navigation'
 import Sidebar from "@/components/Sidebar";
 import '../globals.css';
 import { Toaster } from 'sonner';
@@ -19,7 +18,7 @@ export default async function AdminLayout({
     const loggedInEmail = (session?.user.email)
     const currentUser = await getCurrentLoggedInAdmin(loggedInEmail)
     //console.log({currentUser})
-    
+
   return (
 
       <section>
