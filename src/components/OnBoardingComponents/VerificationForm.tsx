@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { useOtpStore } from "@/store/verification";
 import { generateOTPNumber } from "@/utils/AccountInfo";
 import { useOnboardingStore } from "@/store/onboardingDetails";
-import { useSession } from "next-auth/react";
+
 
 //Import Needed Components
 import Progress from "@/components/AuthComponents/Progress";
@@ -20,13 +20,8 @@ import arrow from "../../../public/Images/arrowRight.svg";
 
 const VerificationForm = () => {
 
-  const { data: session, status, update } = useSession()
+  //Zustand Email Management
   const {email} = useOnboardingStore()
-
-  if (status === "authenticated") {
-    console.log(`The Session ${session.user?.name}`)
-  }
-  
   
   //Zustand OTP Management
   const { otpNumber, updateOtpNumber } = useOtpStore();

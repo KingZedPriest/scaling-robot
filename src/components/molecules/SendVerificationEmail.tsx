@@ -5,9 +5,10 @@ import { toast } from "sonner";
 import { useSearchParams } from 'next/navigation'
 import { useOtpStore } from "@/store/verification";
 import { useOnboardingStore } from "@/store/onboardingDetails";
-
+import { useSession } from "next-auth/react";
 
 const SendVerificationEmail = () => {
+const { data: session, status } = useSession()
 const {updateName, updateEmail, name, email} = useOnboardingStore()
 
 //Zustand OTP Management
@@ -26,15 +27,16 @@ useEffect(() => {
   
   } else {
 
-  const storedUserName = localStorage.getItem('userName');
-  const storedEmail = localStorage.getItem('userEmail')
-  updateEmail(storedEmail)
-  updateName(storedUserName)
+    if (status === "authenticated") {
+
+      updateEmail(session.user?.email)
+      updateName(session.user?.name)
+      
+    }
 
   }
 
-
-}, [searchParams, updateEmail, updateName]);
+}, [searchParams, session?.user?.email, session?.user?.name, status, updateEmail, updateName]);
 
 
 

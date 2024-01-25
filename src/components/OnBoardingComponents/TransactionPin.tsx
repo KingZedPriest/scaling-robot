@@ -1,9 +1,10 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
 //Import Needed Images
 import logo from "../../../public/Images/logo.svg";
@@ -11,13 +12,33 @@ import arrow from "../../../public/Images/arrowRight.svg";
 
 
 const TransactionPin = () => {
-  //Get the email using search Params
-  const searchParams = useSearchParams();
-  const userEmail = searchParams.get("email");
-  const [pin, setPin] = useState("")
+  const [pin, setPin] = useState<string>("")
+  const [userEmail, setUserEmail] = useState<string | any>("")
   const router = useRouter();
   //For the loading state
   const [loading, setLoading] = useState<boolean>(false);
+  const { data: session, status } = useSession()
+  //Get the email using search Params
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+
+    if (searchParams.has("email")){
+      
+      const gottenUserEmail = searchParams.get('email')
+      setUserEmail(gottenUserEmail)
+    
+    } else {
+  
+      if (status === "authenticated") {
+        
+        setUserEmail(session?.user?.email)
+        
+      }
+  
+    }
+  
+  }, [searchParams, session?.user?.email, status])
 
   //OnSubmit Function
   const onSubmit = (event: FormEvent) => {
