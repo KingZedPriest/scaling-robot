@@ -5,7 +5,7 @@ import { EyeSlash, Eye, WalletMoney, Send2, Import  } from "iconsax-react";
 
 const AccountDetails = () => {
     return ( 
-        <main className="h-52 bg-[#191C2E] rounded-xl p-6">
+        <main className="h-52 bg-[#191C2E] rounded-xl px-3 md:px-4 xl:px-6 py-6">
             <p className="text-[#E8E9EB] text-[0.6rem] md:text-xs">Current balance</p>
             <div className="flex justify-between items-center">
                <p className="text-2xl md:text-3xl xl:text-[32px] text-[#E39F7E] font-semibold">$53,000.00</p> 

@@ -9,10 +9,17 @@ export type ID = {
 }
 
 //General Types
+
+
+//User Dashboard Types
+
 export type heading = {
   page: string,
   profilePicSrc: string | any
 }
 
-//User Dashboard Types
-
+export type smallScreenAccount = {
+  accountNumber: string | any,
+  firstName: string | any,
+  lastName: string | any,
+}
