@@ -9,33 +9,34 @@ datasource db {
 
 //Schemas
 model User {
-  id                String        @id @default(auto()) @map("_id") @db.ObjectId
-  firstName         String
-  lastName          String
-  email             String        @unique
-  isEmailVerified   Boolean       @default(false)
-  isVerified        Boolean       @default(false)
-  isSuspended       Boolean       @default(false)
-  hashedPassword    String
-  dateOfBirth       String
-  profileImgSrc     String
-  country           String
-  city              String
-  state             String
-  address           String
-  mobileNumber      String
-  idType            String
-  idNumber          String
-  dateOfExpiry      String
-  idCardFrontImgSrc String
-  idCardBackImgSrc  String
-  accountNumber     String        @unique
-  transactions      Transaction[]
-  atmRequest        Boolean       @default(false)
-  transactionPin    String?
-  hasTransactionPin Boolean       @default(false)
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
+  id                          String        @id @default(auto()) @map("_id") @db.ObjectId
+  firstName                   String
+  lastName                    String
+  email                       String        @unique
+  isEmailVerified             Boolean       @default(false)
+  isVerified                  Boolean       @default(false)
+  isSuspended                 Boolean       @default(false)
+  hashedPassword              String
+  dateOfBirth                 String
+  profileImgSrc               String
+  country                     String
+  city                        String
+  state                       String
+  address                     String
+  mobileNumber                String
+  idType                      String
+  idNumber                    String
+  dateOfExpiry                String
+  idCardFrontImgSrc           String
+  idCardBackImgSrc            String
+  accountNumber               String        @unique
+  transactions                Transaction[]
+  atmRequest                  Boolean       @default(false)
+  transactionPin              String?
+  hasTransactionPin           Boolean       @default(false)
+  changeTransactionPinRequest Boolean       @default(false)
+  createdAt                   DateTime      @default(now())
+  updatedAt                   DateTime      @updatedAt
 }
 
 model Admin {
@@ -56,6 +57,7 @@ model Transaction {
   saveBoxAmount Float?
   description   String?
   doneByAdmin   Boolean            @default(false)
+  adminEmail    String?
   status        TransactionStatus? @default(pending)
   userId        String             @db.ObjectId
   user          User               @relation(fields: [userId], references: [id])

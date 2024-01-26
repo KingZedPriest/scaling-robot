@@ -6,6 +6,7 @@ import SmallScreenAccount from "@/components/DashboardComponents/SmallScreenAcco
 import AccountDetails from "@/components/DashboardComponents/AccountDetails";
 import Activity from "@/components/DashboardComponents/Activity";
 import TransferHistory from "@/components/DashboardComponents/TransferHistory";
+import AccountSummary from "@/components/DashboardComponents/AccountSummary";
 
 const page = async () => {
 
@@ -24,6 +25,7 @@ const page = async () => {
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
                     <Activity />
+                    <AccountSummary firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
                 </div>
             </div>
         </main>
