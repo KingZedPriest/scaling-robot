@@ -24,7 +24,7 @@ const SmallScreenAccount = ({accountNumber, firstName, lastName}: smallScreenAcc
     return ( 
         <main className="lg:hidden bg-[#EBEBF52E] border border-[#7676801F] h-20 rounded-lg p-4">
             <p className="text-secondary text-xs sm:text-sm md:text-base capitalize font-medium">{firstName} {lastName}</p>
-            <div className="flex justify-between mt-4 items-center">
+            <div className="flex justify-between mt-2 items-center">
                 <p className="text-xs md:text-sm text-[#8E8E93]">Capital savings account</p>
                 <div className="flex items-center gap-x-1">
                     <p className="text-xs sm:text-sm md:text-base font-medium text-[#8E8E93]">{accountNumber}</p>
