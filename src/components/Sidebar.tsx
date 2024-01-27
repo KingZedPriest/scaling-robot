@@ -39,7 +39,7 @@ const Sidebar = ({role} : {role : string | any}) => {
         <div className={` my-10 flex flex-col gap-y-5`}>
           <div className={`${role !== "user" && "hidden" }`}>
             <SidebarLinks route="/user/dashboard" label="Dashboard" icon={<Element3 size={20}/>}/>
-            <SidebarLinks route="/user/transfer" label="Send Money"  icon={<ArrowSwapHorizontal size={20}/>}/>
+            <SidebarLinks route="/user/transfer" label="Transfers"  icon={<ArrowSwapHorizontal size={20}/>}/>
             <SidebarLinks route="/user/history" label="History" icon={<Chart2 size={20}/>}/>
             <SidebarLinks route="/user/savings" label="Savings"  icon={<WalletMoney size={20}/>}/>
             <SidebarLinks route="/user/profile" label="My Profile" icon={<ProfileCircle size={20}/>}/>

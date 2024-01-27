@@ -49,20 +49,23 @@ model Admin {
 }
 
 model Transaction {
-  id            String             @id @default(auto()) @map("_id") @db.ObjectId
-  type          TransactionType
-  amount        Float
-  targetAccount String?
-  isSaveBox     Boolean            @default(false)
-  saveBoxAmount Float?
-  description   String?
-  doneByAdmin   Boolean            @default(false)
-  adminEmail    String?
-  status        TransactionStatus? @default(pending)
-  userId        String             @db.ObjectId
-  user          User               @relation(fields: [userId], references: [id])
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  type              TransactionType
+  amount            Float
+  targetAccount     String?
+  targetName        String?
+  targetBankName    String?
+  isSaveBox         Boolean            @default(false)
+  saveBoxAmount     Float?
+  description       String?
+  doneByAdmin       Boolean            @default(false)
+  adminEmail        String?
+  status            TransactionStatus? @default(pending)
+  userId            String             @db.ObjectId
+  user              User               @relation(fields: [userId], references: [id])
+  customCreatedTime String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 }
 
 //Enums
