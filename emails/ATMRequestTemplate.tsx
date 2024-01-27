@@ -6,37 +6,39 @@ import { Container } from "@react-email/container";
 
 type EmailProps = {
   userName?: string;
-  verificationCode?: number;
 };
 
-export default function WelcomeTemplate({
-  userName,
-  verificationCode,
-}: EmailProps) {
+export default function WelcomeTemplate({ userName }: EmailProps) {
   return (
     <Html>
       <Section style={main}>
         <Container style={container}>
           <Container>
-            <img src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png" alt="Capital Sphere Logo" />
+            <img
+              src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png"
+              alt="Capital Sphere Logo"
+            />
           </Container>
           <Text style={bold}>Hi {userName}!</Text>
           <Text style={paragraph}>
-            Here is the code you need to verify your Capital Sphere Email
-            account:
-          </Text>
-          <Text style={verification}>{verificationCode}</Text>
-          <Text style={paragraph}>
-            This email was automatically generated in response to your account
-            registration in order to verify your email address.
+            Thank you for your debit card request with our bank. We have
+            received your application and will provide updates on approval
+            status and next steps shortly via email. Please note processing
+            times are 2-3 business days as we handle all debit card requests in
+            the order they are received.
           </Text>
           <Text style={paragraph}>
-            In order to complete the account creation process, please verify
-            your email by entering the secure code provided.
+            We appreciate you choosing our bank for your financial needs. Our
+            debit cards provide convenient 24/7 cash access, digital payment
+            features, rewards programs, and leading security backed by excellent
+            customer care. We look forward to officially welcoming you as a
+            cardholder soon.
           </Text>
           <Text style={paragraph}>
-            If you did not intend to create this account, please disregard this
-            verification notice and accept our apologies for any inconvenience.
+            If any additional information is needed regarding your application,
+            or if you have any other questions in the meantime, please reply to
+            this message. We are happy to assist. We will contact you again here
+            once your debit card is ready to be issued.
           </Text>
           <Container style={footer}>
             <Text>Processed by Capital Sphere Bank Germany for {userName}</Text>
@@ -68,20 +70,13 @@ const bold = {
   fontSize: "16px",
   lineHeight: "1.4",
   margin: "2rem 0",
-}
+};
 
 const paragraph = {
   fontSize: "14px",
   lineHeight: "1.4",
   color: "#161618",
   margin: "2rem 0",
-};
-
-const verification = {
-  fontSize: "24px",
-  lineHeight: "1.3",
-  fontWeight: "700",
-  color: "#484848",
 };
 
 const footer = {

@@ -10,7 +10,7 @@ const TransferHistory = () => {
             <p className="text-sm xl:text-base text-[#06121B] font-semibold">Send money to</p>
             <div className="flex gap-x-10 bg-[#EBEBF52E] border border-[#7676801F] px-8 py-6 mt-5 rounded-lg overflow-x-auto special">
                 <Link href="/user/transfer">
-                    <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-[#B9BAC0] flex items-center justify-center rounded-[50%] cursor-pointer">
+                    <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-[#B9BAC0] flex items-center justify-center rounded-[50%] cursor-pointer hover:bg-secondary duration-500">
                         <Add size="16" color="#FFF"/>
                     </div>
                 </Link>

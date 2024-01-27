@@ -11,7 +11,7 @@ const Downbar = () => {
 
     return ( 
         <main className="lg:hidden">
-            <div className="text-[#8E8E93] fixed bottom-0 py-4 px-2 bg-white downbarShadow w-full flex gap-x-2 justify-between text-center">
+            <div className="text-[#8E8E93] fixed bottom-0 py-4 px-2 bg-white downbarShadow w-full flex gap-x-2 justify-between text-center z-[99999]">
                 <div className={`${pathName === "/user/dashboard" ? "text-sidebarHover" : ""} flex flex-col gap-y-2 w-1/5 items-center cursor-pointer hover:text-sidebarHover duration-500`}>
                     <Element3 size={20}/>
                     <Link href="/user/dashboard" className="text-xs">Home</Link>

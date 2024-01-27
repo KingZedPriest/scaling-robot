@@ -8,7 +8,7 @@ import { EyeSlash, Eye, WalletMoney, Send2, Import } from "iconsax-react";
 const AccountDetails = () => {
   //Balance State
   const [showBalance, setShowBalance] = useState<boolean>(true);
-  const balance = "53,000";
+  const balance = "0";
   //Balance Function
   const toggleBalanceVisibility = () => {
     setShowBalance((prev) => !prev);

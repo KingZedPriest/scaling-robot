@@ -46,7 +46,8 @@ const sendVerificationNumber = () => {
       to: email,
       subject: "Your Verification Code",
       name: name,
-      otp: otpNumber
+      otp: otpNumber,
+      emailType:"verification",
     };
   
     toast.info("Sending verification code");
