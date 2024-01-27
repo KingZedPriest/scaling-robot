@@ -14,21 +14,10 @@ const TransferHistory = () => {
                         <Add size="16" color="#FFF"/>
                     </div>
                 </Link>
-                <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
+                {/* <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
                         
-                </div>
-                <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
-                    
-                </div>
-                <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
-                    
-                </div>
-                <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
-                    
-                </div>
-                <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-red-600 rounded-[50%]">
-                    
-                </div>
+                </div> */}
+                
             </div>
             <div className="mt-8">
                 <div className="flex justify-between items-center">

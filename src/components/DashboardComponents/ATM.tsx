@@ -36,7 +36,7 @@ const ATM = ({hasRequested, email, name}: atmProps) => {
             <p className="text-sm xl:text-base text-[#06121B] font-semibold">Cards</p>
             <div className="overflow-x-auto special pb-4 mt-6 flex gap-x-5">
                 {hasRequested && 
-                <div style={{ background: 'linear-gradient(31.58deg, #592F1A -2.49%, #191C2E 67.92%)' }} className="p-6 min-w-[252px] w-[252px] h-40 rounded-2xl cursor-pointer" onClick={() => toast.info("Debit card details unavailable")}>
+                <div style={{ background: 'linear-gradient(31.58deg, #592F1A -2.49%, #191C2E 67.92%)' }} className="p-6 min-w-[252px] w-[252px] h-40 rounded-2xl cursor-pointer" onClick={() => toast.info("Your Debit card details is currently unavailable.")}>
                     <div className="flex justify-between items-center">
                             <Image src={atmChip} alt=""/> 
                             <Image src={visaLogo} alt=""/> 
