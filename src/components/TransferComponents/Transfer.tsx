@@ -60,7 +60,7 @@ const Transfer = () => {
         </div> }
         {showInputField && 
         <div className="mt-6">
-            <p className="text-red-600 text-xs xl:text-sm mb-4">Couldn&apos;t fetch account details, kindly enter them below</p>
+            <p className="text-red-600 text-xs xl:text-sm mb-4">Account details unavailable. Please enter below</p>
             <div className="flex flex-col gap-y-1">
                 <label
                   htmlFor="bankName"
@@ -72,7 +72,7 @@ const Transfer = () => {
                     required
                     placeholder="Deutsche Bank"
                     type="text"
-                    title="Please enter a 10 digit account number"
+                    title="Please enter the bank name"
                     name="bankName"
                     id="bankName"
                     className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none placeholder:text-xs xl:placeholder:text-sm placeholder:text-[#9EA0A3]"
