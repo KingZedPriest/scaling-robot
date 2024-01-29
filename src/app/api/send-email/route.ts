@@ -1,5 +1,6 @@
 import WelcomeTemplate from "../../../../emails/WelcomeTemplate";
 import ATMRequestTemplate from "../../../../emails/ATMRequestTemplate";
+import TransactionTemplate from "../../../../emails/TransactionTemplate";
 
 import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
@@ -9,7 +10,7 @@ import { sendEmail } from "@/lib/email";
 export async function POST(request: Request) {
     const body = await request.json();
     try {
-        const { to, subject, name, otp, emailType } = body;
+        const { to, subject, name, otp, emailType, transactionAmount, transactionDate, transactionType, recipientName, recipientAccountNumber} = body;
 
         if (!to || !subject || !name || !emailType ) {
 
@@ -27,7 +28,9 @@ export async function POST(request: Request) {
           case "atmrequest":
             emailHtml = render(ATMRequestTemplate({ userName: name }));
             break;
-          
+          case "transaction":
+            emailHtml = render(TransactionTemplate({userName: name, transactionAmount, transactionDate, transactionType, recipientName, recipientAccountNumber}));
+            break;
           default:
             throw new Error('Invalid emailType');
         }

@@ -1,10 +1,10 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/store/transactionStore";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { errorModalProps, successModalProps } from "@/lib/modalPropsMessages";
-import { removeEmptyValues } from "@/lib/filterFormData";
+import { getFormattedDate } from "@/lib/getCurrentDate";
 import { toast } from "sonner";
 
 //Import Needed Components
@@ -24,8 +24,8 @@ type verifyPin = {
 
 const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
   //For the transaction Fee && Savebox
-  const [fee, setFee] = useState<number>(0)
-  const [saveboxAmount, setSaveboxAmount] = useState<number>()
+  const [fee, setFee] = useState<number>(0);
+  const [saveboxAmount, setSaveboxAmount] = useState<number>();
   //For the pin
   const [enteredPin, setEnteredPin] = useState<string>("");
   //For the password
@@ -46,6 +46,19 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
     description,
     iban,
   } = useTransactionStore();
+
+  //Use Effect for values update
+  useEffect(() => {
+    //Getting the submission values
+    if (isSavebox) {
+      const onePercent = (1 / 100) * amount;
+      setSaveboxAmount(onePercent);
+    }
+    if (depositMethod === "International_Wire_Transfer") {
+      setFee(5);
+    }
+  }, [amount, depositMethod, isSavebox]);
+
   //For the router
   const router = useRouter();
   //State for the modals
@@ -67,55 +80,76 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
   const handleFinal = () => {
     setShowModal(false);
   };
+  //FIXME: Check the balance before allowing any transaction.
+
   //OnSubmit Function
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
     setLoading(true);
     //Check Pin
-    
-    //Getting the submission values
-    if (isSavebox) {
-        const onePercent = (1 / 100) * amount;
-        setSaveboxAmount(onePercent)
+    if (enteredPin !== userPin) {
+      toast.error("Incorrect transaction pin, please try again.");
+      setLoading(false)
+      return;
     }
-    if (depositMethod === "International_Wire_Transfer") {
-        setFee(5)
-    }
-    const formData = {isSavebox, amount, accountName, accountNumber, depositMethod, bankName, swiftCode, description, iban, saveboxAmount, fee};
-    console.log({formData})
+
+    const formData = {
+      userId: id,
+      isSavebox,
+      amount,
+      accountName,
+      accountNumber,
+      depositMethod,
+      bankName,
+      swiftCode,
+      description,
+      iban,
+      saveboxAmount,
+      fee,
+    };
+    //console.log({ formData });
 
     const emailData = {
-        to: email,
-        subject: "Transaction",
-        name: name,
-        emailType: "atmrequest",
+      to: email,
+      subject: "New Transaction",
+      name: name,
+      transactionAmount: amount,
+      transactionType:
+        depositMethod === "International_Wire_Transfer"
+          ? "International Wire Transfer"
+          : "Local Wire Transfer",
+      recipientName: accountName,
+      recipientAccountNumber: accountNumber,
+      transactionDate: getFormattedDate(),
+      emailType: "transaction",
     };
+    //console.log({ emailData });
 
-    // makeApiRequest("/transaction", "post", formData, {
-    //   onSuccess: () => {
-    //     // Handle success
-    //     setLoading(false);
-    //     setMessage("Your Transfer was successful.");
-    //     handleSuccess();
-    //     makeApiRequest("/send-email", "post", emailData, {
-    //         onSuccess: () => {
-    //           // Handle success
-    //           console.log("Email was sent successfully");
-    //         },
-    //         onError: (error: any) => {
-    //           // Handle error
-    //           console.log("Couldn't send email.");
-    //         },
-    //       });
-    //   },
-    //   onError: (error: any) => {
-    //     // Handle error
-    //     setLoading(false);
-    //     setMessage("Unable to process your transfer currently. Please try again.");
-    //     handleError();
-    //     router.refresh();
-    //   },
-    // });
+    makeApiRequest("/transaction", "post", formData, {
+      onSuccess: () => {
+        // Handle success
+        setLoading(false);
+        setMessage("Your Transfer was successful.");
+        handleSuccess();
+        makeApiRequest("/send-email", "post", emailData, {
+          onSuccess: () => {
+            // Handle success
+            console.log("Email was sent successfully");
+          },
+          onError: (error: any) => {
+            // Handle error
+            console.log("Couldn't send email.");
+          },
+        });
+      },
+      onError: (error: any) => {
+        // Handle error
+        setLoading(false);
+        setMessage("Unable to process your transfer currently. Please try again.");
+        handleError();
+        router.refresh();
+      },
+    });
   };
   return (
     <>
@@ -150,7 +184,9 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
                 className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none"
                 placeholder="XXXX"
                 required
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setEnteredPin(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEnteredPin(e.target.value)
+                }
               />
               <div
                 className="absolute top-[55%] right-4 cursor-pointer text-base sm:text-lg md:text-xl xl:text-2xl"

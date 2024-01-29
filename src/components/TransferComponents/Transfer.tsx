@@ -25,7 +25,7 @@ const Transfer = () => {
           const timeoutId = setTimeout(() => {
             setShowIcon(false);
             setShowInputField(true)
-          }, 12000);
+          }, 8000);
     
           return () => clearTimeout(timeoutId);
         } else {
@@ -53,7 +53,7 @@ useEffect(() => {
           </label>
           <input
             value={inputValue} 
-            onChange={(e) => {setInputValue(e.target.value); updateAccountName(e.target.value)}}
+            onChange={(e) => {setInputValue(e.target.value); updateAccountNumber(e.target.value)}}
             required
             placeholder="0930202020"
             pattern="\d{10}"
@@ -99,7 +99,7 @@ useEffect(() => {
                   Account name
                 </label>
                 <input
-                    onChange={(e : any) => updateAccountNumber(e.target.value)}
+                    onChange={(e : any) => updateAccountName(e.target.value)}
                     required
                     placeholder="John Doe"
                     type="text"

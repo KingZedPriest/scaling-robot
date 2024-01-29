@@ -10,7 +10,7 @@ type EmailProps = {
   transactionDate?: string;
   transactionType?: string;
   recipientName?: string;
-  accountNumber?: string;
+  recipientAccountNumber?: string;
 };
 
 export default function TransactionTemplate({
@@ -19,7 +19,7 @@ export default function TransactionTemplate({
   transactionDate,
   transactionType,
   recipientName,
-  accountNumber,
+  recipientAccountNumber,
 }: EmailProps) {
   return (
     <Html>
@@ -40,11 +40,11 @@ export default function TransactionTemplate({
           <Text style={detailsParagraph}>
             Transaction Details:
             <ul>
-              <li>Transaction Amount: {transactionAmount}</li>
-              <li>Transaction Date: {transactionDate}</li>
-              <li>Transaction Type: {transactionType}</li>
-              <li>Recipient: {recipientName}</li>
-              <li>Recipient: {accountNumber}</li>
+              <li style={list}>Transaction Amount: {(transactionAmount)?.toLocaleString()}</li>
+              <li style={list}>Transaction Date: {transactionDate}.</li>
+              <li style={list}>Transfer Type: {transactionType}</li>
+              <li style={list}>Recipient Name: {recipientName}</li>
+              <li style={list}>Recipient Account Number: {recipientAccountNumber}</li>
             </ul>
           </Text>
           <Text style={paragraph}>
@@ -59,7 +59,7 @@ export default function TransactionTemplate({
             future banking needs.
           </Text>
           <Container style={footer}>
-            <Text>Processed by Capital Sphere Bank Germany for {userName}</Text>
+            <Text>&copy; Capital Sphere Bank 2024</Text>
           </Container>
         </Container>
       </Section>
@@ -70,7 +70,7 @@ export default function TransactionTemplate({
 // Styles for the email template
 const main = {
   backgroundColor: "#FFF",
-  width: "800px", // Expanded width
+  width: "800px", 
   margin: "0 auto",
   padding: "2rem",
 };
@@ -89,12 +89,21 @@ const bold = {
   lineHeight: "1.4",
   margin: "2rem 0",
 };
+
 const detailsParagraph = {
   fontSize: "16px",
   lineHeight: "1.6",
   color: "#2C3E50",
   margin: "1rem 0",
+  fontWeight: "500",
 };
+
+const list ={
+    margin: "0.4rem 0",
+    color: "#592F1A",
+    fontWeight: "500",
+}
+
 const paragraph = {
   fontSize: "14px",
   lineHeight: "1.4",
