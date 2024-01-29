@@ -83,7 +83,6 @@ enum TransactionType {
   Withdrawal
   Target_Saving
   Capital_Wealth
-  Fixed_Saving
   Utility_Bill
   Domestic_Wire_Transfer
   International_Wire_Transfer
