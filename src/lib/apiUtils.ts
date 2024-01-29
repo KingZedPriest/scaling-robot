@@ -22,11 +22,13 @@ export const  makeApiRequest = (
     .then((response) => {
       if (onSuccess) {
         onSuccess();
+       //console.log({response})
       }
     })
     .catch((error: any) => {
       if (onError) {
         onError(error);
+        //console.log({error})
       }
     });
 };

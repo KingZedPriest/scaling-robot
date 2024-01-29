@@ -29,34 +29,35 @@ export async function POST(request: Request) {
     ) {
       return new NextResponse("Missing Fields", { status: 400 });
     }
-
-    const newTransaction = await prisma.transaction.create({
-      data: {
-        type: depositMethod,
-        amount,
-        targetAccount: accountNumber,
-        targetName: accountName,
-        targetBankName: bankName,
-        swiftCode,
-        iban,
-        isSaveBox: isSavebox,
-        saveBoxAmount: saveboxAmount,
-        description,
-        transferFee: fee,
-        user: {
-          connect: {
-            id: userId,
-          },
+    const data = {
+      type: depositMethod,
+      amount : Number(amount),
+      targetAccount: accountNumber,
+      targetName: accountName,
+      targetBankName: bankName,
+      swiftCode,
+      iban,
+      isSaveBox: isSavebox,
+      saveBoxAmount: saveboxAmount,
+      description,
+      transferFee: fee,
+      user: {
+        connect: {
+          id: userId,
         },
       },
+    };
+    const newTransaction = await prisma.transaction.create({
+      data,
     });
-
+    console.log("Transaction was created");
+    console.log({ newTransaction });
     return NextResponse.json(newTransaction);
   } catch (error) {
     if (error instanceof Error) {
       return new NextResponse(error.message);
     } else {
-      return new NextResponse('Internal Server Error', { status: 500 });
+      return new NextResponse("Internal Server Error", { status: 500 });
     }
   }
 }

@@ -40,7 +40,7 @@ export default function TransactionTemplate({
           <Text style={detailsParagraph}>
             Transaction Details:
             <ul>
-              <li style={list}>Transaction Amount: {(transactionAmount)?.toLocaleString()}</li>
+              <li style={list}>Transaction Amount: {transactionAmount}</li>
               <li style={list}>Transaction Date: {transactionDate}.</li>
               <li style={list}>Transfer Type: {transactionType}</li>
               <li style={list}>Recipient Name: {recipientName}</li>
@@ -99,9 +99,9 @@ const detailsParagraph = {
 };
 
 const list ={
-    margin: "0.4rem 0",
+    margin: "0.3rem 0",
     color: "#592F1A",
-    fontWeight: "500",
+    fontWeight: "600",
 }
 
 const paragraph = {

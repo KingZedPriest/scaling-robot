@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useTransactionStore } from "@/store/transactionStore";
 import VerifyPin from "./VerifyPin";
 
-//FIXME: Check a users balance before permitting the user to make such transaction
 
 const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
     //Verification Modal

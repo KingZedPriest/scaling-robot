@@ -1,6 +1,5 @@
 "use client";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/store/transactionStore";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { errorModalProps, successModalProps } from "@/lib/modalPropsMessages";
@@ -45,6 +44,7 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
     swiftCode,
     description,
     iban,
+    reset
   } = useTransactionStore();
 
   //Use Effect for values update
@@ -59,8 +59,7 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
     }
   }, [amount, depositMethod, isSavebox]);
 
-  //For the router
-  const router = useRouter();
+
   //State for the modals
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalProps, setModalProps] = useState<object>({});
@@ -80,6 +79,9 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
   const handleFinal = () => {
     setShowModal(false);
   };
+  const resetForm = () => {
+
+  }
   //FIXME: Check the balance before allowing any transaction.
 
   //OnSubmit Function
@@ -113,7 +115,7 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
       to: email,
       subject: "New Transaction",
       name: name,
-      transactionAmount: amount,
+      transactionAmount: amount.toLocaleString(),
       transactionType:
         depositMethod === "International_Wire_Transfer"
           ? "International Wire Transfer"
@@ -141,13 +143,14 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
             console.log("Couldn't send email.");
           },
         });
+        reset()
       },
       onError: (error: any) => {
         // Handle error
         setLoading(false);
         setMessage("Unable to process your transfer currently. Please try again.");
         handleError();
-        router.refresh();
+        reset()
       },
     });
   };

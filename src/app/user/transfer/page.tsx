@@ -8,9 +8,11 @@ import Convert from "@/components/TransferComponents/Convert";
 import Balance from "@/components/TransferComponents/Balance";
 import PaymentDetails from "@/components/TransferComponents/PaymentDetails";
 
+export const revalidate = 30
 const page = async () => {
 
     const { user } = await getUserDetails();
+    //console.log({user})
 
     return ( 
         <main>
