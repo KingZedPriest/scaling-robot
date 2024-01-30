@@ -19,7 +19,7 @@ const TransferHistory = ({transactions}: any) => {
                         <Add size="16" color="#FFF"/>
                     </div>
                 </Link>
-                {transactions.map((transaction: any) => ( 
+                {transactions && transactions.map((transaction: any) => ( 
                     <Link href={`history/${transaction.id}`} key={transaction.id} className="relative min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 rounded-[50%] cursor-pointer">
                         {transaction.type.includes('Wire_Transfer') ? <Image src={getRandomAvatar()} alt="User Icon"  fill className="rounded-[50%]"/> : transaction.type === "Utility_Bill" ? <Bill size="32" color="#D56F3E" /> : transaction.type === "Deposit" ? <Image src={getRandomAvatar()} alt="User Icon" fill className="rounded-[50%]"/> :  <WalletMoney size="32" color="#D56F3E"/>}
                     </Link>
@@ -32,7 +32,7 @@ const TransferHistory = ({transactions}: any) => {
                     <p className="text-[0.65rem] md:text-xs text-primary">Last Five(5)</p>
                 </div>
                 <div className="flex flex-col">
-                {transactions.map((transaction: any) => (
+                {transactions && transactions.map((transaction: any) => (
                     <Link key={transaction.id} href={`history/${transaction.id}`}>
                         <div className="flex items-center justify-between py-4">
                             <div className="flex gap-x-1 items-center">
@@ -50,7 +50,7 @@ const TransferHistory = ({transactions}: any) => {
                     </Link>
                 ))}
                     
-                    {transactions.length === 0 && <div className="flex justify-center py-4">
+                    {transactions && transactions.length === 0 && <div className="flex justify-center py-4">
                         <p className="text-sm xl:text-base text-secondary text-center">No Transaction Yet</p>
                     </div>}
                 </div>

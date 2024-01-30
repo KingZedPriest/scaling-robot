@@ -11,7 +11,7 @@ const Activity = ({wireTransfer, deposits} : any) => {
                     </div>
                     <div>
                         <p className="text-[0.6rem] md:text-xs">Transfers</p>
-                        <p className="font-medium text-xl text-[#06121B] mt-1">{wireTransfer.length}</p>
+                        <p className="font-medium text-xl text-[#06121B] mt-1">{wireTransfer && wireTransfer.length}</p>
                     </div>
                 </div>
                 <div className="w-[49%] border border-[#7676801F] h-24 rounded-lg bg-[#EBEBF52E] flex items-center gap-x-2 p-2 sm:p-4 xl:p-6">
@@ -20,7 +20,7 @@ const Activity = ({wireTransfer, deposits} : any) => {
                     </div>
                     <div>
                         <p className="text-[0.6rem] md:text-xs">Deposits</p>
-                        <p className="font-medium text-xl text-[#06121B] mt-1">{deposits.length}</p>
+                        <p className="font-medium text-xl text-[#06121B] mt-1">{deposits && deposits.length}</p>
                     </div>
                 </div>
             </div>
