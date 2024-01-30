@@ -41,7 +41,7 @@ const TransferHistory = ({transactions}: any) => {
                                 </div>
                     
                                 <div className="flex flex-col gap-y-0.5">
-                                    <p className="text-[#141619] text-[10px] md:text-[12px] xl:text-[14px] font-medium capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
+                                    <p className="text-[#141619] text-[12px] md:text-[14px] xl:text-[16px] font-semibold capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
                                     <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDate(transaction.customCreatedTime) : formatDate(transaction.createdAt)}.</p>
                                 </div>
                             </div>

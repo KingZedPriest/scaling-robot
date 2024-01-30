@@ -26,7 +26,7 @@ const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
   return (
     <>
     {verifyModal && <VerifyPin hideModal={showVerification} id={userid} userPin={userPin} name={name} email={email}/>}
-      <main className="text-xs md:text-sm xl:text-base">
+      <main className={`${!accountNumber && "hidden"} text-xs md:text-sm xl:text-base`}>
         <p className="text-sm lg:text-base text-[#06121B] font-semibold mb-4">
           Payment Details
         </p>

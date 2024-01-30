@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
 //Import Needed Icons
-import { Bill, DirectboxReceive, Import, Send2, WalletMoney } from "iconsax-react";
+import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
 
 
