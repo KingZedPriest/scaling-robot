@@ -11,7 +11,8 @@ const page = async () => {
 
     const { user } = await getUserDetails();
     const transactions = user?.transactions
-    console.log({transactions})
+    const wireTransferTransactions = transactions?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
+    const deposits = transactions?.filter((transaction) => transaction.type === "Deposit");
 
     return ( 
         <main>
@@ -21,7 +22,7 @@ const page = async () => {
                     <AccountDetails />
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10">
-                    <Activity />
+                    <Activity wireTransfer={wireTransferTransactions} deposits={deposits}/>
                 </div>
             </div>
             <div className="px-4 md:px-6 xl:px-8 mt-10">

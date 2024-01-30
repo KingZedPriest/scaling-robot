@@ -68,7 +68,7 @@ const AccountDetails = () => {
             </Link>
           </div>
           <p className="text-[0.6rem] md:text-xs text-center text-[#E8E9EB]">
-            <Link href="/user/transfer">Withdraw</Link>
+            <Link href="/user/transfer">Deposit</Link>
           </p>
         </div>
       </div>
