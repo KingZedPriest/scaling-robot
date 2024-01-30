@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
 //Import Needed Icons
@@ -12,7 +13,8 @@ const History = ({transactions}: any ) => {
             <div className="flex flex-col gap-y-2 mt-6">
                 {transactions.map((transaction: any) => (
                     
-                    <div key={transaction.id} className="flex items-center justify-between py-4 cursor-pointer">
+                    <Link key={transaction.id} href={`history/${transaction.id}`}>
+                        <div className="flex items-center justify-between py-4 cursor-pointer">
                         <div className="flex gap-x-1 items-center">
                             <div className="bg-[#EBEBF599] rounded-[50%] p-2">
                                 {transaction.type === "Deposit" ? <DirectboxReceive size="20" color="#1C1F33"/> : transaction.type.includes('Wire_Transfer') ? <Send2 size="20" color="#1C1F33"/> : transaction.type === "Utility_Bill" ? <Bill size="20" color="#1C1F33"/> : <WalletMoney size="20" color="#1C1F33"/> } 
@@ -29,6 +31,7 @@ const History = ({transactions}: any ) => {
                             <p className={`${transaction.status === "pending" && "bg-[#FEF6E7] text-[#DF930E]"} ${transaction.status === "successfull" && "bg-[#E6F5EE] text-[#026C3C]"} ${transaction.status === "failed" && "text-red-600 bg-red-100"} rounded-2xl px-2 py-1  text-[8px] md:text-[10px] xl:text-[12px] font-medium`}>{transaction.status}</p>
                         </div>
                     </div>
+                 </Link>
                 ))}
             </div>
         </main>
