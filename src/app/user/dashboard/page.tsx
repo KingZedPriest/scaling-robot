@@ -13,7 +13,10 @@ export const revalidate = 30
 const page = async () => {
 
     const { user } = await getUserDetails();
-
+    const transactions = user?.transactions
+    const wireTransferTransactions = transactions?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
+    const deposits = transactions?.filter((transaction) => transaction.type === "Deposit");
+    
     return ( 
         <main>
             <Header page="Dashboard" profilePicSrc={user?.profileImgSrc}/>
@@ -26,7 +29,7 @@ const page = async () => {
                     <TransferHistory />
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
-                    <Activity />
+                    <Activity wireTransfer={wireTransferTransactions} deposits={deposits}/>
                     <AccountSummary firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
                     <ATM email={user?.email} hasRequested={user?.atmRequest} name={`${user?.firstName} ${user?.lastName}`}/>
                 </div>
