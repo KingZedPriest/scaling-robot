@@ -8,6 +8,7 @@ import { ArrowRotateRight } from "iconsax-react";
 const Transfer = () => {
   //States for the transactions
   const {
+    isSavebox,
     amount,
     accountName,
     accountNumber,
@@ -31,7 +32,16 @@ const Transfer = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [showInputField, setShowInputField] = useState<boolean>(false);
   const [showIcon, setShowIcon] = useState<boolean>(false);
-
+  const [saveBox, setSaveBox] = useState<boolean>(false);
+  //For the international transfer
+  const handleInternationalTransferChange = () => {
+    setInternationalTransfer((prevValue) => !prevValue);
+  };
+  //For the safebox
+  function handleSaveBoxChange() {
+    setSaveBox(prev => !prev);
+  }
+  
   //Use Effect for the Input field
   useEffect(() => {
     if (inputValue.length > 0) {
@@ -55,7 +65,13 @@ const Transfer = () => {
     } else {
       updateDepositMethod("Domestic_Wire_Transfer");
     }
-  }, [internationalTransfer, updateDepositMethod]);
+    if(saveBox){
+      updateSaveBox(true)
+    }else {
+      updateSaveBox(false)
+    }
+  }, [internationalTransfer, saveBox, updateDepositMethod, updateSaveBox]);
+
   return (
     <main className="text-xs md:text-sm xl:text-base">
       <form>
@@ -171,25 +187,31 @@ const Transfer = () => {
             className="resize-none border border-[#E6E7E8] px-2 xl:px-4 py-2 h-14 focus:border-primary rounded-md focus:outline-none placeholder:text-xs xl:placeholder:text-sm placeholder:text-[#9EA0A3]"
           />
         </div>
-        <label className="mt-4 border border-[#E6E7E8] has-[:checked]:bg-indigo-50 has-[:checked]:text-indigo-900 has-[:checked]:ring-indigo-200 p-2 md:p-3 flex justify-between rounded-lg cursor-pointer hover:bg-[#B9BAC0] hover:bg-opacity-20">
+        <label
+          className={`mt-4 border border-[#E6E7E8] ${
+            internationalTransfer
+              ? "bg-indigo-50 text-indigo-900 ring-indigo-200"
+              : ""
+          } p-2 md:p-3 flex justify-between rounded-lg cursor-pointer hover:bg-[#B9BAC0] hover:bg-opacity-20`}
+        >
           International Transfer?
           <input
-            onClick={() => {
-              setInternationalTransfer(true);
-            }}
-            type="radio"
-            name="internationalTransfer"
+            onChange={handleInternationalTransferChange}
+            type="checkbox"
+            checked={internationalTransfer}
             className="checked:border-indigo-500"
           />
         </label>
-        <label className="mt-4 border border-[#E6E7E8] has-[:checked]:bg-indigo-50 has-[:checked]:text-indigo-900 has-[:checked]:ring-indigo-200 p-2 md:p-3 flex justify-between rounded-lg cursor-pointer hover:bg-[#B9BAC0] hover:bg-opacity-20">
+        <label
+          className={`mt-4 border border-[#E6E7E8] ${
+            saveBox ? "bg-indigo-50 text-indigo-900 ring-indigo-200" : ""
+          } p-2 md:p-3 flex justify-between rounded-lg cursor-pointer hover:bg-[#B9BAC0] hover:bg-opacity-20`}
+        >
           Save 1% of the transfer amount
           <input
-            onClick={() => {
-              updateSaveBox(true);
-            }}
-            type="radio"
-            name="saveBox"
+            onClick={handleSaveBoxChange}
+            type="checkbox"
+            checked={saveBox}
             className="checked:border-indigo-500"
           />
         </label>
