@@ -25,7 +25,7 @@ const Header = ({page, profilePicSrc}: heading) => {
                         <Image src={profilePicSrc} alt="Profile pic" fill className="absolute rounded-[50%]"/>
                     </div> 
                 </div>
-                {seeModal && <div className="lg:hidden text-sm p-4 absolute top-[3.5rem] right-10 z-[99] flex flex-col gap-y-5 rounded-md bg-white border border-[#767680] border-opacity-20 shadow">
+                {seeModal && <div className="lg:hidden text-sm p-4 absolute top-[3.5rem] right-1 z-[99] flex flex-col gap-y-5 rounded-md bg-white border border-[#767680] border-opacity-20 shadow">
                         <Link href="/user/profile" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
                             <ProfileCircle size="20"/>
                             <p>Profile</p>
