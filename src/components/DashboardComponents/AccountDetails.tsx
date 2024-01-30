@@ -18,7 +18,7 @@ const AccountDetails = () => {
       <p className="text-[#E8E9EB] text-[0.6rem] md:text-xs">Current balance</p>
       <div className="flex justify-between items-center">
         <p className="text-2xl md:text-3xl xl:text-[32px] text-[#E39F7E] font-semibold">
-          ${showBalance ? `${balance}.00` : "*".repeat(balance.length)}
+        €{showBalance ? `${balance}.00` : "*".repeat(balance.length)}
         </p>
         {showBalance ? (
           <EyeSlash

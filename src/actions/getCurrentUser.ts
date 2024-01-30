@@ -21,7 +21,7 @@ export default async function getCurrentLoggedInUser(email: string | any ) {
   } catch (error: any) {
 
     console.error(error);
-    throw new Error;
+    throw new Error (error.message);
 
   }
 }

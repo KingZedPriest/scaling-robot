@@ -12,7 +12,7 @@ export const revalidate = 30
 const page = async () => {
 
     const { user } = await getUserDetails();
-    //console.log({user})
+   
 
     return ( 
         <main>
