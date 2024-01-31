@@ -1,9 +1,11 @@
 "use client"
 import { useSavingsStore } from "@/store/savings";
+import { useBalanceStore } from "@/store/BalanceDetails";
 
 const CapitalWealth = () => {
 
     const { savingsType, updateSavingsType } = useSavingsStore() 
+    const { capitalWealthBalance } = useBalanceStore()
     //Function
     const handleSavingsUpdate = () => {
         updateSavingsType("capital")
@@ -17,7 +19,7 @@ const CapitalWealth = () => {
             </div>
             <p className="text-[10px] lg:text-[12px] text-[#B2B3BA] my-3">Lock up funds at up to 10% APY. Withdraw up to 15% of principal per year penalty-free.</p>
             <div className="flex justify-between items-center text-[#161929]">
-                <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">€51,000.00</p>
+                <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">€{capitalWealthBalance}</p>
                 <p className="text-[10px] lg:text-[12px] font-semibold">EUR</p>
             </div>
         </main>

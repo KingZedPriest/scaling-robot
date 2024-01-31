@@ -1,19 +1,21 @@
 "use client"
 import Image from "next/image";
 import { useSavingsStore } from "@/store/savings";
+import { useBalanceStore } from "@/store/BalanceDetails";
 
 //Import Needed Images
 import germanFlag from "../../../public/Images/germany.svg";
 
 const SavingDetails = () => {
     
+    const {capitalWealthBalance, saveboxBalance} = useBalanceStore()
     const {savingsType} = useSavingsStore()
-    
+
     return ( 
-        <main className={`${!savingsType && "hidden"}`}>
+        <main className={`${!savingsType && "hidden"} mb-20`}>
             <p className="text-sm lg:text-base text-[#06121B] font-semibold my-4">{savingsType === "capital" ? "Capital Wealth" : savingsType === "savebox" ? "Save Box" : "No Option"}</p>
             <div className="border border-[#7676801F] rounded-lg p-4">
-                <p className="text-[#161929] text-[14px] lg:text-[16px] font-semibold">51,000.00</p>
+                <p className="text-[#161929] text-[14px] lg:text-[16px] font-semibold">€{savingsType === "capital" ? `${capitalWealthBalance.toFixed(2)}` : savingsType === "savebox" ? `${saveboxBalance.toFixed(2)}` : ""}</p>
                 <div className="flex gap-x-1 items-center mt-4">
                     <Image src={germanFlag} alt="Flag"/>
                     <p className="text-[10px] md:text-[12px] xl:text-[14px] font-medium text-[#B2B3BA]">EUR</p>

@@ -8,6 +8,7 @@ import Activity from "@/components/DashboardComponents/Activity";
 import TransferHistory from "@/components/DashboardComponents/TransferHistory";
 import AccountSummary from "@/components/DashboardComponents/AccountSummary";
 import ATM from "@/components/DashboardComponents/ATM";
+import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
 
 export const revalidate = 30
 const page = async () => {
@@ -21,6 +22,7 @@ const page = async () => {
     return ( 
         <main>
             <Header page="Dashboard" profilePicSrc={user?.profileImgSrc}/>
+            <BalanceUpdate transactions={transactions}/>
             {/* <div className="px-4 md:px-6 xl:px-8">
                 <SmallScreenAccount firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
             </div> */}

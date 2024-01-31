@@ -292,6 +292,10 @@ useEffect (() => {
                     </div>
                     {modalOpen1 && 
                         <div className="bg-white border border-[#7676801F] absolute p-4 w-full top-14 flex flex-col gap-y-1 rounded-lg z-[999999] max-h-[20rem] overflow-y-auto special">
+                            <div className="flex gap-x-2 hover:bg-[#EBEBF52B] rounded-md duration-500 p-3 items-center cursor-pointer" onClick={() => {setBeforeCurrency("germany"); openModal1()}}>
+                                <Image src={germanFlag} alt="German flag"/>
+                                <p className="font-medium text-[12px] md:text-[14px] xl:text-[16px]">Germany</p>
+                            </div>
                             <div className="flex gap-x-2 hover:bg-[#EBEBF52B] rounded-md duration-500 p-3 items-center cursor-pointer" onClick={() => {setBeforeCurrency("america"); openModal1()}}>
                                 <Image src={usFlag} alt="US flag"/>
                                 <p className="font-medium text-[12px] md:text-[14px] xl:text-[16px]">United States</p>
@@ -385,6 +389,10 @@ useEffect (() => {
                     </div>
                 {modalOpen && 
                         <div className="bg-white border border-[#7676801F] absolute p-4 w-full top-14 flex flex-col gap-y-1 rounded-lg z-[999999] max-h-[20rem] overflow-y-auto special">
+                            <div className="flex gap-x-2 hover:bg-[#EBEBF52B] rounded-md duration-500 p-3 items-center cursor-pointer" onClick={() => {setChosenCurrency("germany"); openModal()}}>
+                                <Image src={germanFlag} alt="German flag"/>
+                                <p className="font-medium text-[12px] md:text-[14px] xl:text-[16px]">Germany</p>
+                            </div>
                             <div className="flex gap-x-2 hover:bg-[#EBEBF52B] rounded-md duration-500 p-3 items-center cursor-pointer" onClick={() => {setChosenCurrency("america"); openModal()}}>
                                 <Image src={usFlag} alt="US flag"/>
                                 <p className="font-medium text-[12px] md:text-[14px] xl:text-[16px]">United States</p>
