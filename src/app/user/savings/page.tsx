@@ -4,6 +4,8 @@ import { getUserDetails } from "@/providers/userDetails";
 import Header from "@/components/DashboardComponents/Header";
 import Balance from "@/components/TransferComponents/Balance";
 import CapitalWealth from "@/components/SavingsComponents/CapitalWealth";
+import Savebox from "@/components/SavingsComponents/Savebox";
+import TargetSavings from "@/components/SavingsComponents/TargetSavings";
 
 const page = async () => {
 
@@ -18,8 +20,10 @@ const page = async () => {
                         <p className="text-sm lg:text-base text-[#06121B] font-semibold">Total savings</p>
                         <p className="text-sm lg:text-base text-[#06121B] font-semibold">€0.00</p>
                     </div>
-                    <div className="flex flex-wrap gap-5">
+                    <div className="flex flex-wrap justify-between gap-y-5">
                         <CapitalWealth />
+                        <Savebox />
+                        <TargetSavings />
                     </div>
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10 border border-[#7676801F] rounded-lg p-4">
