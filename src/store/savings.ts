@@ -7,5 +7,5 @@ type savingsStore = {
 
 export const useSavingsStore = create<savingsStore>((set) => ({
     savingsType: "",
-    updateSavingsType: (newSavingsType : string) => ({savingsType : newSavingsType})
+    updateSavingsType: (newSavingsType : string) => set({savingsType : newSavingsType})
 }))
