@@ -6,6 +6,7 @@ const BalanceUpdate = ({ transactions }: any) => {
     updateMainBalance,
     updateCapitalWealthBalance,
     updateSaveboxBalance,
+    updateTotalSavingsBalance,
   } = useBalanceStore();
 
   useEffect(() => {
@@ -87,12 +88,14 @@ const BalanceUpdate = ({ transactions }: any) => {
         0
       );
     //Get main balance
-const mainBalance = depositAmount - withdrawalAmount - capitalWealthAmount - utilityBillAmount - domesticWireTransferAmount - internationalWireTransferAmount - saveBoxAmount
+const mainBalance = depositAmount - withdrawalAmount - capitalWealthAmount - utilityBillAmount - domesticWireTransferAmount - internationalWireTransferAmount - saveBoxAmount;
+const totalSavings = capitalWealthAmount + saveBoxAmount
 //Update individual balances
       updateSaveboxBalance(saveBoxAmount)
       updateCapitalWealthBalance(capitalWealthAmount)
       updateMainBalance(mainBalance)
-  }, [transactions, updateCapitalWealthBalance, updateMainBalance, updateSaveboxBalance]);
+      updateTotalSavingsBalance(totalSavings)
+  }, [transactions, updateCapitalWealthBalance, updateMainBalance, updateSaveboxBalance, updateTotalSavingsBalance]);
   // console.log('Withdrawal Amount:', withdrawalAmount);
   // console.log('Deposit Amount:', depositAmount);
   // console.log('Capital_Wealth Amount:', capitalWealthAmount);

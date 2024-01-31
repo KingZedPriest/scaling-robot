@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useBalanceStore } from "@/store/BalanceDetails";
 
 //Import Needed Icons
 import { EyeSlash, Eye, WalletMoney, Send2, Import } from "iconsax-react";
@@ -8,7 +9,7 @@ import { EyeSlash, Eye, WalletMoney, Send2, Import } from "iconsax-react";
 const AccountDetails = () => {
   //Balance State
   const [showBalance, setShowBalance] = useState<boolean>(true);
-  const balance = "0";
+  const { mainBalance } = useBalanceStore()
   //Balance Function
   const toggleBalanceVisibility = () => {
     setShowBalance((prev) => !prev);
@@ -18,7 +19,7 @@ const AccountDetails = () => {
       <p className="text-[#E8E9EB] text-[0.6rem] md:text-xs">Current balance</p>
       <div className="flex justify-between items-center">
         <p className="text-2xl md:text-3xl xl:text-[32px] text-[#E39F7E] font-semibold">
-        €{showBalance ? `${balance}.00` : "*".repeat(balance.length)}
+        €{showBalance ? `${mainBalance}.00` : "*".repeat(mainBalance.toString().length)}
         </p>
         {showBalance ? (
           <EyeSlash
