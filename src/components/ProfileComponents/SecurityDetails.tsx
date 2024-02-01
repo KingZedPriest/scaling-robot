@@ -1,7 +1,46 @@
-const SecurityDetails = ({user}: any) => {
-    return ( 
-        <main>
+"use client"
+import { useState } from "react";
+import { formatDate } from "@/lib/dateTimeUtils";
+import Image from "next/image";
 
+const SecurityDetails = ({user}: any) => {
+
+    const [seeForm, setSeeForm] = useState<boolean>(false)
+    //Function
+    const updateForm = () => {
+        setSeeForm((prev) => !prev)
+    }
+
+    return ( 
+        <main className="overflow-y-auto special">
+            <p className="text-xl xl:text-2xl font-semibold text-[#020100]">Security Details</p>
+            <div className="flex flex-col gap-y-2 mt-6">
+                <p className="text-textPrimary text-[12px] md:text-[14px]">ID Type</p>
+                <p className="text-[#636366] text-[14px] md:text-[16px] border border-[#E6E7E8] p-2 rounded-lg">{user && user.idType}</p>
+            </div>
+            <div className="flex flex-col gap-y-2 mt-6">
+                <p className="text-textPrimary text-[12px] md:text-[14px]">ID Number</p>
+                <p className="text-[#636366] text-[14px] md:text-[16px] border border-[#E6E7E8] p-2 rounded-lg">{user && user.idNumber}</p>
+            </div>
+            <div className="flex flex-col gap-y-2 mt-6">
+                <p className="text-textPrimary text-[12px] md:text-[14px]">ID Date of expiration</p>
+                <p className="text-[#636366] text-[14px] md:text-[16px] border border-[#E6E7E8] p-2 rounded-lg">{user && user.dateOfExpiry}</p>
+            </div>
+            <div className="flex flex-col gap-y-2 mt-6">
+                <p className="text-textPrimary text-[12px] md:text-[14px]">Account Date of creation</p>
+                <p className="text-[#636366] text-[14px] md:text-[16px] border border-[#E6E7E8] p-2 rounded-lg">{user && formatDate(user.createdAt)}</p>
+            </div>
+            <div className="flex justify-between mt-6">
+                <div  className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
+                   <Image src={user && user.idCardFrontImgSrc} alt="Front Image" fill className="absolute rounded-md"/> 
+                </div>
+                <div className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
+                    <Image src={user && user.idCardBackImgSrc} alt="Back Image" fill className="absolute rounded-md"/>
+                </div>
+            </div>
+            <div className="flex justify-end mt-10 mb-20 xl:mb-0">
+                <button onClick={updateForm} className="bg-primary px-6 md:px-8 xl:px-10 py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500">Update Details</button>
+            </div>
         </main>
      );
 }
