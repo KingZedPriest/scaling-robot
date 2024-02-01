@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-// import { signOut } from 'next-auth/react'
 
 //Import Icons
 import { AiOutlineCloseSquare } from "react-icons/ai";
