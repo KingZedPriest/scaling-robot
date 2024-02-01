@@ -2,15 +2,19 @@
 import { useState } from "react";
 import Image from "next/image";
 
+//Import Needed Components
+import PersonalForm from "./PersonalForm";
+
 const PersonalDetails = ({user}: any) => {
 
-    const [seeForm, setSeeForm] = useState<boolean>(false)
+    const [seeForm, setSeeForm] = useState<boolean>(true)
     //Function
     const updateForm = () => {
         setSeeForm((prev) => !prev)
     }
     return ( 
         <main>
+            {seeForm && <PersonalForm />}
             <p className="text-xl xl:text-2xl font-semibold text-[#020100]">Personal Details</p>
             <div className="flex gap-x-2 mt-4">
                 <div className="relative size-14 md:size-16 xl:size-20">

@@ -6,6 +6,6 @@ type profileStore = {
 }
 
 export const useProfileStore = create<profileStore>((set) => ({
-    currentDetails: "",
+    currentDetails: "personal",
     updateCurrentDetails : ( newCurrentDetails : string ) => set({currentDetails : newCurrentDetails})
 }))
