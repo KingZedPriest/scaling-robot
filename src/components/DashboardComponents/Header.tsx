@@ -18,7 +18,7 @@ const Header = ({page, profilePicSrc}: heading) => {
     return ( 
         <main className="relative">
             <div className="flex justify-between items-center px-4 md:px-6 xl:px-8 py-4 lg:border-b border-[#767680] border-opacity-10">
-                <p className="text-xl xl:text-2xl font-semibold">{page}</p>
+                <p className="text-xl xl:text-2xl font-semibold text-[#020100]">{page}</p>
                 <div className="flex gap-x-1 items-center cursor-pointer xl:cursor-default"onClick={handleModal}>
                     <ArrowDown3 size="20" color="#D56F3E" className="xl:hidden"/>
                     <div className="size-10 md:size-12 xl:size-14 relative">

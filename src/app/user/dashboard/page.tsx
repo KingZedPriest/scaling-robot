@@ -23,9 +23,6 @@ const page = async () => {
         <main>
             <Header page="Dashboard" profilePicSrc={user?.profileImgSrc}/>
             <BalanceUpdate transactions={transactions}/>
-            {/* <div className="px-4 md:px-6 xl:px-8">
-                <SmallScreenAccount firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
-            </div> */}
             <div className="px-4 md:px-6 xl:px-8 flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row justify-between mt-5 lg:mt-10">
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
                     <AccountDetails />

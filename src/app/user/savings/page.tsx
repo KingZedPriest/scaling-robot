@@ -9,6 +9,8 @@ import TargetSavings from "@/components/SavingsComponents/TargetSavings";
 import SavingDetails from "@/components/SavingsComponents/SavingDetails";
 import SavingsHeader from "@/components/SavingsComponents/SavingsHeader";
 
+
+export const revalidate = 30
 const page = async () => {
 
     const { user } = await getUserDetails();

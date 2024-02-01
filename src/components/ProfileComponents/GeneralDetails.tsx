@@ -1,6 +1,11 @@
 "use client"
 import { useProfileStore } from "@/store/ProfileStore";
-const GeneralDetails = () => {
+//Import Needed Components
+import PersonalDetails from "./PersonalDetails";
+import ContactDetails from "./ContactDetails";
+import SecurityDetails from "./SecurityDetails";
+
+const GeneralDetails = ({user}: any) => {
 
     const { currentDetails, updateCurrentDetails } = useProfileStore()
 
@@ -24,8 +29,10 @@ const GeneralDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full p-6">
-                
+            <div className="w-full p-2 md:p-4 xl:p-6">
+                {currentDetails === "personal" && <PersonalDetails user={user}/>}
+                {currentDetails === "contact" && <ContactDetails user={user}/>}
+                {currentDetails === "security" && <SecurityDetails user={user}/>}
             </div>
         </main>
      );
