@@ -5,7 +5,7 @@ import Header from "@/components/DashboardComponents/Header";
 import GeneralDetails from "@/components/ProfileComponents/GeneralDetails";
 import SmallScreenAccount from "@/components/DashboardComponents/SmallScreenAccount";
 
-export const revalidate = 30
+export const revalidate = 1
 const page = async () => {
 
     const { user } = await getUserDetails();
