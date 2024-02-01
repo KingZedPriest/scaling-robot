@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import ContactForm from "./ContactForm";
 
 const ContactDetails = ({user}: any) => {
 
@@ -11,6 +12,7 @@ const ContactDetails = ({user}: any) => {
 
     return ( 
         <main>
+            {seeForm && <ContactForm hideModal={updateForm} email={user.email}/>}
             <p className="text-xl xl:text-2xl font-semibold text-[#020100]">Contact Details</p>
             <div className="flex justify-between mt-6">
                 <div className="w-[49%] flex flex-col gap-y-2">

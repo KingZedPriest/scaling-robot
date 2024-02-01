@@ -35,7 +35,7 @@ const PersonalForm = ({hideModal, email}: profileEdit) => {
             },
         onError: (error: any) => {
             setLoading(false)
-            toast.error(error.message)
+            toast.error("Unable to update profile picture, kindly try again later.")
             if(hideModal){
                 hideModal()
             }

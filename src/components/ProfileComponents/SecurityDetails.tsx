@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { formatDate } from "@/lib/dateTimeUtils";
 import Image from "next/image";
+import SecurityForm from "./SecurityForm";
 
 const SecurityDetails = ({user}: any) => {
 
@@ -12,7 +13,8 @@ const SecurityDetails = ({user}: any) => {
     }
 
     return ( 
-        <main className="overflow-y-auto special">
+        <main>
+            {seeForm && <SecurityForm hideModal={updateForm} email={user.email} transactionPin={user.transactionPin}/>}
             <p className="text-xl xl:text-2xl font-semibold text-[#020100]">Security Details</p>
             <div className="flex flex-col gap-y-2 mt-6">
                 <p className="text-textPrimary text-[12px] md:text-[14px]">ID Type</p>
