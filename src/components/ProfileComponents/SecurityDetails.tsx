@@ -32,9 +32,11 @@ const SecurityDetails = ({user}: any) => {
             </div>
             <div className="flex justify-between mt-6">
                 <div  className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
+                    <p className="text-textPrimary text-[12px] md:text-[14px] absolute z-50 ml-1">{`${user && user.idType} Front Image`}</p>
                    <Image src={user && user.idCardFrontImgSrc} alt="Front Image" fill className="absolute rounded-md"/> 
                 </div>
                 <div className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
+                    <p className="text-textPrimary text-[12px] md:text-[14px] absolute z-50 ml-1">{`${user && user.idType} Back Image`}</p>
                     <Image src={user && user.idCardBackImgSrc} alt="Back Image" fill className="absolute rounded-md"/>
                 </div>
             </div>
