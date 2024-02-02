@@ -2,7 +2,6 @@ import { getUserDetails } from "@/providers/userDetails";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
-import SmallScreenAccount from "@/components/DashboardComponents/SmallScreenAccount";
 import AccountDetails from "@/components/DashboardComponents/AccountDetails";
 import Activity from "@/components/DashboardComponents/Activity";
 import TransferHistory from "@/components/DashboardComponents/TransferHistory";

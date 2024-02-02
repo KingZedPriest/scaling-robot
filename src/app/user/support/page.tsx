@@ -1,8 +1,24 @@
-const page = () => {
+import { getUserDetails } from "@/providers/userDetails";
+
+//Import Needed Components
+import Header from "@/components/DashboardComponents/Header";
+import SupportForm from "@/components/SupportComponents/SupportForm";
+
+
+export const revalidate = 30
+const page = async () => {
+
+    const { user } = await getUserDetails();
+
     return ( 
+
         <main>
-            
+            <Header page="Support" profilePicSrc={user?.profileImgSrc}/> 
+            <div className="px-4 md:px-6 xl:px-8 py-4">
+                <SupportForm/>
+            </div>
         </main>
+
      );
 }
  
