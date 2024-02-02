@@ -33,7 +33,7 @@ const TransferHistory = ({transactions}: any) => {
                 </div>
                 <div className="flex flex-col">
                 {transactions && transactions.map((transaction: any) => (
-                    <Link key={transaction.id} href={`history/${transaction.id}`}>
+                    <Link key={transaction.id} href={`/user/history`}>
                         <div className="flex items-center justify-between py-4">
                             <div className="flex gap-x-1 items-center">
                                 <div className={`${ transaction.type === "Deposit" ? "bg-[#2DE3001A]" : "bg-[#DB64641A]"}  rounded-[50%] p-2`}>
