@@ -17,7 +17,7 @@ const page = () => {
                     </div>
                     <div className='flex justify-between w-full'>
                         <Link href='/user/dashboard' className='px-4 md:px-6 xl:px-8 py-2 md:py-3 rounded-lg border border-primary text-primary cursor-pointer hover:bg-primary hover:text-white duration-500'>Go home</Link>
-                        <button onClick={() => signOut()} className="bg-[#D70015] px-4 md:px-6 xl:px-8 py-2 md:py-3 rounded-lg text-white cursor-pointer border border-[#D70015] hover:bg-white hover:text-[#D70015] duration-500">Yes</button>
+                        <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000/login'})} className="bg-[#D70015] px-4 md:px-6 xl:px-8 py-2 md:py-3 rounded-lg text-white cursor-pointer border border-[#D70015] hover:bg-white hover:text-[#D70015] duration-500">Yes</button>
                     </div>
                     
                 </div>
