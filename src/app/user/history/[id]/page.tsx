@@ -3,12 +3,13 @@ import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
 import getIndividualTransaction from "@/actions/getIndividualTransaction";
 
-//
+//Import Icons
 import { AddCircle } from "iconsax-react";
 
 
-export const revalidate = 30;
+export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
+  
   const transactionId = params.id;
   const transactionArray = await getIndividualTransaction(transactionId);
   const transactionInformation = transactionArray[0];

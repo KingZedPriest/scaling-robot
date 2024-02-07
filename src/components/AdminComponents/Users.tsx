@@ -28,7 +28,7 @@ const Users = ({ users }: any) => {
                   Registration date
                 </p>
                 <p className="text-[#020100] font-medium text-[10px] md:text-[12px] xl:text-[14px]">
-                  {formatDate(user.createdAt)}
+                  {formatDate(user.createdAt)}.
                 </p>
               </div>
             </Link>
