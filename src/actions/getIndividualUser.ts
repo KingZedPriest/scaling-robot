@@ -1,14 +1,14 @@
 import { prisma } from "@/lib/prismadb";
 
-export default async function getIndividualTransaction(id: string) {
+export default async function getIndividualUser(id: string) {
   try {
-    const transaction = await prisma.transaction.findMany({
+    const user = await prisma.user.findMany({
       where: {
         id: id,
       },
     });
 
-    return transaction;
+    return user;
     
   } catch (error: any) {
     console.error(error);

@@ -96,13 +96,7 @@ const totalSavings = capitalWealthAmount + saveBoxAmount
       updateMainBalance(mainBalance)
       updateTotalSavingsBalance(totalSavings)
   }, [transactions, updateCapitalWealthBalance, updateMainBalance, updateSaveboxBalance, updateTotalSavingsBalance]);
-  // console.log('Withdrawal Amount:', withdrawalAmount);
-  // console.log('Deposit Amount:', depositAmount);
-  // console.log('Capital_Wealth Amount:', capitalWealthAmount);
-  // console.log('Utility_Bill Amount:', utilityBillAmount);
-  // console.log('Domestic_Wire_Transfer Amount:', domesticWireTransferAmount);
-  // console.log('International_Wire_Transfer Amount:', internationalWireTransferAmount);
-  // console.log('SaveBox Amount:', saveBoxAmount);
+
 
   return <main></main>;
 };

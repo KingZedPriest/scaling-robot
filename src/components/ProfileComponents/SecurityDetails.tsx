@@ -32,16 +32,6 @@ const SecurityDetails = ({user}: any) => {
                 <p className="text-textPrimary text-[12px] md:text-[14px]">Account Date of creation</p>
                 <p className="text-[#636366] text-[14px] md:text-[16px] border border-[#E6E7E8] p-2 rounded-lg">{user && formatDate(user.createdAt)}</p>
             </div>
-            <div className="flex justify-between mt-6">
-                <div  className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
-                    <p className="text-textPrimary text-[12px] md:text-[14px] absolute z-50 ml-1">{`${user && user.idType} Front Image`}</p>
-                   <Image src={user && user.idCardFrontImgSrc} alt="Front Image" fill className="absolute rounded-md"/> 
-                </div>
-                <div className="relative w-[49%] flex flex-col gap-y-2 h-40 rounded-md">
-                    <p className="text-textPrimary text-[12px] md:text-[14px] absolute z-50 ml-1">{`${user && user.idType} Back Image`}</p>
-                    <Image src={user && user.idCardBackImgSrc} alt="Back Image" fill className="absolute rounded-md"/>
-                </div>
-            </div>
             <div className="flex justify-end mt-10 mb-20 xl:mb-0">
                 <button onClick={updateForm} className="bg-primary px-6 md:px-8 xl:px-10 py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500">Update Details</button>
             </div>
