@@ -7,7 +7,7 @@ import Link from "next/link";
 
 //Import Needed Components
 import Header from "@/components/AdminComponents/Header";
-import { Bill, MoneyRecive, MoneySend, WalletMoney } from "iconsax-react";
+import { Bill, Import, MoneyRecive, MoneySend, Send2, WalletMoney } from "iconsax-react";
 
 
 export const revalidate = 1;
@@ -18,7 +18,88 @@ const page = async ({ params }: { params: { id: string } }) => {
     const currentUser = currentUserArray[0]
     const userTransaction = await getIndividualUserTransaction(userId)
     //console.log({userTransaction})
+    const wireTransferTransactions = userTransaction?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
+    const deposits = userTransaction?.filter((transaction) => transaction.type === "Deposit");
+    // Filter and accumulate Withdrawals
+    const withdrawalAmount = userTransaction && userTransaction 
+      .filter(
+        (transaction: { type: string }) => transaction.type === "Withdrawal"
+      )
+      .reduce(
+        (total: any, transaction: { amount: any }) =>
+          total + transaction.amount,
+        0
+      );
 
+    // Filter and accumulate Deposits
+    const depositAmount = userTransaction && userTransaction
+      .filter((transaction: { type: string }) => transaction.type === "Deposit")
+      .reduce(
+        (total: any, transaction: { amount: any }) =>
+          total + transaction.amount,
+        0
+      );
+
+    // Filter and accumulate Capital_Wealth userTransaction with isActive true
+    const capitalWealthAmount = userTransaction && userTransaction
+      .filter(
+        (transaction: { type: string; isActive: any }) =>
+          transaction.type === "Capital_Wealth" && transaction.isActive
+      )
+      .reduce(
+        (total: any, transaction: { amount: any }) =>
+          total + transaction.amount,
+        0
+      );
+
+    // Filter and accumulate Utility_Bill userTransaction
+    const utilityBillAmount = userTransaction && userTransaction
+      .filter(
+        (transaction: { type: string }) => transaction.type === "Utility_Bill"
+      )
+      .reduce(
+        (total: any, transaction: { amount: any }) =>
+          total + transaction.amount,
+        0
+      );
+
+   // Filter and accumulate Domestic_Wire_Transfer transactions with status 'successfull'
+   const domesticWireTransferAmount = userTransaction && userTransaction
+   .filter(
+     (transaction: { type: any; status: any }) =>
+       transaction.type === "Domestic_Wire_Transfer" &&
+       transaction.status === "successfull"
+   )
+   .reduce(
+     (total: any, transaction: { amount: any }) =>
+       total + transaction.amount,
+     0
+   );
+
+ // Filter and accumulate International_Wire_Transfer transactions with status 'successfull'
+ const internationalWireTransferAmount = userTransaction && userTransaction
+   .filter(
+     (transaction: { type: any; status: any }) =>
+       transaction.type === "International_Wire_Transfer" &&
+       transaction.status === "successfull"
+   )
+   .reduce(
+     (total: any, transaction: { amount: any }) =>
+       total + transaction.amount,
+     0
+   );
+
+    // Filter and accumulate SaveBox userTransaction
+    const saveBoxAmount = userTransaction && userTransaction
+      .filter((transaction: { isSaveBox: any }) => transaction.isSaveBox)
+      .reduce(
+        (total: any, transaction: { saveBoxAmount: any }) =>
+          total + transaction.saveBoxAmount,
+        0
+      );
+    //Get main balance
+const mainBalance = depositAmount - withdrawalAmount - capitalWealthAmount - utilityBillAmount - domesticWireTransferAmount - internationalWireTransferAmount - saveBoxAmount;
+const totalSavings = capitalWealthAmount + saveBoxAmount
     return ( 
         <main>
            <Header page="User Profile" />
@@ -100,11 +181,41 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <div className="flex flex-col gap-y-3 lg:gap-y-0 lg:flex-row lg:justify-between mt-8">
                     <div className="lg:w-[49%] border border-[#7676801F] p-4 rounded-xl">
                         <p className="text-xs md:text-sm xl:text-base font-semibold text-[#141619]">Activity</p> 
+                        <div className="flex justify-between mt-8">
+                            <div className="flex flex-col gap-y-1">
+                                <p className="text-[8px] md:text-[10px] xl:text-[12px] text-secondary">Current Balance</p>
+                                <p className="text-[#D56F3E] text-lg md:text-xl lg:text-2xl font-semibold">€{mainBalance}</p>
+                            </div>
+                            <div className="flex flex-col gap-y-1">
+                                <p className="text-[8px] md:text-[10px] xl:text-[12px] text-secondary">Savings</p>
+                                <p className="text-[#34C759] text-lg md:text-xl lg:text-2xl font-semibold">+€{totalSavings}</p>
+                            </div>
+                        </div>
+                        <div className="flex justify-between mt-10">
+                <div className="w-[49%] border border-[#7676801F] h-24 rounded-lg bg-[#F3F6FB] flex items-center gap-x-2 p-2 sm:p-4 xl:p-6">
+                    <div className="size-10 md:size-12 xl:size-14 rounded-[50%] bg-white border border-[#78788029] flex items-center justify-center">
+                        <Send2 className="text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] xl:text-[32px]" color="#06121B"/>
                     </div>
-                    <div className="lg:w-[49%] border border-[#7676801F] p-4 rounded-xl">
-                        <p className="text-xs md:text-sm xl:text-base font-semibold text-[#141619]">Transaction History</p>
+                    <div>
+                        <p className="text-[0.6rem] md:text-xs">Transfers</p>
+                        <p className="font-medium text-xl text-[#06121B] mt-1">{wireTransferTransactions && wireTransferTransactions.length}</p>
+                    </div>
+                </div>
+                <div className="w-[49%] border border-[#7676801F] h-24 rounded-lg bg-[#F3F6FB] flex items-center gap-x-2 p-2 sm:p-4 xl:p-6">
+                    <div className="size-10 md:size-12 xl:size-14 rounded-[50%] bg-white border border-[#78788029] flex items-center justify-center">
+                        <Import className="text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] xl:text-[32px]" color="#06121B"/>
+                    </div>
+                    <div>
+                        <p className="text-[0.6rem] md:text-xs">Deposits</p>
+                        <p className="font-medium text-xl text-[#06121B] mt-1">{deposits && deposits.length}</p>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    <div className="lg:w-[49%] border border-[#7676801F] p-4 rounded-xl max-h-[30rem] special overflow-y-auto">
+                        <p className="text-xs md:text-sm xl:text-base font-semibold text-[#141619] mb-4">Transaction History</p>
                         {userTransaction && userTransaction.map((transaction: any) => (
-                    <Link key={transaction.id} href={`/user/history`}>
+                    <Link key={transaction.id} href={`/user/history/${transaction.id}`}>
                         <div className="flex items-center justify-between py-4">
                             <div className="flex gap-x-1 items-center">
                                 <div className={`${ transaction.type === "Deposit" ? "bg-[#2DE3001A]" : "bg-[#DB64641A]"}  rounded-[50%] p-2`}>
@@ -120,6 +231,9 @@ const page = async ({ params }: { params: { id: string } }) => {
                         </div>
                     </Link>
                 ))}
+                {userTransaction && userTransaction.length === 0 && <div className="flex justify-center py-4">
+                        <p className="text-sm xl:text-base text-secondary text-center">No Transaction Yet</p>
+                    </div>}
                     </div>
                 </div>
             </div> 
