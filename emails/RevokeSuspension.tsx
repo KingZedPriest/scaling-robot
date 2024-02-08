@@ -9,10 +9,7 @@ type EmailProps = {
   accountNumber?: string;
 };
 
-export default function SuspendTemplate({
-  userName,
-  accountNumber,
-}: EmailProps) {
+export default function RevokeSuspensionTemplate({ userName, accountNumber }: EmailProps) {
   return (
     <Html>
       <Section style={main}>
@@ -25,24 +22,24 @@ export default function SuspendTemplate({
           </Container>
           <Text style={bold}>Dear {userName}!</Text>
           <Text style={paragraph}>
-            We are writing regarding observed irregularities and suspected
-            unauthorized transactions on your account ending in XXXXXX
+            We are contacting you regarding the recent suspension applied to
+            your savings account ending in XXXXXX
             {accountNumber}.
           </Text>
           <Text style={paragraph}>
-            As per our security policy, we have suspended access and activity on
-            the account for the next 48 hours. This hold has been initiated
-            pending an investigation into the suspicious activity.
+            After conducting our review of the flagged transactions, we have
+            determined there was no actual fraudulent or unauthorized activity.
+            As a result, we have revoked the account suspension effective
+            immediately.
           </Text>
           <Text style={paragraph}>
-            Please reply to this message immediately and provide needed details
-            when our fraud investigation reaches out. We may require additional
-            identity verification before reconsidering account reinstatement.
+            You should now have full access restored. Please accept our
+            apologies for any inconvenience while under investigation. We
+            appreciate your patience and understanding as we take data anomalies
+            seriously.
           </Text>
           <Text style={paragraph}>
-            If we determine the transactions were fraudulent or violation of our
-            terms, closure and reporting actions may be taken. Please act
-            promptly for most favorable resolution.
+            Let us know if you have any issues transacting or questions about the status change.
           </Text>
           <Container style={footer}>
             <Text>

@@ -400,7 +400,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               Quick Actions
             </p>    
             <div className="flex justify-between mt-4 gap-x-2">
-                <VerifyButton userEmail={currentUser?.email} userVerified={currentUser?.isVerified} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/> <SuspendButton userEmail={currentUser?.email} userSuspended={currentUser?.isSuspended} accountNumber={currentUser?.accountNumber}/> <DeleteButton userEmail={currentUser?.email}/>
+                <VerifyButton userEmail={currentUser?.email} userVerified={currentUser?.isVerified} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/> <SuspendButton userEmail={currentUser?.email} userSuspended={currentUser?.isSuspended} accountNumber={currentUser?.accountNumber} name={`${currentUser?.firstName} ${currentUser?.lastName}`} /> <DeleteButton userEmail={currentUser?.email}/>
             </div>
         </div>
       </div>
