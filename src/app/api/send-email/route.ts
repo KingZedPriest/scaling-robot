@@ -1,6 +1,8 @@
 import WelcomeTemplate from "../../../../emails/WelcomeTemplate";
 import ATMRequestTemplate from "../../../../emails/ATMRequestTemplate";
 import TransactionTemplate from "../../../../emails/TransactionTemplate";
+import VerifyTemplate from "../../../../emails/VerifyTemplate"; 
+import RevokeTemplate from "../../../../emails/RevokeVerification";
 
 import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
@@ -28,8 +30,15 @@ export async function POST(request: Request) {
           case "atmrequest":
             emailHtml = render(ATMRequestTemplate({ userName: name }));
             break;
+
           case "transaction":
             emailHtml = render(TransactionTemplate({userName: name, transactionAmount, transactionDate, transactionType, recipientName, recipientAccountNumber}));
+            break;
+          case "userVerification":
+            emailHtml = render(VerifyTemplate({ userName: name }));
+            break;
+          case "revokeVerification":
+            emailHtml = render(RevokeTemplate({ userName: name }));
             break;
           default:
             throw new Error('Invalid emailType');

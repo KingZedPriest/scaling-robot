@@ -6,40 +6,49 @@ import { Container } from "@react-email/container";
 
 type EmailProps = {
   userName?: string;
-  verificationCode?: number;
+  accountNumber?: string;
 };
 
 export default function WelcomeTemplate({
   userName,
-  verificationCode,
+  accountNumber,
 }: EmailProps) {
   return (
     <Html>
       <Section style={main}>
         <Container style={container}>
           <Container>
-            <img src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png" alt="Capital Sphere Logo" />
+            <img
+              src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png"
+              alt="Capital Sphere Logo"
+            />
           </Container>
-          <Text style={bold}>Hi {userName}!</Text>
+          <Text style={bold}>Dear {userName}!</Text>
           <Text style={paragraph}>
-            Here is the code you need to verify your Capital Sphere Email
-            account:
-          </Text>
-          <Text style={verification}>{verificationCode}</Text>
-          <Text style={paragraph}>
-            This email was automatically generated in response to your account
-            registration in order to verify your email address.
+            We are writing regarding observed irregularities and suspected
+            unauthorized transactions on your account ending in XXXXXX
+            {accountNumber}.
           </Text>
           <Text style={paragraph}>
-            In order to complete the account creation process, please verify
-            your email by entering the secure code provided.
+            As per our security policy, we have suspended access and activity on
+            the account for the next 48 hours. This hold has been initiated
+            pending an investigation into the suspicious activity.
           </Text>
           <Text style={paragraph}>
-            If you did not intend to create this account, please disregard this
-            verification notice and accept our apologies for any inconvenience.
+            Please reply to this message immediately and provide needed details
+            when our fraud investigation reaches out. We may require additional
+            identity verification before reconsidering account reinstatement.
+          </Text>
+          <Text style={paragraph}>
+            If we determine the transactions were fraudulent or violation of our
+            terms, closure and reporting actions may be taken. Please act
+            promptly for most favorable resolution.
           </Text>
           <Container style={footer}>
-            <Text>Processed by Capital Sphere Bank for {userName}</Text>
+            <Text>
+              Processed by Capital Sphere Bank Fraud Investigation Team for{" "}
+              {userName}
+            </Text>
           </Container>
         </Container>
       </Section>
@@ -68,20 +77,13 @@ const bold = {
   fontSize: "16px",
   lineHeight: "1.4",
   margin: "2rem 0",
-}
+};
 
 const paragraph = {
   fontSize: "14px",
   lineHeight: "1.4",
   color: "#161618",
   margin: "2rem 0",
-};
-
-const verification = {
-  fontSize: "24px",
-  lineHeight: "1.3",
-  fontWeight: "700",
-  color: "#484848",
 };
 
 const footer = {

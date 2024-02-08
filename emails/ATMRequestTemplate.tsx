@@ -41,7 +41,7 @@ export default function WelcomeTemplate({ userName }: EmailProps) {
             once your debit card is ready to be issued.
           </Text>
           <Container style={footer}>
-            <Text>Processed by Capital Sphere Bank Germany for {userName}</Text>
+            <Text>Processed by Capital Sphere Bank for {userName}</Text>
           </Container>
         </Container>
       </Section>

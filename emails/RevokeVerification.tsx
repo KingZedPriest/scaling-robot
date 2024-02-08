@@ -6,37 +6,34 @@ import { Container } from "@react-email/container";
 
 type EmailProps = {
   userName?: string;
-  verificationCode?: number;
 };
 
-export default function WelcomeTemplate({
-  userName,
-  verificationCode,
-}: EmailProps) {
+export default function RevokeTemplate({ userName }: EmailProps) {
   return (
     <Html>
       <Section style={main}>
         <Container style={container}>
           <Container>
-            <img src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png" alt="Capital Sphere Logo" />
+            <img
+              src="https://res.cloudinary.com/dpmx02shl/image/upload/v1706006755/logo_bxjctk.png"
+              alt="Capital Sphere Logo"
+            />
           </Container>
-          <Text style={bold}>Hi {userName}!</Text>
+          <Text style={bold}>Dear {userName}!</Text>
           <Text style={paragraph}>
-            Here is the code you need to verify your Capital Sphere Email
-            account:
-          </Text>
-          <Text style={verification}>{verificationCode}</Text>
-          <Text style={paragraph}>
-            This email was automatically generated in response to your account
-            registration in order to verify your email address.
+            This message is to notify you that Capital Sphere Bank has revoked
+            the verified status on your account.
           </Text>
           <Text style={paragraph}>
-            In order to complete the account creation process, please verify
-            your email by entering the secure code provided.
+            Due to anomalies detected during routine monitoring, we have
+            downgraded your account to an unverified status pending an internal
+            review. As a result, certain restrictions have been enabled
+            temporarily.
           </Text>
           <Text style={paragraph}>
-            If you did not intend to create this account, please disregard this
-            verification notice and accept our apologies for any inconvenience.
+            Once our team completes re-validation of account details and a new
+            risk review, your full verification status will be reconsidered
+            accordingly. This process can take 5-7 business days.
           </Text>
           <Container style={footer}>
             <Text>Processed by Capital Sphere Bank for {userName}</Text>
@@ -68,20 +65,13 @@ const bold = {
   fontSize: "16px",
   lineHeight: "1.4",
   margin: "2rem 0",
-}
+};
 
 const paragraph = {
   fontSize: "14px",
   lineHeight: "1.4",
   color: "#161618",
   margin: "2rem 0",
-};
-
-const verification = {
-  fontSize: "24px",
-  lineHeight: "1.3",
-  fontWeight: "700",
-  color: "#484848",
 };
 
 const footer = {
