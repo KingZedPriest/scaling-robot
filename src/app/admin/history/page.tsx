@@ -2,6 +2,7 @@ import getTransactions from "@/actions/getAllTransactions";
 import Header from "@/components/AdminComponents/Header";
 import AllTransactions from "@/components/AdminComponents/AllTransactions";
 
+export const revalidate = 1;
 const page = async () => {
 
     const transactions = await getTransactions();

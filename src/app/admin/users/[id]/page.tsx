@@ -23,8 +23,7 @@ import {
 export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
   const userId = params.id;
-  const currentUserArray = await getIndividualUser(userId);
-  const currentUser = currentUserArray[0];
+  const currentUser = await getIndividualUser(userId);
   const userTransaction = await getIndividualUserTransaction(userId);
   //console.log({userTransaction})
   const wireTransferTransactions = userTransaction?.filter((transaction) =>
@@ -146,18 +145,18 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="flex flex-col gap-y-2 lg:gap-y-0 lg:flex-row lg:gap-x-4 mt-8">
               <div className="relative size-10 md:size-12 xl:size-16 rounded-[50%]">
                 <Image
-                  src={currentUser.profileImgSrc}
-                  alt={`${currentUser.firstName} picture`}
+                  src={currentUser?.profileImgSrc ?? ""}
+                  alt={`${currentUser?.firstName} picture`}
                   className="rounded-[50%] absolute"
                   fill
                 />
               </div>
               <div className="flex flex-col gap-y-2 text-[#141619] text-xs md:text-sm xl:text-base">
                 <p className="capitalize">
-                  {currentUser.firstName} {currentUser.lastName}
+                  {currentUser?.firstName} {currentUser?.lastName}
                 </p>
-                <p>{currentUser.email}</p>
-                <p>{formatDateTime(currentUser.dateOfBirth)}</p>
+                <p>{currentUser?.email}</p>
+                <p>{formatDateTime(currentUser?.dateOfBirth ?? "")}</p>
               </div>
             </div>
           </div>
@@ -169,25 +168,25 @@ const page = async ({ params }: { params: { id: string } }) => {
               <div className="flex flex-col gap-y-2">
                 <div className="flex gap-x-1">
                   <p className="text-[#B9BAC0]">City:</p>
-                  <p>{currentUser.city}</p>
+                  <p>{currentUser?.city}</p>
                 </div>
                 <div className="flex gap-x-1">
                   <p className="text-[#B9BAC0]">State:</p>
-                  <p>{currentUser.state}</p>
+                  <p>{currentUser?.state}</p>
                 </div>
                 <div className="flex gap-x-1">
                   <p className="text-[#B9BAC0]">Mobile Number:</p>
-                  <p>{currentUser.mobileNumber}</p>
+                  <p>{currentUser?.mobileNumber}</p>
                 </div>
               </div>
               <div className="flex flex-col gap-y-2">
                 <div className="flex gap-x-1">
                   <p className="text-[#B9BAC0]">Address:</p>
-                  <p>{currentUser.address}</p>
+                  <p>{currentUser?.address}</p>
                 </div>
                 <div className="flex gap-x-1">
                   <p className="text-[#B9BAC0]">Country:</p>
-                  <p>{currentUser.country}</p>
+                  <p>{currentUser?.country}</p>
                 </div>
               </div>
             </div>
@@ -201,44 +200,44 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="mt-8 flex flex-col gap-y-2 text-[#141619] text-xs md:text-sm xl:text-base">
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">ID Type:</p>
-                <p>{currentUser.idType}</p>
+                <p>{currentUser?.idType}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">ID Number:</p>
-                <p>{currentUser.idNumber}</p>
+                <p>{currentUser?.idNumber}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Date of Expiration:</p>
-                <p>{formatDateTime(currentUser.dateOfExpiry)}</p>
+                <p>{formatDateTime(currentUser?.dateOfExpiry ?? "")}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Account creation date:</p>
-                <p>{formatDate(currentUser.createdAt)}</p>
+                <p>{formatDate(currentUser?.createdAt ?? new Date)}</p>
               </div>
               <p className="text-xs md:text-sm xl:text-base font-semibold text-[#141619] mt-4">Account Details</p>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Account Number:</p>
-                <p>{currentUser.accountNumber}</p>
+                <p>{currentUser?.accountNumber}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Transaction Pin:</p>
-                <p>{currentUser.transactionPin}</p>
+                <p>{currentUser?.transactionPin}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Has client verified his email?:</p>
-                <p>{currentUser.isEmailVerified ? "Yes" : "No"}</p>
+                <p>{currentUser?.isEmailVerified ? "Yes" : "No"}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Did client request for an ATM?:</p>
-                <p>{currentUser.atmRequest ? "Yes" : "No"}</p>
+                <p>{currentUser?.atmRequest ? "Yes" : "No"}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Is Client Suspended:</p>
-                <p>{currentUser.isSuspended ? "Yes" : "No"}</p>
+                <p>{currentUser?.isSuspended ? "Yes" : "No"}</p>
               </div>
               <div className="flex gap-x-1">
                 <p className="text-[#B9BAC0]">Is Client Verified:</p>
-                <p>{currentUser.isVerified ? "Yes" : "No"}</p>
+                <p>{currentUser?.isVerified ? "Yes" : "No"}</p>
               </div>
 
             </div>
@@ -250,16 +249,16 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="flex justify-between mt-8">
               <div className="relative rounded-lg w-[49%] h-60">
                 <Image
-                  src={currentUser.idCardFrontImgSrc}
-                  alt={`${currentUser.firstName} Front ID`}
+                  src={currentUser?.idCardFrontImgSrc ?? ""}
+                  alt={`${currentUser?.firstName} Front ID`}
                   className="rounded-lg absolute"
                   fill
                 />
               </div>
               <div className="relative rounded-lg w-[49%] h-60">
                 <Image
-                  src={currentUser.idCardBackImgSrc}
-                  alt={`${currentUser.firstName} Back ID`}
+                  src={currentUser?.idCardBackImgSrc ?? ""}
+                  alt={`${currentUser?.firstName} Back ID`}
                   className="rounded-lg absolute"
                   fill
                 />
@@ -400,7 +399,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               Quick Actions
             </p>    
             <div className="flex justify-between mt-4 gap-x-2">
-                <VerifyButton userEmail={currentUser?.email} userVerified={currentUser?.isVerified} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/> <SuspendButton userEmail={currentUser?.email} userSuspended={currentUser?.isSuspended} accountNumber={currentUser?.accountNumber} name={`${currentUser?.firstName} ${currentUser?.lastName}`} /> <DeleteButton userEmail={currentUser?.email}/>
+                <VerifyButton userEmail={currentUser?.email ?? ""} userVerified={currentUser?.isVerified ?? false} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/> <SuspendButton userEmail={currentUser?.email ?? ""} userSuspended={currentUser?.isSuspended ?? false} accountNumber={currentUser?.accountNumber ?? ""} name={`${currentUser?.firstName} ${currentUser?.lastName}`} /> <DeleteButton userEmail={currentUser?.email ?? ""}/>
             </div>
         </div>
       </div>

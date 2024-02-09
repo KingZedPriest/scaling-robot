@@ -11,8 +11,7 @@ export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
   
   const transactionId = params.id;
-  const transactionArray = await getIndividualTransaction(transactionId);
-  const transactionInformation = transactionArray[0];
+  const transactionInformation = await getIndividualTransaction(transactionId);
 
   function showCorrectTransactionType(type: string | undefined): string {
     switch (type) {
@@ -60,13 +59,13 @@ const page = async ({ params }: { params: { id: string } }) => {
             Transaction Status
           </p>
           <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-            {transactionInformation.status}
+            {transactionInformation?.status}
           </p>
         </div>
         <div className="flex justify-between items-center gap-x-5">
           <p className="text-[#9EA0A3] text-xs md:text-sm">Transaction Type</p>
           <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-            {showCorrectTransactionType(transactionInformation.type)}
+            {showCorrectTransactionType(transactionInformation?.type)}
           </p>
         </div>
         <div className="flex justify-between items-center gap-x-5">
@@ -74,10 +73,10 @@ const page = async ({ params }: { params: { id: string } }) => {
                     Amount 
                 </p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                    €{transactionInformation.amount}
+                    €{transactionInformation?.amount}
                 </p>
             </div> 
-        {(transactionInformation.type === "Domestic_Wire_Transfer" || transactionInformation.type === "International_Wire_Transfer") && 
+        {(transactionInformation?.type === "Domestic_Wire_Transfer" || transactionInformation?.type === "International_Wire_Transfer") && 
         <>
            <div className="flex justify-between items-center gap-x-5">
                 <p className="text-[#9EA0A3] text-xs md:text-sm">
@@ -113,7 +112,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>
         </>
         }
-        {transactionInformation.isSaveBox && 
+        {transactionInformation?.isSaveBox && 
             <>
                <div className="flex justify-between items-center gap-x-5">
                     <p className="text-[#9EA0A3] text-xs md:text-sm">
@@ -133,7 +132,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>          
             </>
         }
-        {transactionInformation.doneByAdmin && 
+        {transactionInformation?.doneByAdmin && 
            <div className="flex justify-between items-center gap-x-5">
                 <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
@@ -144,13 +143,13 @@ const page = async ({ params }: { params: { id: string } }) => {
         <div className="flex justify-between items-center gap-x-5">
                 <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                  {formatDate(transactionInformation.createdAt)}
+                  {formatDate(transactionInformation?.createdAt ?? new Date)}
                 </p>
          </div> 
         <div className="flex justify-between items-center gap-x-5 mb-4">
           <p className="text-[#9EA0A3] text-xs md:text-sm">Transaction ID</p>
           <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-            {transactionInformation.id}
+            {transactionInformation?.id}
           </p>
         </div>
       </div>

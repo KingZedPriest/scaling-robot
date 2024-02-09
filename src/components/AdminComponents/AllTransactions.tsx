@@ -6,7 +6,7 @@ import AcceptTransactionButton from "./AcceptTransactionButton";
 import DeclineTransactionButton from "./DeclineTransactionButton";
 
 //Import Needed Icons
-import { Bill, DirectboxReceive, Discover, Send2, WalletMoney } from "iconsax-react";
+import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
 const AllTransactions = ({ transactions }: any) => {
   return (
