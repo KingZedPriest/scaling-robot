@@ -1,21 +1,21 @@
 "use client"
 import { makeApiRequest } from "@/lib/apiUtils";
 import { FormEvent, useState } from "react";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
-const DeclineTransactionButton = ({id}: any) => {
+const PendingTransactionButton = ({id}: any) => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
         setLoading(true)
         
-        const formData = { id, currentUpdate: "failed" };
-        console.log({formData})
+        const formData = { id, currentUpdate: "pending" };
+        //console.log({formData})
         makeApiRequest("/modifyTransaction", "post", formData, {
             onSuccess: () => {
               // Handle success
-              toast.success("Transaction was rejected successfully..")
+              toast.success("Transaction was updated to pending successfully..")
               setLoading(false)
               window.location.reload()
             },
@@ -24,7 +24,7 @@ const DeclineTransactionButton = ({id}: any) => {
               if (error.message === "Missing Fields") {
                 toast.error("Missing fields, contact the developer.")
               }
-              toast.error("Unable to reject transaction, try again later.")
+              toast.error("Unable to update transaction status, try again later.")
               setLoading(false)
             },
           });
@@ -32,10 +32,10 @@ const DeclineTransactionButton = ({id}: any) => {
     return ( 
         <main>
             <form onSubmit={onSubmit}>
-                <button type="submit" className="text-xs md:text-sm xl:text-base text-red-600 hover:underline duration-500">{loading ? "Rejecting" : "Reject"}</button>
-            </form>     
+                <button type="submit" className="text-xs md:text-sm xl:text-base text-textPrimary hover:underline duration-500">{loading ? "Pending...." : "Pending"}</button>
+            </form>
         </main>
      );
 }
  
-export default DeclineTransactionButton;
+export default PendingTransactionButton;

@@ -8,9 +8,11 @@ import { formatDateTime } from "@/lib/dateTimeUtils";
 import AcceptTransactionButton from "@/components/AdminComponents/AcceptTransactionButton";
 import DeleteTransactionButton from "@/components/AdminComponents/DeleteTransactionButton";
 import DeclineTransactionButton from "@/components/AdminComponents/DeclineTransactionButton";
+import PendingTransactionButton from "@/components/AdminComponents/PendingTransactionButton";
 
 //Import Needed Icons
 import { AddCircle } from "iconsax-react";
+
 
 export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
@@ -192,7 +194,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           </p>
         </div>
         <div className="flex justify-between">
-            <AcceptTransactionButton id={currentTransaction?.id}/> <DeclineTransactionButton id={currentTransaction?.id}/> <DeleteTransactionButton id={currentTransaction?.id}/>
+            {currentTransaction?.status !== "successfull" && <AcceptTransactionButton id={currentTransaction?.id}/>} {currentTransaction?.status !== "failed" && <DeclineTransactionButton id={currentTransaction?.id}/>} {currentTransaction?.status !== "pending" && <PendingTransactionButton id={currentTransaction?.id}/> } <DeleteTransactionButton id={currentTransaction?.id}/>
         </div>
       </div>
     </main>
