@@ -1,4 +1,6 @@
-const page = () => {
+import getIndividualUser from "@/actions/getIndividualUser";
+
+const page = async () => {
     return ( 
         <main>
             

@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prismadb";
 
 export default async function getIndividualUser(id: string) {
   try {
-    const user = await prisma.user.findMany({
+    const user = await prisma.user.findUnique({
       where: {
         id: id,
       },
