@@ -11,7 +11,7 @@ const AcceptTransactionButton = ({id}: any) => {
         setLoading(true)
         
         const formData = { id, currentUpdate: "successfull" };
-        console.log({formData})
+        //console.log({formData})
         makeApiRequest("/modifyTransaction", "post", formData, {
             onSuccess: () => {
               // Handle success

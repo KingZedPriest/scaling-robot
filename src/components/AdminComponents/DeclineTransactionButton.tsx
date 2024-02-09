@@ -11,7 +11,7 @@ const DeclineTransactionButton = ({id}: any) => {
         setLoading(true)
         
         const formData = { id, currentUpdate: "failed" };
-        console.log({formData})
+        //console.log({formData})
         makeApiRequest("/modifyTransaction", "post", formData, {
             onSuccess: () => {
               // Handle success

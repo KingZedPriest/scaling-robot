@@ -329,7 +329,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               userTransaction.map((transaction: any) => (
                 <Link
                   key={transaction.id}
-                  href={`/user/history/${transaction.id}`}
+                  href={`/admin/history/${transaction.id}`}
                 >
                   <div className="flex items-center justify-between py-4">
                     <div className="flex gap-x-1 items-center">
