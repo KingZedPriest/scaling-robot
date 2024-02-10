@@ -3,6 +3,7 @@ import { useTransactionStore } from "@/store/AdminTransactionStore";
 
 //Import Needed Components
 import Dropdown from "./Dropdown";
+import DepositDropDown from "./DepositDropDown";
 
 const TransactionForm = ({allUsers}: any) => {
   const {
@@ -37,7 +38,11 @@ const TransactionForm = ({allUsers}: any) => {
     <main className="text-xs md:text-sm xl:text-base">
        <form>
         <Dropdown allUsers={allUsers}/>
-        <div className="flex flex-col gap-y-1 mt-4">
+        <DepositDropDown />
+        
+        {depositMethod && depositMethod !== "Deposit" && depositMethod !== "Capital_Wealth" && depositMethod !== "Utility_Bill" &&
+
+            <div className="flex flex-col gap-y-1 mt-4">
             <label htmlFor="accountNumber" className="text-sm lg:text-base text-[#06121B] cursor-pointer">
                 Account number
             </label>
@@ -53,6 +58,8 @@ const TransactionForm = ({allUsers}: any) => {
               className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none placeholder:text-xs xl:placeholder:text-sm placeholder:text-[#9EA0A3]"
             />
         </div>
+        }
+        
       </form>
     </main>
   );
