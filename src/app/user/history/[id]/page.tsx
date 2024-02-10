@@ -59,7 +59,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             Transaction Status
           </p>
           <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-            {transactionInformation?.status}
+            {transactionInformation?.status === "successfull" ? "successful" : transactionInformation?.status}
           </p>
         </div>
         <div className="flex justify-between items-center gap-x-5">

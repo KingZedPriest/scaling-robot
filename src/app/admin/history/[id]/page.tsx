@@ -193,7 +193,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             {currentTransaction?.id}
           </p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-8">
             {currentTransaction?.status !== "successfull" && <AcceptTransactionButton id={currentTransaction?.id}/>} {currentTransaction?.status !== "failed" && <DeclineTransactionButton id={currentTransaction?.id}/>} {currentTransaction?.status !== "pending" && <PendingTransactionButton id={currentTransaction?.id}/> } <DeleteTransactionButton id={currentTransaction?.id}/>
         </div>
       </div>

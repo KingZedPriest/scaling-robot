@@ -11,7 +11,7 @@ const page = async () => {
 
     return ( 
         <main>
-            <Header page="Users" />
+            <Header page="Clients" />
             <div className="px-4 md:px-6 xl:px-8 py-4">
                 <Users users={users}/>
             </div>     
