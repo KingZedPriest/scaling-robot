@@ -168,21 +168,21 @@ const page = async ({ params }: { params: { id: string } }) => {
         {currentTransaction?.doneByAdmin && 
            <div className="flex justify-between items-center gap-x-5">
              <p className="text-[#9EA0A3] text-xs md:text-sm">Admin Email</p>
-             <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
+             <p className="text-[#06121B] font-medium text-sm md:text-base text-right">
                {currentTransaction?.adminEmail}
              </p>
          </div> 
         } 
         {currentTransaction?.doneByAdmin && 
            <div className="flex justify-between items-center gap-x-5">
-                <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
+                <p className="text-[#9EA0A3] text-xs md:text-sm">Admin Given Date</p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
                   {formatDateTime(currentTransaction.customCreatedTime ?? "")}
                 </p>
          </div> 
         }
         <div className="flex justify-between items-center gap-x-5">
-                <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
+                <p className="text-[#9EA0A3] text-xs md:text-sm">The Real Date</p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
                   {formatDate(currentTransaction?.createdAt ?? new Date)}
                 </p>

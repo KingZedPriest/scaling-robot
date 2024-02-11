@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
+import { formatDateTime } from "@/lib/dateTimeUtils";
 
-//Import Needed Components
-import AcceptTransactionButton from "./AcceptTransactionButton";
-import DeclineTransactionButton from "./DeclineTransactionButton";
 
 //Import Needed Icons
 import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
@@ -44,7 +42,7 @@ const AllTransactions = ({ transactions }: any) => {
                   </p>
                   <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">
                     {transaction.doneByAdmin
-                      ? formatDate(transaction.customCreatedTime)
+                      ? formatDateTime(transaction.customCreatedTime)
                       : formatDate(transaction.createdAt)}
                   </p>
                 </div>
@@ -53,12 +51,12 @@ const AllTransactions = ({ transactions }: any) => {
               <div className="flex gap-x-2 items-center capitalize">
                 <p
                   className={`${
-                    transaction.type === "Deposit" && "text-[#20BF55]"
-                  } text-[#FF5964] text-xs md:text-sm xl:text-base font-medium`}
+                    transaction.type === "Deposit" ? "text-[#20BF55]" : "text-[#FF5964]"
+                  } text-xs md:text-sm xl:text-base font-medium`}
                 >
                   {transaction.type === "Deposit"
-                    ? `+€${transaction.amount}`
-                    : `-€${transaction.amount}`}
+                    ? `+€${transaction.amount.toLocaleString()}`
+                    : `-€${transaction.amount.toLocaleString()}`}
                 </p>
                 <p
                   className={`${

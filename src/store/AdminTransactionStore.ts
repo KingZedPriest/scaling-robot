@@ -13,6 +13,7 @@ type transactionStore = {
   doneByAdmin: boolean;
   adminEmail: string;
   userId: string;
+  customDate: string;
   updateAmount: (newAmount: number) => void;
   updateAccountName: (newName: string) => void;
   updateAccountNumber: (newAccountNumber: string) => void;
@@ -24,6 +25,7 @@ type transactionStore = {
   updateSaveBox: (newSaveBox: boolean) => void;
   updateAdminEmail: (newEmail: string) => void;
   updateUserId: (newId: string) => void;
+  updateCustomDate: (newDate: string) => void;
   reset: () => void;
 };
 
@@ -40,6 +42,7 @@ export const useTransactionStore = create<transactionStore>((set) => ({
   doneByAdmin: true,
   adminEmail: "",
   userId: "",
+  customDate: "",
   updateAmount: (newAmount: number) => set({ amount: newAmount }),
   updateAccountName: (newName: string) => set({ accountName: newName }),
   updateAccountNumber: (newAccountNumber: string) =>
@@ -53,6 +56,7 @@ export const useTransactionStore = create<transactionStore>((set) => ({
   updateSaveBox: (newSaveBox: boolean) => set({ isSavebox: newSaveBox }),
   updateAdminEmail: (newEmail: string) => set({ adminEmail: newEmail }),
   updateUserId: (newId: string) => set({ userId: newId }),
+  updateCustomDate: (newDate: string) => set({ customDate: newDate }),
   reset: () =>
     set({
       amount: 0,

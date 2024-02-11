@@ -10,7 +10,7 @@ const SavingsHeader = () => {
           Total savings
         </p>
         <p className="text-sm lg:text-base text-[#06121B] font-semibold">
-          €{totalSavingsBalance}.00
+          €{totalSavingsBalance.toLocaleString()}.00
         </p>
       </div>
     </main>

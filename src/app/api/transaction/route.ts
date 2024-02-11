@@ -16,16 +16,17 @@ export async function POST(request: Request) {
       iban,
       isSavebox,
       saveboxAmount,
+      doneByAdmin,
+      adminEmail,
+      status,
+      customDate,
       fee,
     } = body;
 
     if (
       !userId ||
       !amount ||
-      !accountName ||
-      !accountNumber ||
-      !depositMethod ||
-      !bankName
+      !depositMethod
     ) {
       return new NextResponse("Missing Fields", { status: 400 });
     }
@@ -40,6 +41,10 @@ export async function POST(request: Request) {
       isSaveBox: isSavebox,
       saveBoxAmount: saveboxAmount,
       description,
+      doneByAdmin,
+      adminEmail,
+      status,
+      customCreatedTime: customDate,
       transferFee: fee,
       user: {
         connect: {

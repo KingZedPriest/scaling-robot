@@ -21,12 +21,12 @@ const TransferHistory = ({transactions}: any) => {
                 </Link>
                 {transactions && transactions.map((transaction: any) => ( 
                     <Link href={`history/${transaction.id}`} key={transaction.id} className="relative min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 rounded-[50%] cursor-pointer">
-                        {transaction.type.includes('Wire_Transfer') ? <Image src={getRandomAvatar()} alt="User Icon"  fill className="rounded-[50%]"/> : transaction.type === "Utility_Bill" ? <Bill size="32" color="#D56F3E" /> : transaction.type === "Deposit" ? <Image src={getRandomAvatar()} alt="User Icon" fill className="rounded-[50%]"/> :  <WalletMoney size="32" color="#D56F3E"/>}
+                        {transaction.type.includes('Wire_Transfer') ? <Image src={getRandomAvatar()} alt="User Icon"  fill className="rounded-[50%]"/> : transaction.type === "Utility_Bill" ? <Bill size="50" color="#D56F3E" /> : transaction.type === "Deposit" ? <Image src={getRandomAvatar()} alt="User Icon" fill className="rounded-[50%]"/> :  <WalletMoney size="50" color="#D56F3E"/>}
                     </Link>
                 ))}
                 
             </div>
-            <div className="mt-8">
+            <div className="mt-8 max-h-[40rem] special">
                 <div className="flex justify-between items-center">
                     <p className="text-sm xl:text-base text-[#06121B] font-semibold">Transaction History</p> 
                     <p className="text-[0.65rem] md:text-xs text-primary">Last Five(5)</p>
@@ -42,10 +42,10 @@ const TransferHistory = ({transactions}: any) => {
                     
                                 <div className="flex flex-col gap-y-0.5">
                                     <p className="text-[#141619] text-[12px] md:text-[14px] xl:text-[16px] font-semibold capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
-                                    <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDate(transaction.customCreatedTime) : formatDate(transaction.createdAt)}.</p>
+                                    <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDateTime(transaction.customCreatedTime) : formatDate(transaction.createdAt)}.</p>
                                 </div>
                             </div>
-                            <p className={`${transaction.type === "Deposit" ? "text-[#198754]" : "text-[#DC3545]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${transaction.amount}` : `-€${transaction.amount}`}</p>
+                            <p className={`${transaction.type === "Deposit" ? "text-[#198754]" : "text-[#DC3545]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${transaction.amount.toLocaleString()}` : `-€${transaction.amount.toLocaleString()}`}</p>
                         </div>
                     </Link>
                 ))}

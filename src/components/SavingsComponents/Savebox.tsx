@@ -15,7 +15,7 @@ const Savebox = () => {
             <p className="text-[#1C1F33] text-[12px] lg:text-[14px] font-medium">Save box</p>
             <p className="text-[10px] lg:text-[12px] text-[#B2B3BA] my-3">The total accumulated amount from all transactions designated to the savings option.</p>
             <div className="flex justify-between items-center text-[#161929]">
-                <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">€{saveboxBalance}</p>
+                <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">€{saveboxBalance.toLocaleString()}</p>
                 <p className="text-[10px] lg:text-[12px] font-semibold">EUR</p>
             </div>
         </main>
