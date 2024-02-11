@@ -35,7 +35,7 @@ model User {
   transactionPin              String?
   hasTransactionPin           Boolean       @default(false)
   changeTransactionPinRequest Boolean       @default(false)
-  createdAt                   DateTime
+  createdAt                   DateTime      @default(now())
   updatedAt                   DateTime      @updatedAt
 }
 
