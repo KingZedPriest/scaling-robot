@@ -64,7 +64,7 @@ const AccountDetails = () => {
         </div>
         <div className="flex flex-col gap-y-1">
           <div className="size-10 sm:size-11 md:size-12 rounded-[50%] flex items-center justify-center bg-[#78788052] border border-[#7878805C]">
-            <Link href="/user/transfer">
+            <Link href="/user/deposit">
               <Import size="20" color="#E8E9EB" className="cursor-pointer" />
             </Link>
           </div>

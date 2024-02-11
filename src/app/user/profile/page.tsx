@@ -12,7 +12,7 @@ const page = async () => {
 
     return ( 
         <main>
-           <Header page="Profile" profilePicSrc={user?.profileImgSrc}/> 
+           <Header page="Profile" profilePicSrc={user?.profileImgSrc} name={`${user?.firstName} ${user?.lastName}`} accountNumber={user?.accountNumber}/> 
            <div className="px-4 md:px-6 xl:px-8">
                 <SmallScreenAccount firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
             </div>

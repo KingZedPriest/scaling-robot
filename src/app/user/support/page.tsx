@@ -13,7 +13,7 @@ const page = async () => {
     return ( 
 
         <main>
-            <Header page="Support" profilePicSrc={user?.profileImgSrc}/> 
+            <Header page="Support" profilePicSrc={user?.profileImgSrc} name={`${user?.firstName} ${user?.lastName}`} accountNumber={user?.accountNumber}/> 
             <div className="px-4 md:px-6 xl:px-8 py-4">
                 <SupportForm/>
             </div>

@@ -16,6 +16,8 @@ export type ID = {
 export type heading = {
   page: string,
   profilePicSrc: string | any
+  name: string | any
+  accountNumber: string | any
 }
 
 export type smallScreenAccount = {
