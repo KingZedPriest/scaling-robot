@@ -6,12 +6,14 @@ import { errorModalProps, successModalProps } from "@/lib/modalPropsMessages";
 import { getFormattedDate } from "@/lib/getCurrentDate";
 import { toast } from "sonner";
 
+
 //Import Needed Components
 import Toast from "../molecules/Toast";
 
 //Import Needed Icons
 import { AddCircle } from "iconsax-react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+
 
 type verifyPin = {
   hideModal?: () => void;
@@ -22,6 +24,7 @@ type verifyPin = {
 };
 
 const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
+  
   //For the transaction Fee && Savebox
   const [fee, setFee] = useState<number>(0);
   const [saveboxAmount, setSaveboxAmount] = useState<number>();

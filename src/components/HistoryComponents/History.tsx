@@ -22,7 +22,7 @@ const History = ({transactions}: any ) => {
                             </div>
 
                             <div className="flex flex-col gap-y-0.5">
-                                <p className="text-[#141619] text-[10px] md:text-[12px] xl:text-[14px] font-medium capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
+                                <p className="text-[#141619] text-xs md:text-sm xl:text-base font-medium capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
                                 <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDateTime(transaction.customCreatedTime) : formatDate(transaction.createdAt)}</p>
                             </div>
                         </div>

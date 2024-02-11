@@ -73,7 +73,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     Amount 
                 </p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                    €{transactionInformation?.amount}
+                    €{transactionInformation?.amount.toLocaleString()}
                 </p>
             </div> 
         {(transactionInformation?.type === "Domestic_Wire_Transfer" || transactionInformation?.type === "International_Wire_Transfer") && 
@@ -132,20 +132,13 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>          
             </>
         }
-        {transactionInformation?.doneByAdmin && 
            <div className="flex justify-between items-center gap-x-5">
                 <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                  {formatDateTime(transactionInformation.customCreatedTime ?? "")}
+                  {transactionInformation?.doneByAdmin ? formatDateTime(transactionInformation?.customCreatedTime ?? "") : formatDate(transactionInformation?.createdAt ?? new Date)} 
                 </p>
          </div> 
-        }
-        <div className="flex justify-between items-center gap-x-5">
-                <p className="text-[#9EA0A3] text-xs md:text-sm">Date</p>
-                <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                  {formatDate(transactionInformation?.createdAt ?? new Date)}
-                </p>
-         </div> 
+        
         <div className="flex justify-between items-center gap-x-5 mb-4">
           <p className="text-[#9EA0A3] text-xs md:text-sm">Transaction ID</p>
           <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">

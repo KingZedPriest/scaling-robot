@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useTransactionStore } from "@/store/transactionStore";
+import { useBalanceStore } from "@/store/BalanceDetails";
 import VerifyPin from "./VerifyPin";
+import { toast } from "sonner";
 
 
 const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
+  const { mainBalance } = useBalanceStore()
     //Verification Modal
     const [verifyModal, setVerifyModal] = useState<boolean>(false)
     //Function
@@ -107,8 +110,14 @@ const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
           )}
         </div>
         <form>
-          <input
-            onClick={showVerification}
+          <input 
+            onClick={() => {
+              if (amount > mainBalance) {
+                toast.error("Insufficient Funds");
+              } else {
+                showVerification();
+              }
+            }}
             type="button"
             value="Confirm"
             className="w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer mt-8 rounded-md py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
