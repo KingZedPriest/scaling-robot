@@ -8,9 +8,9 @@ import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
 const History = ({transactions}: any ) => {
     return ( 
-        <main className="border border-[#7676801F] rounded-lg p-4">
+        <main className="border border-[#7676801F] rounded-lg p-4 mb-24">
             <p className="text-sm lg:text-base text-[#06121B] font-semibold">All transactions</p>
-            <div className="flex flex-col gap-y-2 mt-6 mb-20 lg:mb-4">
+            <div className="flex flex-col gap-y-2 mt-6 mb-4">
                 {transactions && transactions.map((transaction: any) => (
                     
                     <Link key={transaction.id} href={`history/${transaction.id}`}>

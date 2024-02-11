@@ -3,7 +3,7 @@ import { useState } from "react";
 import { heading } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
-import { I24Support, LogoutCurve, ProfileCircle } from "iconsax-react";
+import { I24Support, LogoutCurve, ProfileCircle, Refresh2 } from "iconsax-react";
 
 //Import Needed Icons
 
@@ -47,6 +47,10 @@ const Header = ({page, profilePicSrc, name, accountNumber }: heading) => {
                             <Link href="/user/logout" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
                                 <LogoutCurve size="20"/>
                                 <p>Logout</p>
+                            </Link> 
+                            <Link href="/user/reset" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
+                                <Refresh2 size="20"/>
+                                <p>Reset Password</p>
                             </Link> 
                         </div>
                         
