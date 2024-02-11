@@ -12,7 +12,7 @@ import { Add, ArrowRight2, Bill, MoneyRecive, MoneySend, WalletMoney } from "ico
 const TransferHistory = ({transactions}: any) => {
     return ( 
         <main className="border border-[#7676801F] rounded-xl px-3 md:px-4 xl:px-6 py-6">
-            <p className="text-sm xl:text-base text-[#06121B] font-semibold">Send money to</p>
+            <p className="text-sm xl:text-base text-[#06121B] font-semibold">Sent money to</p>
             <div className="flex gap-x-10 bg-[#F3F6FB] border border-[#7676801F] px-8 py-6 mt-5 rounded-lg overflow-x-auto special">
                 <Link href="/user/transfer">
                     <div className="min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 bg-[#B9BAC0] flex items-center justify-center rounded-[50%] cursor-pointer hover:bg-secondary duration-500">
@@ -20,9 +20,13 @@ const TransferHistory = ({transactions}: any) => {
                     </div>
                 </Link>
                 {transactions && transactions.map((transaction: any) => ( 
-                    <Link href={`history/${transaction.id}`} key={transaction.id} className="relative min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 rounded-[50%] cursor-pointer">
-                        {transaction.type.includes('Wire_Transfer') ? <Image src={getRandomAvatar()} alt="User Icon"  fill className="rounded-[50%]"/> : transaction.type === "Utility_Bill" ? <Bill size="50" color="#D56F3E" /> : transaction.type === "Deposit" ? <Image src={getRandomAvatar()} alt="User Icon" fill className="rounded-[50%]"/> :  <WalletMoney size="50" color="#D56F3E"/>}
-                    </Link>
+                    <div key={transaction.id} className="flex flex-col gap-y-0.5 items-center">
+                       <Link href={`history/${transaction.id}`} className="relative min-w-[3rem] min-h-[3rem] size-8 md:size-10 lg:size-12 rounded-[50%] cursor-pointer">
+                            {transaction.type.includes('Wire_Transfer') ? <Image src={getRandomAvatar()} alt="User Icon"  fill className="rounded-[50%]"/> : transaction.type === "Utility_Bill" ? <Bill size="50" color="#D56F3E" /> : transaction.type === "Deposit" ? <Image src={getRandomAvatar()} alt="User Icon" fill className="rounded-[50%]"/> :  <WalletMoney size="50" color="#D56F3E"/>}
+                        </Link> 
+                        <p className="text-[12px]">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? `${transaction.targetName.slice(0, 7)}...` : transaction.type === "International_Wire_Transfer" ? `${transaction.targetName.slice(0, 7)}...` : transaction.type === "Utility_Bill" ? "Utility Bill" : "Savings"}</p>
+                    </div>
+                    
                 ))}
                 
             </div>

@@ -31,7 +31,7 @@ const Header = ({page, profilePicSrc, name, accountNumber }: heading) => {
                             </div>
                            <div className="flex flex-col gap-y-1">
                                 <p className="text-[12px] md:text-[12px] xl:text-[14px] text-[#767680] capitalize">{name}</p>
-                                <p>{accountNumber}</p>
+                                <p><b>Acc. No.</b> {accountNumber}</p>
                                 <Link href="/user/deposit" className="text-white hover:text-textPrimary px-4 py-2 hover:bg-primary bg-sidebar duration-500 text-center rounded-lg">Deposit</Link>
                            </div> 
                         </div>

@@ -4,7 +4,7 @@ import { formatDateTime } from "@/lib/dateTimeUtils";
 import getIndividualTransaction from "@/actions/getIndividualTransaction";
 
 //Import Icons
-import { AddCircle } from "iconsax-react";
+import { AddCircle, Discover } from "iconsax-react";
 
 
 export const revalidate = 1;
@@ -68,14 +68,24 @@ const page = async ({ params }: { params: { id: string } }) => {
             {showCorrectTransactionType(transactionInformation?.type)}
           </p>
         </div>
+        {transactionInformation?.type === "Deposit" && 
+          <div className="flex justify-between items-center gap-x-5">
+            <p className="text-[#9EA0A3] text-xs md:text-sm">
+                From 
+            </p>
+            <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
+                {transactionInformation?.targetBankName}
+            </p>
+          </div>
+        }
         <div className="flex justify-between items-center gap-x-5">
-                <p className="text-[#9EA0A3] text-xs md:text-sm">
-                    Amount 
-                </p>
-                <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                    €{transactionInformation?.amount.toLocaleString()}
-                </p>
-            </div> 
+            <p className="text-[#9EA0A3] text-xs md:text-sm">
+                Amount 
+            </p>
+            <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
+                €{transactionInformation?.amount.toLocaleString()}
+            </p>
+        </div> 
         {(transactionInformation?.type === "Domestic_Wire_Transfer" || transactionInformation?.type === "International_Wire_Transfer") && 
         <>
            <div className="flex justify-between items-center gap-x-5">
@@ -112,6 +122,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>
         </>
         }
+        
         {transactionInformation?.isSaveBox && 
             <>
                <div className="flex justify-between items-center gap-x-5">
