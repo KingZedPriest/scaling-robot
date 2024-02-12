@@ -26,8 +26,6 @@ const SuspendButton = ({userEmail, userSuspended, accountNumber, name}: suspendP
           accountNumber: accountNumber.slice(-4)
         };
 
-        console.log({formData})
-        console.log({emailData})
 
         makeApiRequest("/adminSuspendUser", "post", formData, {
             onSuccess: () => {
@@ -37,7 +35,7 @@ const SuspendButton = ({userEmail, userSuspended, accountNumber, name}: suspendP
                 onSuccess: () => {
                   // Handle success
                   toast.success("Email was sent successfully.")
-                  console.log("Email was sent successfully")
+                  window.location.reload()
                 },
                 onError: (error: any) => {
                   // Handle error

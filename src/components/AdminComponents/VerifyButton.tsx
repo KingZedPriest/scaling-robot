@@ -32,7 +32,7 @@ const VerifyButton = ({userEmail, userVerified, name}: verifyProps) => {
                 onSuccess: () => {
                   // Handle success
                   toast.success("Email was sent successfully.")
-                  console.log("Email was sent successfully")
+                  window.location.reload()
                 },
                 onError: (error: any) => {
                   // Handle error
