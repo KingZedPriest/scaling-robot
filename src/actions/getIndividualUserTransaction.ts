@@ -6,6 +6,9 @@ export default async function getIndividualUserTransaction(id: string) {
       where: {
         userId: id,
       },
+      orderBy: {
+        createdAt: "desc"
+    }
     });
 
     return transactions;
