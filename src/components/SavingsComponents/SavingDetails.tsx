@@ -21,7 +21,7 @@ const SavingDetails = () => {
                     <Image src={germanFlag} alt="Flag"/>
                     <p className="text-[10px] md:text-[12px] xl:text-[14px] font-medium text-[#B2B3BA]">EUR</p>
                 </div>
-                <button onClick={ () => toast.info("Kindly contact your account office, if you wish to withdraw your savings.")} className="mt-20 px-6 md:px-10 lg:px-14 py-2 md:py-3 border border-[#DDDDE0] text-sm md:text-base hover:bg-primary hover:text-[#DDDDE0] rounded-lg duration-500">Withdraw</button>
+                <button onClick={ () => toast.info("Kindly contact your account officer, if you wish to withdraw your savings.")} className="mt-20 px-6 md:px-10 lg:px-14 py-2 md:py-3 border border-[#DDDDE0] text-sm md:text-base hover:bg-primary hover:text-[#DDDDE0] rounded-lg duration-500">Withdraw</button>
             </div>
         </main>
      );

@@ -1,4 +1,5 @@
 import getTransactions from "@/actions/getAllTransactions";
+//Import Needed Components
 import Header from "@/components/AdminComponents/Header";
 import AllTransactions from "@/components/AdminComponents/AllTransactions";
 

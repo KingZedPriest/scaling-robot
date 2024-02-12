@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prismadb";
 
-export default async function getUsers() {
+export default async function getAdmins() {
 
   try {
     const admins = await prisma.admin.findMany({
