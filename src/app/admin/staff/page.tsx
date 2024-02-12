@@ -1,5 +1,6 @@
 import getAdmins from "@/actions/getAllAdmins";
 import getAdminTransactions from "@/actions/getAdminTransactions";
+
 //Import Needed Components
 import AllAdmins from "@/components/AdminComponents/AllAdmins";
 import Header from "@/components/AdminComponents/Header";

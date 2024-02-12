@@ -42,9 +42,9 @@ const ContactForm = ({hideModal, email}: profileEdit) => {
 
     return ( 
         <main className="fixed h-screen w-full bg-black bg-opacity-80 flex items-center justify-center z-[700] top-0 left-0 text-xs md:text-sm xl:text-base text-[#161618]">
-            <div className="relative w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] h-[20rem] bg-white p-4 md:p-8 rounded-md">
+            <div className="relative w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] h-[17rem] lg:h-[20rem] bg-white p-4 md:p-8 rounded-md">
                 <AddCircle size="20" className="absolute top-4 right-4 text-wrongRed cursor-pointer rotate-45" onClick={hideModal}/>
-                <form onSubmit={onSubmit} className="flex flex-col items-center justify-center text-center mt-10">
+                <form onSubmit={onSubmit} className="flex flex-col items-center justify-center mt-10">
                 <div className="w-full flex flex-col gap-y-2 mt-6">
                     <label className="cursor-pointer" htmlFor="phoneNumber">
                       Mobile Number
@@ -61,7 +61,7 @@ const ContactForm = ({hideModal, email}: profileEdit) => {
                       }
                     />
                 </div>
-                    <button type="submit" className="mt-6 bg-primary px-6 md:px-8 xl:px-10 py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500">{loading ? "Updating..." : "Update Profile"}</button>
+                    <button type="submit" className="mt-6 bg-primary w-full py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500">{loading ? "Updating..." : "Update Profile"}</button>
                 </form>
             </div>
         </main>

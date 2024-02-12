@@ -52,7 +52,7 @@ const SecurityForm = ({ hideModal, email, transactionPin }: profileEdit) => {
 
   return (
     <main className="fixed h-screen w-full bg-black bg-opacity-80 flex items-center justify-center z-[700] top-0 left-0 text-xs md:text-sm xl:text-base text-[#161618]">
-      <div className="relative w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] h-[21rem] bg-white p-4 md:p-8 rounded-md">
+      <div className="relative w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] h-[18rem] lg:h-[22rem] bg-white p-4 md:p-8 rounded-md">
         <AddCircle
           size="20"
           className="absolute top-4 right-4 text-wrongRed cursor-pointer rotate-45"
@@ -60,7 +60,7 @@ const SecurityForm = ({ hideModal, email, transactionPin }: profileEdit) => {
         />
         <form
           onSubmit={onSubmit}
-          className="flex flex-col items-center justify-center mt-4"
+          className="flex flex-col mt-4"
         >
         <div className="flex flex-col gap-y-2">
           <label className="cursor-pointer" htmlFor="oldpin">
@@ -98,7 +98,7 @@ const SecurityForm = ({ hideModal, email, transactionPin }: profileEdit) => {
           </div>
           <button
             type="submit"
-            className="mt-6 bg-primary px-6 md:px-8 xl:px-10 py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500"
+            className="mt-6 bg-primary w-full py-2 md:py-3 text-sm md:text-base rounded-lg text-white border border-primary hover:bg-white hover:text-primary duration-500"
           >
             {loading ? "Updating..." : "Update Profile"}
           </button>
