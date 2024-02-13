@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate } from "@/lib/dateTimeUtils";
+import { formatDate, formatDateTime } from "@/lib/dateTimeUtils";
 
 //Import Needed Icons
 import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
@@ -27,11 +27,11 @@ const LastTransactions = ({transactions}: any) => {
                 </div>
                 <div className="flex flex-col gap-y-0.5">
                     <p className="text-[#141619] text-[10px] md:text-[12px] xl:text-[14px] font-medium capitalize">{transaction.type === "Deposit" ? "Deposit" : transaction.type === "Domestic_Wire_Transfer" ? "Local Wire Transfer" : transaction.type === "International_Wire_Transfer" ? "International Wire Transfer" : transaction.type === "Utility_Bill" ? "Utility Bill" : transaction.type === "Capital_Wealth" ? "Capital Wealth" : "A Transaction"}</p>
-                    <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDate(transaction.customCreatedTime) : formatDate(transaction.createdAt)}</p>
+                    <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDateTime(transaction.customCreatedTime) : formatDate(transaction.createdAt)}</p>
                 </div>
             </div>
             <div className="flex gap-x-2 items-center capitalize">
-                <p className={`${transaction.type === "Deposit" && "text-[#20BF55]"} text-[#FF5964] text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${transaction.amount}` : `-€${transaction.amount}`}</p>
+                <p className={`${transaction.type === "Deposit" && "text-[#20BF55]"} text-[#FF5964] text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${(transaction.amount).toLocaleString()}` : `-€${(transaction.amount).toLocaleString()}`}</p>
                 <p className={`${transaction.status === "pending" && "bg-[#FEF6E7] text-[#DF930E]"} ${transaction.status === "successfull" && "bg-[#E6F5EE] text-[#026C3C]"} ${transaction.status === "failed" && "text-red-600 bg-red-100"} rounded-2xl px-2 py-1  text-[8px] md:text-[10px] xl:text-[12px] font-medium`}>{transaction.status}</p>
             </div>
           </div>

@@ -20,7 +20,7 @@ const Activity = ({usersLength, depositAmount, transferAmount, savedAmount}: act
                 <Import size="20" className="text-secondary"/>
             </div>
             <p className="text-[#020100] text-xs xl:text-sm mt-4">Total deposit</p>
-            <p className="text-secondary text-base xl:text-lg font-semibold">+€{depositAmount}</p>
+            <p className="text-secondary text-base xl:text-lg font-semibold">+€{(depositAmount).toLocaleString()}</p>
         </div>
         <div className="flex flex-col gap-y-1 p-4 min-w-[15rem] h-36 w-72 border border-[#7676801F] rounded-lg">
             <div className="size-10 rounded-[50%] bg-[#00000033] flex items-center justify-center">

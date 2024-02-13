@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import Toast from "../molecules/Toast";
 
 //Import Needed Icons
-import { AddCircle } from "iconsax-react";
+import { AddCircle, ChartCircle } from "iconsax-react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 
@@ -85,13 +85,17 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
   const resetForm = () => {
 
   }
-  //FIXME: Check the balance before allowing any transaction.
 
   //OnSubmit Function
   const onSubmit = (event: FormEvent) => {
+    
     event.preventDefault();
     setLoading(true);
-    //Check Pin
+
+    //Add a 4 seconds delay
+    setTimeout(() => {
+
+      //Check Pin
     if (enteredPin !== userPin) {
       toast.error("Incorrect transaction pin, please try again.");
       setLoading(false)
@@ -156,6 +160,9 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
         reset()
       },
     });
+
+    }, 4000)
+    
   };
   return (
     <>
@@ -201,11 +208,10 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
                 {seen ? <BsEyeSlash /> : <BsEye />}
               </div>
             </div>
-            <input
+            <button disabled={loading}
               type="submit"
-              value={loading ? "Submitting..." : "Confirm"}
-              className="mt-8 w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer rounded-lg text-sm text-white sm:text-base py-3 lg:text-lg"
-            />
+              className={`flex items-center justify-center mt-8 w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer rounded-lg text-sm text-white sm:text-base py-3 lg:text-lg`}
+            >{loading ? "Submitting..." : "Confirm"} <ChartCircle size="24" className={`${loading ? "" : "hidden"} animate-spin`}/> </button>
           </form>
         </div>
       </main>
