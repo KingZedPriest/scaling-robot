@@ -27,8 +27,7 @@ export default function WelcomeTemplate({
           </Text>
           <Text style={verification}>{verificationCode}</Text>
           <Text style={paragraph}>
-            This email was automatically generated in response to your account
-            registration in order to verify your email address.
+            This email is an automated notification regarding your account registration and email address verification.
           </Text>
           <Text style={paragraph}>
             In order to complete the account creation process, please verify

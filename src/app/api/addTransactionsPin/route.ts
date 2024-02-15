@@ -16,7 +16,7 @@ export async function POST (request: Request){
 
     const lowercasedEmail = email.toLowerCase();
 
-    const updateUserEmailVerificationStatus = await prisma.user.update({
+    const updateUserTransactionPin = await prisma.user.update({
         where: {
             email: lowercasedEmail,
         },
@@ -26,7 +26,7 @@ export async function POST (request: Request){
         },
     });
 
-    return NextResponse.json(updateUserEmailVerificationStatus);
+    return NextResponse.json(updateUserTransactionPin);
 
     }catch(error: any){
         return new NextResponse(error.message)

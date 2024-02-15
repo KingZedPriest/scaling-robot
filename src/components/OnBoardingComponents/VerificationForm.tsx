@@ -61,7 +61,7 @@ const VerificationForm = () => {
         },
       });
     } else {
-      toast.error("Verification failed, try again later.");
+      toast.error("Wrong OTP");
     }
   };
 
@@ -91,7 +91,7 @@ const VerificationForm = () => {
         You will receive an e-mail OTP. Input OTP to open up your account.
       </p>
       <form onSubmit={onSubmit}>
-        <div className="flex flex-col gap-y-1 mt-10">
+        <div className="flex flex-col gap-y-1 mt-10 text-xs sm:text-sm xl:text-base">
           <label className="cursor-pointer" htmlFor="otp">
             OTP
           </label>

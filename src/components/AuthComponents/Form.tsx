@@ -113,7 +113,7 @@ const Form = () => {
     return false;
   };
 
-//Display the correct function
+//Display the correct modal function
 const handleSuccess = () => {
   setShowModal(true);
   setModalProps(successModalProps);

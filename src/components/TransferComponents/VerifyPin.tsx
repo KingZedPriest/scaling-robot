@@ -211,7 +211,7 @@ const VerifyPin = ({ hideModal, id, userPin, name, email }: verifyPin) => {
             <button disabled={loading}
               type="submit"
               className={`flex items-center justify-center mt-8 w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer rounded-lg text-sm text-white sm:text-base py-3 lg:text-lg`}
-            >{loading ? "Submitting..." : "Confirm"} <ChartCircle size="24" className={`${loading ? "" : "hidden"} animate-spin`}/> </button>
+            >{loading ? "Transferring..." : "Confirm"} <ChartCircle size="24" className={`${loading ? "" : "hidden"} animate-spin`}/> </button>
           </form>
         </div>
       </main>

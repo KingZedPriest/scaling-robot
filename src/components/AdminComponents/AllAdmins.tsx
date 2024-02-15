@@ -29,7 +29,7 @@ const AllAdmins = ({ admins, transactions }: any) => {
             admins.map((admin: any) => (
               <div
                 key={admin.id}
-                className="flex justify-between overflow-x-auto special pb-2"
+                className="flex justify-between overflow-x-auto special pb-2 gap-x-5"
               >
                 <div className="flex flex-col gap-y-0.5 w-[33%] min-w-[10rem]">
                   <p className="text-xs xl:text-sm text-[#101828]">
