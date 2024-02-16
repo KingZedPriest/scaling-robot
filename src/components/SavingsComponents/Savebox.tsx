@@ -2,7 +2,7 @@
 import { useSavingsStore } from "@/store/savings";
 import { useBalanceStore } from "@/store/BalanceDetails";
 
-const Savebox = ({currentCurrency}: any) => {
+const Savebox = ({currentCurrency}: any) => { 
 
     const { savingsType, updateSavingsType } = useSavingsStore() 
     const { saveboxBalance } = useBalanceStore()
