@@ -5,6 +5,8 @@ import Header from "@/components/AdminComponents/Header";
 import Activity from "@/components/AdminComponents/Activity";
 import LastTransactions from "@/components/AdminComponents/LastTransactions";
 import getUsers from "@/actions/getAllUsers";
+import ChangeCurrency from "@/components/AdminComponents/ChangeCurrency";
+import getCurrency from "@/actions/getCurrency";
 
 export const revalidate = 1;
 const page = async () => {
@@ -74,6 +76,9 @@ const page = async () => {
   const transferAmount = domesticWireTransferAmount + internationalWireTransferAmount;
   const lastSevenTransactions = transactions?.slice(-7);
   const clients = await getUsers();
+  // const currency = await getCurrency()
+  // const currentCurrency = currency?.currentCurrency
+  // console.log({currentCurrency})
 
   return (
     <main>
@@ -86,6 +91,7 @@ const page = async () => {
           savedAmount={savedAmount}
         />
         <LastTransactions transactions={lastSevenTransactions} />
+        <ChangeCurrency />
       </div>
     </main>
   );
