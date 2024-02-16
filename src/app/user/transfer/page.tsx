@@ -1,4 +1,5 @@
 import { getUserDetails } from "@/providers/userDetails";
+import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
@@ -9,14 +10,17 @@ import Balance from "@/components/TransferComponents/Balance";
 import PaymentDetails from "@/components/TransferComponents/PaymentDetails";
 import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
 
+
 export const revalidate = 30
 const page = async () => {
 
     const { user } = await getUserDetails();
     const transactions = user?.transactions
     const lastFiveTransactions = transactions?.slice(-5);
+    const currency = await getCurrency()
+    const currentCurrency = currency?.currentCurrency
     //console.log({transactions})
-
+    
     return ( 
         <main>
             <BalanceUpdate transactions={transactions}/>
@@ -27,8 +31,8 @@ const page = async () => {
                     <Convert />
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10 border border-[#7676801F] rounded-lg p-4">
-                    <Balance />
-                    <PaymentDetails userid={user?.id} userPin={user?.transactionPin} name={`${user?.firstName} ${user?.lastName}`} email={user?.email}/>
+                    <Balance currentCurrency={currentCurrency}/>
+                    <PaymentDetails userid={user?.id} userPin={user?.transactionPin} name={`${user?.firstName} ${user?.lastName}`} email={user?.email} currentCurrency={currentCurrency}/>
                     <LastTransactions transactions={lastFiveTransactions}/>
                 </div>
             </div>

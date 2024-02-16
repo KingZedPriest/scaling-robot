@@ -6,7 +6,7 @@ import VerifyPin from "./VerifyPin";
 import { toast } from "sonner";
 
 
-const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
+const PaymentDetails = ({ userid, userPin, name, email, currentCurrency }: string | any) => {
   const { mainBalance } = useBalanceStore()
     //Verification Modal
     const [verifyModal, setVerifyModal] = useState<boolean>(false)
@@ -39,10 +39,9 @@ const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
               Transfer Fee
             </p>
             <p className="font-medium text-[#06121B] text-right">
-              {depositMethod === "International_Wire_Transfer"
-                ? "€5"
+              {depositMethod === "International_Wire_Transfer" ? (currentCurrency ?? "€") + "5"
                 : depositMethod === "Domestic_Wire_Transfer"
-                ? "€0"
+                ? (currentCurrency ?? "€") + "0"
                 : ""}
             </p>
           </div>
@@ -78,7 +77,7 @@ const PaymentDetails = ({ userid, userPin, name, email }: string | any) => {
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="text-[10px] xl:text-[12px] text-[#B2B3BA]">Amount</p>
-            <p className="font-medium text-[#06121B] text-right">{amount}</p>
+            <p className="font-medium text-[#06121B] text-right">{currentCurrency ?? "€"}{amount}</p>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="text-[10px] xl:text-[12px] text-[#B2B3BA]">

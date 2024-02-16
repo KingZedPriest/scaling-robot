@@ -6,14 +6,14 @@ import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
 
 
-const History = ({transactions}: any ) => {
+const History = ({transactions, currentCurrency}: any ) => {
     return ( 
         <main className="border border-[#7676801F] rounded-lg p-4 mb-24 overflow-y-auto special max-h-screen">
             <p className="text-sm lg:text-base text-[#06121B] font-semibold">All transactions</p>
             <div className="flex flex-col gap-y-2 mt-6 mb-4">
                 {transactions && transactions.map((transaction: any) => (
                     
-                    <Link key={transaction.id} href={`history/${transaction.id}`}>
+                    <Link key={transaction.id} href={`history/${transaction.id}`} className="hover:bg-slate-100 duration-500">
                         <div className="flex items-center justify-between py-4 cursor-pointer">
                         <div className="flex gap-x-1 items-center">
                             <div className="bg-[#EBEBF599] rounded-[50%] p-2">
@@ -27,7 +27,7 @@ const History = ({transactions}: any ) => {
                             </div>
                         </div>
                         <div className="flex gap-x-2 items-center">
-                            <p className={`${transaction.type === "Deposit" ? "text-[#20BF55]" : "text-[#FF5964]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${transaction.amount.toLocaleString()}` : `-€${transaction.amount.toLocaleString()}`}</p> 
+                            <p className={`${transaction.type === "Deposit" ? "text-[#20BF55]" : "text-[#FF5964]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}` : `-${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`}</p> 
                             <p className={`${transaction.status === "pending" && "bg-[#FEF6E7] text-[#DF930E]"} ${transaction.status === "successfull" && "bg-[#E6F5EE] text-[#026C3C]"} ${transaction.status === "failed" && "text-red-600 bg-red-100"} rounded-2xl px-2 py-1  text-[8px] md:text-[10px] xl:text-[12px] font-medium`}>{transaction.status}</p>
                         </div>
                     </div>

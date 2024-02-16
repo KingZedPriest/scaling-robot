@@ -6,7 +6,7 @@ import { useBalanceStore } from "@/store/BalanceDetails";
 //Import Needed Icons
 import { EyeSlash, Eye, WalletMoney, Send2, Import } from "iconsax-react";
 
-const AccountDetails = () => {
+const AccountDetails = ({currentCurrency}: any) => {
   //Balance State
   const [showBalance, setShowBalance] = useState<boolean>(true);
   const { mainBalance } = useBalanceStore()
@@ -19,7 +19,7 @@ const AccountDetails = () => {
       <p className="text-[#E8E9EB] text-[0.6rem] md:text-xs">Current balance</p>
       <div className="flex justify-between items-center">
         <p className="text-2xl md:text-3xl xl:text-[32px] text-[#E39F7E] font-semibold">
-        €{showBalance ? `${mainBalance.toLocaleString()}.00` : "*".repeat(mainBalance.toString().length)}
+          {currentCurrency ?? "€"}{showBalance ? `${mainBalance.toLocaleString()}.00` : "*".repeat(mainBalance.toString().length)}
         </p>
         {showBalance ? (
           <EyeSlash

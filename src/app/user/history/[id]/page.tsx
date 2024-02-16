@@ -2,9 +2,11 @@ import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
 import getIndividualTransaction from "@/actions/getIndividualTransaction";
+import getCurrency from "@/actions/getCurrency";
 
 //Import Icons
 import { AddCircle, Discover } from "iconsax-react";
+
 
 
 export const revalidate = 1;
@@ -12,6 +14,8 @@ const page = async ({ params }: { params: { id: string } }) => {
   
   const transactionId = params.id;
   const transactionInformation = await getIndividualTransaction(transactionId);
+  const currency = await getCurrency()
+  const currentCurrency = currency?.currentCurrency
 
   function showCorrectTransactionType(type: string | undefined): string {
     switch (type) {
@@ -83,7 +87,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 Amount 
             </p>
             <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                €{transactionInformation?.amount.toLocaleString()}
+              {currentCurrency ?? "€"}{transactionInformation?.amount.toLocaleString()}
             </p>
         </div> 
         {(transactionInformation?.type === "Domestic_Wire_Transfer" || transactionInformation?.type === "International_Wire_Transfer") && 
@@ -117,7 +121,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     Transaction Fee 
                 </p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                €{transactionInformation.transferFee}
+                  {currentCurrency ?? "€"}{transactionInformation.transferFee}
                 </p>
             </div>
         </>

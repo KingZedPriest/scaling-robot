@@ -1,4 +1,5 @@
 import { getUserDetails } from "@/providers/userDetails";
+import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
@@ -7,6 +8,7 @@ import Activity from "@/components/DashboardComponents/Activity";
 import History from "@/components/HistoryComponents/History";
 import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
 
+
 export const revalidate = 30
 const page = async () => {
 
@@ -14,6 +16,8 @@ const page = async () => {
     const transactions = user?.transactions
     const wireTransferTransactions = transactions?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
     const deposits = transactions?.filter((transaction) => transaction.type === "Deposit");
+    const currency = await getCurrency()
+    const currentCurrency = currency?.currentCurrency
 
     return ( 
         <main>
@@ -28,7 +32,7 @@ const page = async () => {
                 </div>
             </div>
             <div className="px-4 md:px-6 xl:px-8 mt-10">
-                <History transactions={transactions}/>
+                <History transactions={transactions} currentCurrency={currentCurrency}/>
             </div>
         </main> 
      );

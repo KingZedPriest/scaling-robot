@@ -9,7 +9,7 @@ import { Add, ArrowRight2, Bill, MoneyRecive, MoneySend, WalletMoney } from "ico
 
 
 
-const TransferHistory = ({transactions}: any) => {
+const TransferHistory = ({transactions, currentCurrency}: any) => {
     return ( 
         <main className="border border-[#7676801F] rounded-xl px-3 md:px-4 xl:px-6 py-6">
             <p className="text-sm xl:text-base text-[#06121B] font-semibold">Sent money to</p>
@@ -49,7 +49,7 @@ const TransferHistory = ({transactions}: any) => {
                                     <p className="text-[#9EA0A3] text-[0.6rem] xl:text-xs">{transaction.doneByAdmin ? formatDateTime(transaction.customCreatedTime) : formatDate(transaction.createdAt)}.</p>
                                 </div>
                             </div>
-                            <p className={`${transaction.type === "Deposit" ? "text-[#198754]" : "text-[#DC3545]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${transaction.amount.toLocaleString()}` : `-€${transaction.amount.toLocaleString()}`}</p>
+                            <p className={`${transaction.type === "Deposit" ? "text-[#198754]" : "text-[#DC3545]"} text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}` : `-${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`}</p>
                         </div>
                     </Link>
                 ))}

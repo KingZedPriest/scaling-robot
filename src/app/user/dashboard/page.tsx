@@ -1,4 +1,5 @@
 import { getUserDetails } from "@/providers/userDetails";
+import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
@@ -9,6 +10,7 @@ import AccountSummary from "@/components/DashboardComponents/AccountSummary";
 import ATM from "@/components/DashboardComponents/ATM";
 import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
 
+
 export const revalidate = 30
 const page = async () => {
 
@@ -17,6 +19,8 @@ const page = async () => {
     const lastFiveTransactions = transactions?.slice(-5);
     const wireTransferTransactions = transactions?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
     const deposits = transactions?.filter((transaction) => transaction.type === "Deposit");
+    const currency = await getCurrency()
+    const currentCurrency = currency?.currentCurrency
 
     return ( 
         <main>
@@ -24,8 +28,8 @@ const page = async () => {
             <BalanceUpdate transactions={transactions}/>
             <div className="px-4 md:px-6 xl:px-8 flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row justify-between mt-5 lg:mt-10">
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
-                    <AccountDetails />
-                    <TransferHistory transactions={lastFiveTransactions}/>
+                    <AccountDetails currentCurrency={currentCurrency}/>
+                    <TransferHistory transactions={lastFiveTransactions} currentCurrency={currentCurrency}/>
                 </div>
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
                     <Activity wireTransfer={wireTransferTransactions} deposits={deposits}/>
