@@ -10,7 +10,7 @@ import {
   WalletMoney,
 } from "iconsax-react";
 
-const AllAdmins = ({ admins, transactions }: any) => {
+const AllAdmins = ({ admins, transactions, currentCurrency }: any) => {
   return (
     <main>
       <div className="special max-h-[50%] border border-[#7676801F] rounded-xl p-4">
@@ -119,8 +119,8 @@ const AllAdmins = ({ admins, transactions }: any) => {
                     } text-xs md:text-sm xl:text-base font-medium`}
                   >
                     {transaction.type === "Deposit"
-                      ? `+€${transaction.amount.toLocaleString()}`
-                      : `-€${transaction.amount.toLocaleString()}`}
+                      ? `+${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`
+                      : `-${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`}
                   </p>
                   <p
                     className={`${

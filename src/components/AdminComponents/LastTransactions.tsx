@@ -5,7 +5,7 @@ import { formatDate, formatDateTime } from "@/lib/dateTimeUtils";
 import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
 
-const LastTransactions = ({transactions}: any) => {
+const LastTransactions = ({transactions, currentCurrency}: any) => {
 
   return (
     <main className="mt-8 border border-[#7676801F] px-2 md:px-4 py-6 rounded-xl">
@@ -31,7 +31,7 @@ const LastTransactions = ({transactions}: any) => {
                 </div>
             </div>
             <div className="flex gap-x-2 items-center capitalize">
-                <p className={`${transaction.type === "Deposit" && "text-[#20BF55]"} text-[#FF5964] text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+€${(transaction.amount).toLocaleString()}` : `-€${(transaction.amount).toLocaleString()}`}</p>
+                <p className={`${transaction.type === "Deposit" && "text-[#20BF55]"} text-[#FF5964] text-xs md:text-sm xl:text-base font-medium`}>{transaction.type === "Deposit" ? `+${currentCurrency ?? "€"}${(transaction.amount).toLocaleString()}` : `-${currentCurrency ?? "€"}${(transaction.amount).toLocaleString()}`}</p>
                 <p className={`${transaction.status === "pending" && "bg-[#FEF6E7] text-[#DF930E]"} ${transaction.status === "successfull" && "bg-[#E6F5EE] text-[#026C3C]"} ${transaction.status === "failed" && "text-red-600 bg-red-100"} rounded-2xl px-2 py-1  text-[8px] md:text-[10px] xl:text-[12px] font-medium`}>{transaction.status}</p>
             </div>
           </div>

@@ -3,6 +3,7 @@ import getIndividualUser from "@/actions/getIndividualUser";
 import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
+import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import AcceptTransactionButton from "@/components/AdminComponents/AcceptTransactionButton";
@@ -14,6 +15,7 @@ import PendingTransactionButton from "@/components/AdminComponents/PendingTransa
 import { AddCircle } from "iconsax-react";
 
 
+
 export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
 
@@ -21,6 +23,8 @@ const page = async ({ params }: { params: { id: string } }) => {
     const currentTransaction = await getIndividualTransaction(transactionId)
     const userId = currentTransaction?.userId
     const currentUser = await getIndividualUser(userId ?? "")
+    const currency = await getCurrency()
+    const currentCurrency = currency?.currentCurrency
     //console.log({currentUser})
     //console.log({currentTransaction})
 
@@ -82,7 +86,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 Amount 
             </p>
             <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                €{currentTransaction?.amount}
+              {currentCurrency ?? "€"}{currentTransaction?.amount}
             </p>
         </div> 
         <div className="flex justify-between items-center gap-x-5">
@@ -132,7 +136,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     Transaction Fee 
                 </p>
                 <p className="text-[#06121B] font-medium text-sm md:text-base capitalize text-right">
-                €{currentTransaction.transferFee}
+                    {currentCurrency ?? "€"}{currentTransaction.transferFee}
                 </p>
             </div>
         </>

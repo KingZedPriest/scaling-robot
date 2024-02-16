@@ -3,6 +3,7 @@ import Image from "next/image";
 import getIndividualUser from "@/actions/getIndividualUser";
 import getIndividualUserTransaction from "@/actions/getIndividualUserTransaction";
 import { formatDate, formatDateTime } from "@/lib/dateTimeUtils";
+import getCurrency from "@/actions/getCurrency";
 import Link from "next/link";
 
 //Import Needed Components
@@ -20,11 +21,15 @@ import {
   WalletMoney,
 } from "iconsax-react";
 
+
 export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
   const userId = params.id;
   const currentUser = await getIndividualUser(userId);
   const userTransaction = await getIndividualUserTransaction(userId);
+  const currency = await getCurrency()
+  const currentCurrency = currency?.currentCurrency
+
   //console.log({userTransaction})
   const wireTransferTransactions = userTransaction?.filter((transaction) =>
     transaction.type.includes("Wire_Transfer")
@@ -277,7 +282,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   Current Balance
                 </p>
                 <p className="text-[#D56F3E] text-lg md:text-xl lg:text-2xl font-semibold">
-                  €{mainBalance}
+                  {currentCurrency ?? "€"}{mainBalance}
                 </p>
               </div>
               <div className="flex flex-col gap-y-1">
@@ -285,7 +290,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   Savings
                 </p>
                 <p className="text-[#34C759] text-lg md:text-xl lg:text-2xl font-semibold">
-                  +€{totalSavings}
+                  +{currentCurrency ?? "€"}{totalSavings}
                 </p>
               </div>
             </div>
@@ -379,8 +384,8 @@ const page = async ({ params }: { params: { id: string } }) => {
                       } text-xs md:text-sm xl:text-base font-medium`}
                     >
                       {transaction.type === "Deposit"
-                        ? `+€${transaction.amount}`
-                        : `-€${transaction.amount}`}
+                        ? `+${currentCurrency ?? "€"}${transaction.amount}`
+                        : `-${currentCurrency ?? "€"}${transaction.amount}`}
                     </p>
                   </div>
                 </Link>

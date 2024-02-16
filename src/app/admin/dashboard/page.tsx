@@ -88,8 +88,9 @@ const page = async () => {
           depositAmount={depositAmount}
           usersLength={clients?.length}
           savedAmount={savedAmount}
+          currentCurrency={currentCurrency}
         />
-        <LastTransactions transactions={lastSevenTransactions} />
+        <LastTransactions transactions={lastSevenTransactions} currentCurrency={currentCurrency}/>
         <ChangeCurrency currentCurrency={currentCurrency}/>
       </div>
     </main>

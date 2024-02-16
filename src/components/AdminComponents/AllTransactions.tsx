@@ -6,7 +6,7 @@ import { formatDateTime } from "@/lib/dateTimeUtils";
 //Import Needed Icons
 import { Bill, DirectboxReceive, Send2, WalletMoney } from "iconsax-react";
 
-const AllTransactions = ({ transactions }: any) => {
+const AllTransactions = ({ transactions, currentCurrency}: any) => {
   return (
     <main>
         <p className="text-[#06121B] font-bold text-xs md:text-sm xl:text-base my-8">All transactions</p>
@@ -55,8 +55,8 @@ const AllTransactions = ({ transactions }: any) => {
                   } text-xs md:text-sm xl:text-base font-medium`}
                 >
                   {transaction.type === "Deposit"
-                    ? `+€${transaction.amount.toLocaleString()}`
-                    : `-€${transaction.amount.toLocaleString()}`}
+                    ? `+${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`
+                    : `-${currentCurrency ?? "€"}${transaction.amount.toLocaleString()}`}
                 </p>
                 <p
                   className={`${

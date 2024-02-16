@@ -58,6 +58,7 @@ const ChangeCurrency = ({currentCurrency}: string | any) => {
                       type="text"
                       name="currency"
                       id="currency"
+                      pattern="[$€¥£]" title="Enter a valid currency symbol"
                       className="border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none placeholder:text-xs xl:placeholder:text-sm placeholder:text-[#9EA0A3]"
                     />
                 </div>
