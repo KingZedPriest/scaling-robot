@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { makeApiRequest } from "@/lib/apiUtils";
 
-const ChangeCurrency = () => {
+const ChangeCurrency = ({currentCurrency}: string | any) => {
 
     const [loading, setLoading] = useState<boolean>(false)
     const [currency, setCurrency] = useState<string>("")
@@ -21,6 +21,7 @@ const ChangeCurrency = () => {
           setLoading(false);
           setCurrency("")
           toast.success("Currency updated successfully");
+          window.location.reload()
         },
         onError: (error: any) => {
           // Handle error
@@ -30,6 +31,7 @@ const ChangeCurrency = () => {
             toast.error("Missing fields, Kindly enter a currency.");
           }
           toast.error("Unable to update currency now, please try again later.");
+          window.location.reload()
         },
       });
 
@@ -41,7 +43,7 @@ const ChangeCurrency = () => {
                 <p className="text-[#06121B] font-bold text-xs md:text-sm xl:text-base">
                     Current Currency
                 </p>  
-                <p className="text-base md:text-lg xl:text-xl text-textPrimary font-bold">€</p>
+                <p className="text-base md:text-lg xl:text-xl text-textPrimary font-bold">{currentCurrency && currentCurrency}</p>
             </div>
             <form className="mt-10" onSubmit={onSubmit}>
                 <div className="flex flex-col gap-y-1 mt-4">

@@ -13,13 +13,16 @@ export async function POST(request: Request) {
             return new NextResponse('Missing Fields', { status: 400 })
         }
 
-        const newSupport = await prisma.utility.create({
+        const editCurrency = await prisma.utility.update({
+            where : {
+                id : "65ceca5cd9a2893a72631142",
+            },
             data : {
                 currentCurrency: currency
             }
         })
 
-        return NextResponse.json(newSupport);
+        return NextResponse.json(editCurrency);
 
     } catch (error: any) {
         
