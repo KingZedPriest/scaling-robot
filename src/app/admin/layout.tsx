@@ -19,7 +19,7 @@ export default async function AdminLayout({
     const loggedInEmail = (session?.user.email)
     const currentUser = await getCurrentLoggedInAdmin(loggedInEmail)
     //console.log({currentUser})
-    if (currentUser?.role === "admin" || currentUser?.role === "super_admin") {
+    if (currentUser?.role !== "admin" && currentUser?.role !== "super_admin") {
       permanentRedirect('/not-authorized')
     }
   return (

@@ -82,8 +82,8 @@ model Contact {
 }
 
 model Utility {
-  id              String         @id @default(auto()) @map("_id") @db.ObjectId
-  currentCurrency CurrencyTypes? @default(euro)
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  currentCurrency String? @default("€")
 }
 
 //Enums
@@ -106,11 +106,4 @@ enum TransactionStatus {
   pending
   successfull
   failed
-}
-
-enum CurrencyTypes {
-  dollar
-  euro
-  pound
-  yen
 }
