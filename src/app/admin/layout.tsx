@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/authOptions";
 import getCurrentLoggedInAdmin from '@/actions/getCurrentAdmin';
+import { permanentRedirect } from "next/navigation";
 
 
 export default async function AdminLayout({
@@ -18,7 +19,9 @@ export default async function AdminLayout({
     const loggedInEmail = (session?.user.email)
     const currentUser = await getCurrentLoggedInAdmin(loggedInEmail)
     //console.log({currentUser})
-
+    if (currentUser?.role === "admin" || currentUser?.role === "super_admin") {
+      permanentRedirect('/not-authorized')
+    }
   return (
 
       <section>
