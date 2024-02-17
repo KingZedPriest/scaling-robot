@@ -10,7 +10,7 @@ export async function POST(request: Request) {
         
         const { newPassword, email, role } = body;
 
-        if (!newPassword || !email || !role) {
+        if (!newPassword || !email ) {
             return new NextResponse('Missing Fields', { status: 400 })
         }
 

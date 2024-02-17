@@ -36,19 +36,19 @@ const Header = ({page, profilePicSrc, name, accountNumber }: heading) => {
                            </div> 
                         </div>
                         <div>
-                           <Link href="/user/profile" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
+                           <Link href="/user/profile" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-3 px-4 cursor-pointer rounded-md">
                                 <ProfileCircle size="20"/>
                                 <p>Profile</p>
                             </Link>
-                            <Link href="/user/support" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
+                            <Link href="/user/support" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-3 px-4 cursor-pointer rounded-md">
                                 <I24Support size="20"/>
                                 <p>Support</p>
                             </Link>
-                            <Link href="/user/logout" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
+                            <Link href="/user/logout" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-3 px-4 cursor-pointer rounded-md">
                                 <LogoutCurve size="20"/>
                                 <p>Logout</p>
                             </Link> 
-                            <Link href="/user/reset" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-2 px-4 cursor-pointer rounded-md">
+                            <Link href="/user/reset" className="flex items-center gap-x-2 text-primary hover:bg-primary hover:text-secondary duration-500 py-3 px-4 cursor-pointer rounded-md">
                                 <Refresh2 size="20"/>
                                 <p>Reset Password</p>
                             </Link> 
