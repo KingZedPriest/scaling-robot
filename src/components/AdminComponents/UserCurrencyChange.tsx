@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { makeApiRequest } from "@/lib/apiUtils";
 
-const ChangeCurrency = ({currentCurrency}: string | any) => {
+const UserCurrencyChange = ({currentCurrency, userEmail, name}: string | any) => {
 
     const [loading, setLoading] = useState<boolean>(false)
     const [currency, setCurrency] = useState<string>("")
@@ -13,9 +13,9 @@ const ChangeCurrency = ({currentCurrency}: string | any) => {
     event.preventDefault();
     setLoading(true)
 
-    const formData = {currency}
+    const formData = {currency, email : userEmail}
 
-    makeApiRequest("/editCurrency", "post", formData, {
+    makeApiRequest("/changeCurrency", "post", formData, {
         onSuccess: () => {
           // Handle success
           setLoading(false);
@@ -40,8 +40,8 @@ const ChangeCurrency = ({currentCurrency}: string | any) => {
     return ( 
         <main className="mt-8 border border-[#7676801F] px-2 md:px-4 py-6 rounded-xl text-xs md:text-sm xl:text-base">
             <div className="flex justify-between mb-4">
-                <p className="text-[#06121B] font-bold text-xs md:text-sm xl:text-base">
-                   Admin Current Currency
+                <p className="text-[#06121B] font-bold text-xs md:text-sm xl:text-base capitalize">
+                    {name} Current Currency
                 </p>  
                 <p className="text-base md:text-lg xl:text-xl text-textPrimary font-bold">{currentCurrency && currentCurrency}</p>
             </div>
@@ -73,4 +73,4 @@ const ChangeCurrency = ({currentCurrency}: string | any) => {
      );
 }
  
-export default ChangeCurrency;
+export default UserCurrencyChange;

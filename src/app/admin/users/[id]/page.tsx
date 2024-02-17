@@ -11,6 +11,8 @@ import Header from "@/components/AdminComponents/Header";
 import SuspendButton from "@/components/AdminComponents/SuspendButton";
 import VerifyButton from "@/components/AdminComponents/VerifyButton";
 import DeleteButton from "@/components/AdminComponents/DeleteButton";
+import UserCurrencyChange from "@/components/AdminComponents/UserCurrencyChange";
+
 
 import {
   Bill,
@@ -22,13 +24,14 @@ import {
 } from "iconsax-react";
 
 
+
 export const revalidate = 1;
 const page = async ({ params }: { params: { id: string } }) => {
   const userId = params.id;
   const currentUser = await getIndividualUser(userId);
+  //console.log({currentUser})
   const userTransaction = await getIndividualUserTransaction(userId);
-  const currency = await getCurrency()
-  const currentCurrency = currency?.currentCurrency
+  const currentCurrency = currentUser?.currency
 
   //console.log({userTransaction})
   const wireTransferTransactions = userTransaction?.filter((transaction) =>
@@ -282,7 +285,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   Current Balance
                 </p>
                 <p className="text-[#D56F3E] text-lg md:text-xl lg:text-2xl font-semibold">
-                  {currentCurrency ?? "€"}{mainBalance}
+                  {currentCurrency ?? "€"}{mainBalance.toLocaleString()}
                 </p>
               </div>
               <div className="flex flex-col gap-y-1">
@@ -290,7 +293,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   Savings
                 </p>
                 <p className="text-[#34C759] text-lg md:text-xl lg:text-2xl font-semibold">
-                  +{currentCurrency ?? "€"}{totalSavings}
+                  +{currentCurrency ?? "€"}{totalSavings.toLocaleString()}
                 </p>
               </div>
             </div>
@@ -407,6 +410,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <VerifyButton userEmail={currentUser?.email ?? ""} userVerified={currentUser?.isVerified ?? false} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/> <SuspendButton userEmail={currentUser?.email ?? ""} userSuspended={currentUser?.isSuspended ?? false} accountNumber={currentUser?.accountNumber ?? ""} name={`${currentUser?.firstName} ${currentUser?.lastName}`} /> <DeleteButton userEmail={currentUser?.email ?? ""}/>
             </div>
         </div>
+        <UserCurrencyChange currentCurrency= {currentCurrency} userEmail= {currentUser?.email} name={`${currentUser?.firstName} ${currentUser?.lastName}`}/>
       </div>
     </main>
   );

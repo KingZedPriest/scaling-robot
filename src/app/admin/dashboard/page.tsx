@@ -7,6 +7,7 @@ import LastTransactions from "@/components/AdminComponents/LastTransactions";
 import getUsers from "@/actions/getAllUsers";
 import ChangeCurrency from "@/components/AdminComponents/ChangeCurrency";
 import getCurrency from "@/actions/getCurrency";
+import AdminChangePassword from "@/components/AdminComponents/AdminChangePassword";
 
 export const revalidate = 1;
 const page = async () => {
@@ -92,6 +93,7 @@ const page = async () => {
         />
         <LastTransactions transactions={lastSevenTransactions} currentCurrency={currentCurrency}/>
         <ChangeCurrency currentCurrency={currentCurrency}/>
+        <AdminChangePassword />
       </div>
     </main>
   );
