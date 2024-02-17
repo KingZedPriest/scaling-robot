@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatDate } from "@/lib/dateTimeUtils";
 import { formatDateTime } from "@/lib/dateTimeUtils";
 import getIndividualTransaction from "@/actions/getIndividualTransaction";
-import getCurrency from "@/actions/getCurrency";
+import { getUserDetails } from "@/providers/userDetails";
 
 //Import Icons
 import { AddCircle, Discover } from "iconsax-react";
@@ -14,8 +14,8 @@ const page = async ({ params }: { params: { id: string } }) => {
   
   const transactionId = params.id;
   const transactionInformation = await getIndividualTransaction(transactionId);
-  const currency = await getCurrency()
-  const currentCurrency = currency?.currentCurrency
+  const { user } = await getUserDetails();
+  const currentCurrency = user?.currency 
 
   function showCorrectTransactionType(type: string | undefined): string {
     switch (type) {

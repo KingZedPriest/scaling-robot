@@ -1,5 +1,4 @@
 import { getUserDetails } from "@/providers/userDetails";
-import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
@@ -17,8 +16,7 @@ const page = async () => {
     const { user } = await getUserDetails();
     const transactions = user?.transactions
     const lastFiveTransactions = transactions?.slice(-5);
-    const currency = await getCurrency()
-    const currentCurrency = currency?.currentCurrency
+    const currentCurrency = user?.currency 
     //console.log({transactions})
     
     return ( 

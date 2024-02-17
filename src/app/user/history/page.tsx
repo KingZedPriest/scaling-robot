@@ -1,5 +1,4 @@
 import { getUserDetails } from "@/providers/userDetails";
-import getCurrency from "@/actions/getCurrency";
 
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
@@ -16,8 +15,7 @@ const page = async () => {
     const transactions = user?.transactions
     const wireTransferTransactions = transactions?.filter((transaction) => transaction.type.includes('Wire_Transfer'));
     const deposits = transactions?.filter((transaction) => transaction.type === "Deposit");
-    const currency = await getCurrency()
-    const currentCurrency = currency?.currentCurrency
+    const currentCurrency = user?.currency
 
     return ( 
         <main>

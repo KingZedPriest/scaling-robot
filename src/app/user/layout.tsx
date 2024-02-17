@@ -33,6 +33,10 @@ export default async function UserLayout({
 
       permanentRedirect('/onboarding/review')
 
+    } else if (currentUser?.isSuspended === true) {
+
+      permanentRedirect('/user/suspend')
+
     }
   return (
 
