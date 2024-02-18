@@ -24,6 +24,12 @@ const PersonalForm = ({hideModal, email}: profileEdit) => {
     const onSubmit = (event: FormEvent) => {
         event.preventDefault()
         setLoading(true)
+
+        if(imgLink.length === 0){
+            setLoading(false)
+            toast.error ("Kindly choose an image")
+            return
+        }
         const formData = {email: email, page: "personal", newProfileLink: imgLink}
         makeApiRequest("/editProfile", "post", formData, {
             onSuccess: () => {

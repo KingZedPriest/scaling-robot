@@ -21,6 +21,13 @@ const ContactForm = ({hideModal, email}: profileEdit) => {
     const onSubmit = (event: FormEvent) => {
         event.preventDefault()
         setLoading(true)
+
+        if(newNumber.length < 8){
+            setLoading(false)
+            toast.error("Kindly input a correct mobile number")
+            return
+        }
+
         const formData = {email: email, page: "contact", newMobileNumber: newNumber}
         makeApiRequest("/editProfile", "post", formData, {
             onSuccess: () => {

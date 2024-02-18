@@ -16,7 +16,7 @@ const Savebox = ({currentCurrency}: any) => {
             <p className="text-[10px] lg:text-[12px] text-[#B2B3BA] my-3">The total accumulated amount from all transactions designated to the savings option.</p>
             <div className="flex justify-between items-center text-[#161929]">
                 <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">{currentCurrency ?? "€"}{saveboxBalance.toLocaleString()}</p>
-                <p className="text-[10px] lg:text-[12px] font-semibold">EUR</p>
+                <p className="text-[10px] lg:text-[12px] font-semibold">{currentCurrency === "$" ? "USD" : currentCurrency === "€" ? "EUR" : currentCurrency === "¥" ? "JPY" : currentCurrency === "£" ? "GBP" : "EUR"}</p>
             </div>
         </main>
      );

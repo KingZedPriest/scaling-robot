@@ -65,7 +65,7 @@ const ChangeCurrency = ({currentCurrency}: string | any) => {
                     <input
                      type="submit"
                      value={loading ? "Updating Currency..." : "Update Currency"}
-                     className="w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer mt-8 rounded-md py-2 text-sm text-white sm:text-base md:py-3 lg:text-lg"
+                     className="w-full bg-[#D56F3E] border border-[#D56F3E] hover:text-[#D56F3E] hover:bg-white duration-500 cursor-pointer mt-8 rounded-md py-2 text-sm text-white md:text-base md:py-3 lg:text-lg"
                     />
             </form>
         

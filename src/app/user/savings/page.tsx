@@ -12,7 +12,7 @@ import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
 
 
 
-export const revalidate = 30
+export const revalidate = 1
 const page = async () => {
 
     const { user } = await getUserDetails();
@@ -25,7 +25,7 @@ const page = async () => {
             <Header page="Savings" profilePicSrc={user?.profileImgSrc} name={`${user?.firstName} ${user?.lastName}`} accountNumber={user?.accountNumber}/>
             <div className="px-4 md:px-6 xl:px-8 flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row justify-between mt-5 lg:mt-10">
                 <div className="lg:w-[49%] border border-[#7676801F] rounded-lg p-4">
-                    <SavingsHeader />
+                    <SavingsHeader currentCurrency={currentCurrency}/>
                     <div className="flex flex-wrap justify-between gap-y-5">
                         <CapitalWealth currentCurrency={currentCurrency}/>
                         <Savebox currentCurrency={currentCurrency}/>

@@ -1,7 +1,7 @@
 "use client"
 import { useBalanceStore } from "@/store/BalanceDetails";
 
-const SavingsHeader = () => {
+const SavingsHeader = ({currentCurrency}: any) => {
   const { totalSavingsBalance } = useBalanceStore()
   return (
     <main>
@@ -10,7 +10,7 @@ const SavingsHeader = () => {
           Total savings
         </p>
         <p className="text-sm lg:text-base text-[#06121B] font-semibold">
-          €{totalSavingsBalance.toLocaleString()}.00
+        {currentCurrency ?? "€"}{totalSavingsBalance.toLocaleString()}.00
         </p>
       </div>
     </main>

@@ -20,7 +20,7 @@ const CapitalWealth = ({currentCurrency}: any) => {
             <p className="text-[10px] lg:text-[12px] text-[#B2B3BA] my-3">Lock up funds at up to 10% APY. Withdraw up to 15% of principal per year penalty-free.</p>
             <div className="flex justify-between items-center text-[#161929]">
                 <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold">{currentCurrency ?? "€"}{capitalWealthBalance.toLocaleString()}</p>
-                <p className="text-[10px] lg:text-[12px] font-semibold">EUR</p>
+                <p className="text-[10px] lg:text-[12px] font-semibold">{currentCurrency === "$" ? "USD" : currentCurrency === "€" ? "EUR" : currentCurrency === "¥" ? "JPY" : currentCurrency === "£" ? "GBP" : "EUR"}</p>
             </div>
         </main>
      );

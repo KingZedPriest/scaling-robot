@@ -3,10 +3,12 @@ import { useState } from "react";
 import { heading } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
-import { I24Support, LogoutCurve, ProfileCircle, Refresh2 } from "iconsax-react";
+
+//Import Needed Images
+import user from "../../../public/Images/user.png"
 
 //Import Needed Icons
-
+import { I24Support, LogoutCurve, ProfileCircle, Refresh2 } from "iconsax-react";
 
 const Header = ({page, profilePicSrc, name, accountNumber }: heading) => {
     //Modal State
@@ -21,13 +23,13 @@ const Header = ({page, profilePicSrc, name, accountNumber }: heading) => {
                 <p className="text-xl xl:text-2xl font-semibold text-[#020100]">{page}</p>
                 <div className="flex gap-x-1 items-center cursor-pointer"onClick={handleModal}>
                     <div className="size-10 md:size-12 xl:size-14 relative">
-                        <Image src={profilePicSrc} alt="Profile pic" fill className="absolute rounded-[50%]"/>
+                        <Image src={profilePicSrc ?? user} alt="Profile pic" fill className="absolute rounded-[50%]"/>
                     </div> 
                 </div>
                 {seeModal && <div className="text-sm p-4 absolute top-[3.5rem] right-1 z-[99] flex flex-col gap-y-5 rounded-md bg-white border border-[#767680] border-opacity-20 shadow">
                         <div className="flex gap-x-2">
                             <div className="relative size-20">
-                               <Image src={profilePicSrc} alt="Profile Pic" fill className="absolute rounded-lg"/> 
+                               <Image src={profilePicSrc ?? user} alt="Profile Pic" fill className="absolute rounded-lg"/> 
                             </div>
                            <div className="flex flex-col gap-y-1">
                                 <p className="text-[12px] md:text-[12px] xl:text-[14px] text-[#767680] capitalize">{name}</p>
