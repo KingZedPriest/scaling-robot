@@ -21,7 +21,7 @@ const PersonalDetails = ({user}: any) => {
             <p className="text-xl xl:text-2xl font-semibold text-[#020100]">Personal Details</p>
             <div className="flex gap-x-2 mt-4">
                 <div className="relative size-14 md:size-16 xl:size-20">
-                <Image src={(user && user?.profileImgSrc) ?? defaultImage} alt="Profile Picture" fill className="absolute rounded-[50%]"/>
+                <Image src={(user && user?.profileImgSrc.startsWith("https://res.cloudinary.com") ? user?.profileImgSrc : defaultImage)} alt="Profile Picture" fill className="absolute rounded-[50%]"/>
                 </div>
             </div>
             <div className="flex justify-between mt-6">
