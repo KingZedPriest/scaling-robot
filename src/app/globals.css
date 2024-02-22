@@ -8,6 +8,9 @@ body{
 .manrope {
   font-family: var(--font-manrope);
 }
+.inter {
+  font-family: var(--font-inter);
+}
 
 /* Creating Account Background */
 .createBackground {

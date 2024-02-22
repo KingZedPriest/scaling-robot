@@ -29,7 +29,7 @@ const Herosection = () => {
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }} 
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="w-[20rem] md:w-[24rem] bg-white rounded-lg flex gap-x-2 p-2 absolute top-[55%] left-[20%]"> 
+                className="w-[18rem] sm:w-[20rem] md:w-[24rem] bg-white rounded-lg flex gap-x-2 p-1 sm:p-2 absolute top-[55%] left-[5%] sm:left-[10%] md:left-[15%] xl:left-[20%]"> 
                 <Image src={heroUserImg} alt="User Image" className='rounded-[50%]'/>
                 <div className='flex flex-col gap-y-2 text-left'>
                     <p className='text-[10px] md:text-xs text-[#161618] font-medium'>Danillo Barros</p>
@@ -44,7 +44,7 @@ const Herosection = () => {
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }} 
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="w-[20rem] md:w-[24rem] bg-white rounded-lg flex gap-x-2 p-2 absolute top-[75%] right-[18%]"> 
+                className="w-[18rem] sm:w-[20rem] md:w-[24rem] bg-white rounded-lg flex gap-x-2 p-1 sm:p-2 absolute top-[47%] md:top-[65%] xl:top-[75%] right-[3%] sm:right-[9%] md:right-[12%] xl:right-[18%]"> 
                 <Image src={heroUserImg1} alt="User Image" className='rounded-[50%]'/>
                 <div className='flex flex-col gap-y-2 text-left'>
                     <p className='text-[10px] md:text-xs text-[#161618] font-medium'>Marco Brewster</p>
