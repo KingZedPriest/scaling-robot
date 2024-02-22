@@ -8,7 +8,7 @@ import Third from '@/components/PagesComponents/Third'
 
 export default function Home() {
   return (
-    <main className='manrope'>
+    <main className='manrope overflow-hidden'>
 
       <div className='bg-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16'>
         <Header />
