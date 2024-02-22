@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Header from '@/components/PagesComponents/Header'
 import Herosection from '@/components/PagesComponents/Herosection'
 import Second from '@/components/PagesComponents/Second'
+import Third from '@/components/PagesComponents/Third'
 
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
         <Herosection />
       </div>
       <Second />
-
+      <div className='bg-white'>
+        <Third />
+      </div>
     </main>
   )
 }
