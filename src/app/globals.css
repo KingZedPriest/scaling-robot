@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  font-family: var(--font-inter);
+}
+.manrope {
+  font-family: var(--font-manrope);
+}
+
 /* Creating Account Background */
 .createBackground {
     background-image: url("../../public/Images/signUpBackground.svg");

@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { inter, manrope } from '@/utils/fonts';
 import './globals.css'
 import { Toaster } from 'sonner';
 import { NextAuthProvider } from '@/providers/SessionProvider';
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Capital Sphere Bank',
@@ -19,7 +17,7 @@ export default function RootLayout({
   return (
     <NextAuthProvider>
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${manrope.variable}`}>
         {children}
         <Toaster richColors position="top-center" closeButton />
       </body>
