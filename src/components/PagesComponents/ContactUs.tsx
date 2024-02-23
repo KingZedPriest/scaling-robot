@@ -94,7 +94,7 @@ const ContactUs = () => {
             <div className="md:w-[49%] flex flex-col items-center">
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold w-[95%] md:w-[80%] lg:w-[72%] text-[#020100]">Contact us</p>
                 <p className="text-[#636366] text-xs mt-2 md:text-sm xl:text-base w-[95%] md:w-[80%] lg:w-[72%]">Have some question about our product? fill out the form and our customer support will reach out to you.</p>
-                <Image src={contactUs} alt="Image" className="mt-6 rounded-2xl"/>
+                <Image src={contactUs} loading="eager" alt="Image" className="mt-6 rounded-2xl"/>
             </div>
         </main>
      );

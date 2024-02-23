@@ -8,6 +8,7 @@ import Third from '@/components/PagesComponents/Third'
 import Fourth from '@/components/PagesComponents/Fourth'
 import Fifth from '@/components/PagesComponents/Fifth'
 import ContactUs from '@/components/PagesComponents/ContactUs'
+import CTA from '@/components/PagesComponents/CTA'
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Fourth />
         <Fifth />
         <ContactUs />
+        <CTA />
       </div>
     </main>
   )
