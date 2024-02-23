@@ -5,6 +5,7 @@ import Header from '@/components/PagesComponents/Header'
 import Herosection from '@/components/PagesComponents/Herosection'
 import Second from '@/components/PagesComponents/Second'
 import Third from '@/components/PagesComponents/Third'
+import Fourth from '@/components/PagesComponents/Fourth'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Second />
       <div className='bg-white'>
         <Third />
+        <Fourth />
       </div>
     </main>
   )
