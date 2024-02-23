@@ -9,6 +9,7 @@ import Fourth from '@/components/PagesComponents/Fourth'
 import Fifth from '@/components/PagesComponents/Fifth'
 import ContactUs from '@/components/PagesComponents/ContactUs'
 import CTA from '@/components/PagesComponents/CTA'
+import Footer from '@/components/PagesComponents/Footer'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <ContactUs />
         <CTA />
       </div>
+      <Footer />
     </main>
   )
 }
