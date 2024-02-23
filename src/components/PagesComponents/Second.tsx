@@ -6,7 +6,7 @@ const Second = () => {
             <p className="text-primary text-sm md:text-base xl:text-lg font-semibold ">Why Capital Sphere Bank?</p>
             <p className="text-3xl md:text-4xl xl:text-5xl font-bold mt-2 text-[#161618]">Built for Your Convenience</p>
             <p className="mt-8 w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] text-[#56575C] text-sm sm:text-base md:text-lg xl:text-xl">Explore the unique advantages of our online services and discover how we go beyond traditional banking to meet your modern needs.</p>
-            <div className="flex justify-center md:justify-start flex-wrap gap-5 xl:gap-10 mt-14">
+            <div className="flex justify-center flex-wrap gap-5 xl:gap-10 mt-14">
                 <SecondCard title="Flexible Account Options" body="Choose from a variety of savings accounts tailored to meet your specific needs and financial goals." />
                 <SecondCard title="Online and Mobile Access" body="Access your savings account anytime, anywhere with our secure online and mobile banking platforms." />
                 <SecondCard title="24/7 Account Access" body="Access your accounts 24/7, giving you control over your finances at any time." />

@@ -7,6 +7,7 @@ import Second from '@/components/PagesComponents/Second'
 import Third from '@/components/PagesComponents/Third'
 import Fourth from '@/components/PagesComponents/Fourth'
 import Fifth from '@/components/PagesComponents/Fifth'
+import ContactUs from '@/components/PagesComponents/ContactUs'
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Third />
         <Fourth />
         <Fifth />
+        <ContactUs />
       </div>
     </main>
   )
