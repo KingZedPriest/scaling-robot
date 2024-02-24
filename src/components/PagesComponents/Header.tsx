@@ -14,6 +14,7 @@ import { Menu } from "iconsax-react";
 
 const Header = () => {
   const pathName = usePathname()
+  console.log({pathName})
   //For the sidebar
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -48,7 +49,7 @@ const Header = () => {
                     transition={{ duration: 0.2, delay: 0.2 }}
                     className="fixed left-0 top-0 h-screen flex flex-col gap-y-5 w-[300px] bg-white lg:hidden py-20 px-6 font-medium"
                   >
-                    <Link href="/" className={`${pathName === "" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Home</Link>
+                    <Link href="/" className={`${pathName === "/" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Home</Link>
                     <Link href="/features" className={`${pathName === "/features" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Features</Link>
                     <Link href="/aboutus" className={`${pathName === "/aboutus" ? "text-primary" : ""} hover:text-primary duration-500`} prefetch={true}>About us</Link>
                     <Link href="/contactus" className={`${pathName === "/contactus" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Contact us</Link>

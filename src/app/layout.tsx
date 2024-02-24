@@ -6,7 +6,7 @@ import { NextAuthProvider } from '@/providers/SessionProvider';
 
 export const metadata: Metadata = {
   title: 'Capital Sphere Bank',
-  description: 'Capital Sphere Bank is a financial institution that has it\'s headquarters in Germany.',
+  description: 'Capital Sphere Bank is a financial institution that has it\'s headquarters in Cyprus.',
 }
 
 export default function RootLayout({

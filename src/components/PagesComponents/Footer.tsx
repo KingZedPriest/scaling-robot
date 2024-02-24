@@ -7,6 +7,9 @@ import Image from "next/image";
 import logo from "../../../public/Images/logoWhite.svg";
 import Link from "next/link";
 
+//Need Icons
+import { LocationTick, MessageTick } from "iconsax-react";
+
 
 const Footer = () => {
     const [loading, setLoading] = useState<boolean>(false)
@@ -59,7 +62,25 @@ const Footer = () => {
                 <Link href="contactus" className="text-white hover:text-primary duration-500" prefetch={true}>Contact us</Link>
             </div>
             <div className="border-t border-[#344054] my-10"></div>
-            <p className="text-xs md:text-sm xl:text-base text-white">Copyright &copy; 2024 Capital Sphere Bank. All rights reserved</p>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-white text-xs md:text-sm xl:text-base">
+                <div className="w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]">
+                   <p className="font-bold">Contact Information</p>
+                    <p className="mt-2">Should you need assistance or have any questions, our client support representatives are available for consultation in person during regular office. Additionally, feel free to send any inquiries electronically to our email address which is consistently monitored.</p> 
+                </div>
+                
+                <div className="flex flex-col gap-y-5 mt-6">
+                    <div className="flex gap-x-1">
+                        <LocationTick size="20" color="#FF8A65" className="shrink-0"/>
+                       <p>22 Archbishop Makarios III, Makaria Center, 5th Floor, Office 501, Larnaca, Cyprus, 6017.</p> 
+                    </div>
+                    <div className="flex gap-x-1">
+                        <MessageTick size="20" color="#FF8A65" className="shrink-0"/>
+                       <p>Hello@cspherebank.com</p> 
+                    </div>
+                    
+                </div>
+            </div>
+            <p className="text-xs md:text-sm xl:text-base text-white mt-6">Copyright &copy; 2024 Capital Sphere Bank. All rights reserved</p>
         </main>
      );
 }
