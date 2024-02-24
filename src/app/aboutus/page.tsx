@@ -1,6 +1,9 @@
 //Import Needed Components
 import Header from '@/components/PagesComponents/Header'
 import AboutUsHeroSection from "@/components/PagesComponents/AboutUsHeroSection";
+import Values from '@/components/PagesComponents/Values';
+import CTA from '@/components/PagesComponents/CTA';
+import Footer from '@/components/PagesComponents/Footer';
 
 const page = () => {
     return ( 
@@ -9,6 +12,9 @@ const page = () => {
                 <Header />
             </div>
             <AboutUsHeroSection /> 
+            <Values />
+            <CTA />
+            <Footer />
         </main>
      );
 }
