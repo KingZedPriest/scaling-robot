@@ -65,7 +65,7 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-white text-xs md:text-sm xl:text-base">
                 <div className="sm:w-[49%]">
                    <p className="font-bold w-[95%] md:w-[80%] lg:w-[70%] xl:w-[75%]">Contact Information</p>
-                    <p className="mt-2 w-[95%] md:w-[80%] xl:w-[75%]">Should you need assistance or have any questions, our client support representatives are available for consultation in person during regular office. Additionally, feel free to send any inquiries electronically to our email address which is consistently monitored.</p> 
+                    <p className="mt-2 w-[95%] md:w-[80%] xl:w-[75%]">Should you need assistance or have any questions.</p> 
                 </div>
                 
                 <div className="flex flex-col gap-y-5 mt-6 sm:w-[49%]">

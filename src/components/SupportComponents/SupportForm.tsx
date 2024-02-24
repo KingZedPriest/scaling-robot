@@ -48,6 +48,7 @@ const SupportForm = () => {
                     Email Address
                   </label>
                   <input
+                    required
                     type="email"
                     name="email"
                     id="email"
@@ -64,6 +65,7 @@ const SupportForm = () => {
                     Subject
                   </label>
                   <input
+                    required
                     type="text"
                     name="subject"
                     id="subject"
@@ -79,7 +81,7 @@ const SupportForm = () => {
                     <label className="cursor-pointer" htmlFor="message">
                         Message
                     </label>
-                    <textarea value={enteredMessage} onChange={(e: any) =>
+                    <textarea required value={enteredMessage} onChange={(e: any) =>
                         setEnteredMessage(e.target.value)
                     } className="h-20 border border-[#E6E7E8] px-2 xl:px-4 py-2 md:py-3 focus:border-primary rounded-md focus:outline-none resize-none" placeholder="Enter Your Message Here" maxLength={200} name="message" id="message"></textarea>
                 </div>

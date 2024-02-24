@@ -29,9 +29,9 @@ const Header = () => {
                 <div className="flex gap-x-5 lg:gap-x-10 items-center">
                     <Link href="/"><Image src={logo} alt="Capital Sphere Bank Logo" priority={true} className="size-8 md:size-10 xl:size-12"/></Link>
 
-                    <Link href="/features" className={`${pathName === "/features" ? "text-primary" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>Features</Link>
-                    <Link href="/aboutus" className={`${pathName === "/aboutus" ? "text-primary" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>About us</Link>
-                    <Link href="/contactus" className={`${pathName === "/contactus" ? "text-primary" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>Contact us</Link>
+                    <Link href="/features" className={`${pathName === "/features" ? "text-primary font-bold" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>Features</Link>
+                    <Link href="/aboutus" className={`${pathName === "/aboutus" ? "text-primary font-bold" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>About us</Link>
+                    <Link href="/contactus" className={`${pathName === "/contactus" ? "text-primary font-bold" : ""} hidden md:block hover:text-primary duration-500`} prefetch={true}>Contact us</Link>
                 </div>
                 <div className="hidden items-center gap-x-5 md:flex">
                    <Link href="/login" className="rounded-lg font-normal border border-white text-white hover:text-[#020100] py-3 px-6 hover:bg-white duration-500" prefetch={true}>Log in</Link> 
@@ -49,10 +49,10 @@ const Header = () => {
                     transition={{ duration: 0.2, delay: 0.2 }}
                     className="fixed left-0 top-0 h-screen flex flex-col gap-y-5 w-[300px] bg-white lg:hidden py-20 px-6 font-medium"
                   >
-                    <Link href="/" className={`${pathName === "/" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Home</Link>
-                    <Link href="/features" className={`${pathName === "/features" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Features</Link>
-                    <Link href="/aboutus" className={`${pathName === "/aboutus" ? "text-primary" : ""} hover:text-primary duration-500`} prefetch={true}>About us</Link>
-                    <Link href="/contactus" className={`${pathName === "/contactus" ? "text-primary" : ""} text-secondary hover:text-primary duration-500`} prefetch={true}>Contact us</Link>
+                    <Link href="/" className={`${pathName === "/" ? "text-primary font-bold" : ""} hover:text-primary duration-500`} prefetch={true}>Home</Link>
+                    <Link href="/features" className={`${pathName === "/features" ? "text-primary font-bold" : ""}  hover:text-primary duration-500`} prefetch={true}>Features</Link>
+                    <Link href="/aboutus" className={`${pathName === "/aboutus" ? "text-primary font-bold" : ""} hover:text-primary duration-500`} prefetch={true}>About us</Link>
+                    <Link href="/contactus" className={`${pathName === "/contactus" ? "text-primary font-bold" : ""} hover:text-primary duration-500`} prefetch={true}>Contact us</Link>
 
                     <div className="flex flex-col gap-y-5">
                         <Link href="/login" className="rounded-lg border border-secondary text-secondary hover:border-primary hover:text-primary py-3 px-6 hover:bg-white duration-500" prefetch={true}>Log in</Link> 
