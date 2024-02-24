@@ -20,12 +20,16 @@ const Footer = () => {
         event.preventDefault()
         setLoading(true)
 
-        if (enteredEmail.length > 0) {
+        if (enteredEmail.length >= 6) {
+            setLoading(false)
             toast.success("You subscribed successfully.")
+            setEnteredEmail("")
         }
 
-        if (enteredEmail.length >= 5){
+        if (enteredEmail.length <= 5){
+            setLoading(false)
             toast.error("Please enter a valid email address.")
+            setEnteredEmail("")
         }
 
     }
@@ -40,7 +44,7 @@ const Footer = () => {
                         name="email"
                         id="email"
                         value={enteredEmail}
-                        className="bg-inherit border-2 border-[#3C3C434D] px-2 xl:px-4 py-3 focus:border-primary rounded-md focus:outline-none"
+                        className="bg-inherit border-2 border-[#3C3C434D] px-2 xl:px-4 py-3 focus:border-primary rounded-md focus:outline-none text-white"
                         placeholder="Email Address"
                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                             setEnteredEmail(e.target.value)

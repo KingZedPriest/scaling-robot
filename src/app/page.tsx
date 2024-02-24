@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 //Import Needed Components
 import Header from '@/components/PagesComponents/Header'
 import Herosection from '@/components/PagesComponents/Herosection'
