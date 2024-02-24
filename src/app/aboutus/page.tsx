@@ -2,8 +2,10 @@
 import Header from '@/components/PagesComponents/Header'
 import AboutUsHeroSection from "@/components/PagesComponents/AboutUsHeroSection";
 import Values from '@/components/PagesComponents/Values';
+import WhatSetsUsApart from '@/components/PagesComponents/WhatSetsUsApart';
 import CTA from '@/components/PagesComponents/CTA';
 import Footer from '@/components/PagesComponents/Footer';
+
 
 const page = () => {
     return ( 
@@ -13,6 +15,7 @@ const page = () => {
             </div>
             <AboutUsHeroSection /> 
             <Values />
+            <WhatSetsUsApart />
             <CTA />
             <Footer />
         </main>
