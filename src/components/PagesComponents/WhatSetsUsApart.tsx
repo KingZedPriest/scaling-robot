@@ -7,7 +7,7 @@ import contact4 from "../../../public/Images/contact4.svg";
 const WhatSetsUsApart = () => {
     return ( 
         <main className="py-14 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 flex flex-col gap-y-10 md:gap-y-0 md:flex-row md:justify-between items-center inter">
-            <div className="md:w-[49%] flex gap-x-3 md:gap-x-5 justify-center">
+            <div className="md:w-[49%] flex justify-center">
                 <Image src={contact4} alt="Image" />
             </div>
             <div className="md:w-[49%] flex flex-col items-center gap-y-10">

@@ -6,8 +6,10 @@ import Third from '@/components/PagesComponents/Third'
 import Fourth from '@/components/PagesComponents/Fourth'
 import Fifth from '@/components/PagesComponents/Fifth'
 import ContactUs from '@/components/PagesComponents/ContactUs'
+import WalletIntegrations from '@/components/PagesComponents/WalletIntegrations'
 import CTA from '@/components/PagesComponents/CTA'
 import Footer from '@/components/PagesComponents/Footer'
+
 
 export default function Home() {
   return (
@@ -23,6 +25,7 @@ export default function Home() {
         <Fourth />
         <Fifth />
         <ContactUs />
+        <WalletIntegrations />
         <CTA />
       </div>
       <Footer />
