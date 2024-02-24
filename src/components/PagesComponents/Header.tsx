@@ -14,7 +14,7 @@ import { Menu } from "iconsax-react";
 
 const Header = () => {
   const pathName = usePathname()
-  console.log({pathName})
+  //console.log({pathName})
   //For the sidebar
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
