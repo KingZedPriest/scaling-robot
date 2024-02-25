@@ -8,7 +8,9 @@ import TransferHistory from "@/components/DashboardComponents/TransferHistory";
 import AccountSummary from "@/components/DashboardComponents/AccountSummary";
 import ATM from "@/components/DashboardComponents/ATM";
 import BalanceUpdate from "@/components/DashboardComponents/BalanceUpdate";
+import VideoPlayer from "@/components/DashboardComponents/VideoPlayer";
 
+//Import Needed Video
 
 export const revalidate = 30
 const page = async () => {
@@ -32,7 +34,8 @@ const page = async () => {
                 <div className="lg:w-[49%] flex flex-col gap-y-10 ">
                     <Activity wireTransfer={wireTransferTransactions} deposits={deposits}/>
                     <AccountSummary firstName={user?.firstName} lastName={user?.lastName} accountNumber={user?.accountNumber}/>
-                    <ATM email={user?.email} hasRequested={user?.atmRequest} name={`${user?.firstName} ${user?.lastName}`}/>
+                    {/* <VideoPlayer /> */}
+                    <ATM email={user?.email} hasRequested={user?.atmRequest} name={`${user?.firstName} ${user?.lastName}`} />
                 </div>
             </div>
         </main>

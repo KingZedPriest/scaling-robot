@@ -3,7 +3,7 @@ import { getUserDetails } from "@/providers/userDetails";
 //Import Needed Components
 import Header from "@/components/DashboardComponents/Header";
 import SupportForm from "@/components/SupportComponents/SupportForm";
-
+import LiveChat from "@/components/molecules/LiveChat";
 
 export const revalidate = 30
 const page = async () => {
@@ -17,6 +17,7 @@ const page = async () => {
             <div className="px-4 md:px-6 xl:px-8 py-4">
                 <SupportForm/>
             </div>
+            <LiveChat />
         </main>
 
      );
